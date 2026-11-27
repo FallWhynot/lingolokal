@@ -199,6 +199,45 @@
     }, 3400);
   }
 
+  function isReducedMotion() {
+    return Boolean(global.matchMedia && global.matchMedia('(prefers-reduced-motion: reduce)').matches);
+  }
+
+  function spawnFloatingXp(amount) {
+    if (!amount || amount <= 0 || isReducedMotion()) return;
+    const pill = document.createElement('div');
+    pill.className = 'floating-xp-pill mono';
+    pill.setAttribute('aria-hidden', 'true');
+    pill.textContent = `+${amount} XP`;
+    document.body.appendChild(pill);
+    setTimeout(() => pill.remove(), 950);
+  }
+
+  function launchMiniConfetti() {
+    if (isReducedMotion()) return;
+    const layer = document.createElement('div');
+    layer.className = 'confetti-layer';
+    layer.setAttribute('aria-hidden', 'true');
+    const colors = ['#FFD13B', '#8CE982', '#6CC4FF', '#FF8AD4'];
+    for (let i = 0; i < 24; i++) {
+      const piece = document.createElement('span');
+      piece.className = `confetti-piece ${i % 3 === 0 ? 'is-circle' : ''}`;
+      const angle = (Math.PI * 2 * i) / 24 + (Math.random() - 0.5) * 0.35;
+      const dist = 70 + Math.random() * 140;
+      const dx = Math.round(Math.cos(angle) * dist);
+      const dy = Math.round(Math.sin(angle) * dist - 50);
+      const rot = Math.round((Math.random() - 0.5) * 520);
+      piece.style.backgroundColor = colors[i % colors.length];
+      piece.style.setProperty('--dx', `${dx}px`);
+      piece.style.setProperty('--dy', `${dy}px`);
+      piece.style.setProperty('--rot', `${rot}deg`);
+      piece.style.animationDelay = `${(i % 6) * 25}ms`;
+      layer.appendChild(piece);
+    }
+    document.body.appendChild(layer);
+    setTimeout(() => layer.remove(), 1300);
+  }
+
   // --- Web Speech API (1x normal / 0.75x pelan) with voice detection ---
   function updateAudioSpeedUI() {
     const btn = document.getElementById('audio-speed-btn');
@@ -2007,6 +2046,8 @@
     const log = Store.ensureDayLog(state, today);
     log.modules = (log.modules || 0) + 1;
     Store.addXP(state, langCode, 25);
+    spawnFloatingXp(25);
+    launchMiniConfetti();
     showToast(`Modul "${mod.title}" otomatis selesai (+25 XP)!`, 'achievement');
     return true;
   }
@@ -2025,6 +2066,7 @@
     const log = Store.ensureDayLog(state, today);
     log.cards = (log.cards || 0) + 1;
     Store.addXP(state, state.activeLang, 5);
+    spawnFloatingXp(5);
 
     if (quality >= 3 && card.module_id) {
       checkAutoCompleteModule(state.activeLang, card.module_id);
@@ -2086,7 +2128,7 @@
           </div>
 
           <div class="srs-card-stage">
-            <div class="srs-card ${!ui.fcFlipped ? 'can-flip' : ''}" ${!ui.fcFlipped ? 'data-action="fc-flip"' : ''}>
+            <div class="srs-card ${!ui.fcFlipped ? 'can-flip' : ''} ${ui.fcFlipAnim ? 'is-flip-entering' : ''}" ${!ui.fcFlipped ? 'data-action="fc-flip"' : ''}>
               <div class="srs-card-top">
                 <div class="toolbar-group">
                   <span class="tag accent">${esc(card.level)}</span>
@@ -2132,7 +2174,7 @@
           </div>
 
           ${ui.fcFlipped ? `
-            <div class="sm2-grid" role="group" aria-label="Nilai ingatan SM-2">
+            <div class="sm2-grid ${ui.fcFlipAnim ? 'sm2-stagger' : ''}" role="group" aria-label="Nilai ingatan SM-2">
               <button type="button" class="sm2-btn q1" data-action="fc-rate" data-q="1">
                 <span class="sm2-title">1 · Lupa</span>
                 <span class="sm2-interval">${p1.interval_days === 0 ? 'Ulang sesi ini' : `${p1.interval_days} hari`}</span>
@@ -3667,14 +3709,22 @@
         return `<option value="${esc(c.id)}" ${c.id === selectedChar.id ? 'selected' : ''}>${idx + 1}. ${esc(c.char)} (${esc(c.romaji)})${mark}</option>`;
       }).join('');
       const exampleSpeak = extractSpeakableChar(selectedChar.example);
+      const slideCls = ui.scriptSlideDir === 'next'
+        ? 'slide-from-right'
+        : ui.scriptSlideDir === 'prev'
+          ? 'slide-from-left'
+          : '';
+      const stampCls = ui.scriptJustLearned ? 'stamp-pop' : '';
+      ui.scriptSlideDir = null;
+      ui.scriptJustLearned = false;
 
       mainAreaHtml = `
         <div class="script-focus-stage">
-          <article class="card script-focus-card ${isSelectedLearned ? 'is-learned' : ''}" aria-label="Kartu aksara aktif">
+          <article class="card script-focus-card ${isSelectedLearned ? 'is-learned' : ''} ${slideCls}" aria-label="Kartu aksara aktif">
             <div class="script-focus-top">
               <div class="toolbar-group">
                 <span class="tag accent mono">${selectedIdx + 1} / ${activeTab.chars.length}</span>
-                <span class="tag ${isSelectedLearned ? 'jade' : ''}">${isSelectedLearned ? 'Sudah Hafal' : 'Belum Hafal'}</span>
+                <span class="tag ${isSelectedLearned ? 'jade' : ''} ${stampCls}">${isSelectedLearned ? 'Sudah Hafal' : 'Belum Hafal'}</span>
               </div>
               <select id="script-jump-select" class="script-jump-select" aria-label="Pilih huruf langsung">
                 ${jumpOptsHtml}
@@ -4755,7 +4805,9 @@
           break;
         case 'fc-flip':
           ui.fcFlipped = true;
+          ui.fcFlipAnim = true;
           renderView();
+          ui.fcFlipAnim = false;
           break;
         case 'fc-rate':
           await rateCurrentCard(Number(actEl.getAttribute('data-q')));
@@ -4836,6 +4888,8 @@
             const dMeta = getDailyQuizMeta(state.activeLang);
             dMeta.setsDone = (dMeta.setsDone || 0) + 1;
             await persistState();
+            const qPct = ui.quizList.length > 0 ? Math.round((ui.quizScore / ui.quizList.length) * 100) : 0;
+            if (qPct >= 75) launchMiniConfetti();
           }
           renderView();
           break;
@@ -5006,6 +5060,7 @@
           const nextIdx = Math.max(0, Math.min(tab.chars.length - 1, curIdx + delta));
           if (nextIdx !== curIdx) {
             ui.scriptSelectedId = tab.chars[nextIdx].id;
+            ui.scriptSlideDir = action === 'script-next' ? 'next' : 'prev';
             renderView();
           }
           break;
@@ -5020,9 +5075,12 @@
             delete map[cid];
           } else {
             map[cid] = true;
+            ui.scriptJustLearned = true;
             Store.addXP(state, state.activeLang, 3);
+            spawnFloatingXp(3);
             const nowUnlocked = Store.getScriptGateStatus(state, state.activeLang).unlocked;
             if (!wasUnlocked && nowUnlocked) {
+              launchMiniConfetti();
               showToast(`Fondasi Aksara ${getCatalogMeta(state.activeLang).name_id} terbuka! Semua modul & latihan siap diakses.`, 'achievement');
             } else {
               showToast('Huruf ditandai hafal (+3 XP).', 'success');

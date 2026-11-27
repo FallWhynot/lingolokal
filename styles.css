@@ -6242,3 +6242,252 @@ textarea {
   font-size: 0.82rem;
   flex-shrink: 0;
 }
+
+/* ==========================================================================
+   TACTILE NEO-BRUTALISM MICRO-INTERACTIONS (6 GPU-Accelerated Animations)
+   ========================================================================== */
+
+/* 1. Physical 3D Card Flip + SM-2 Button Stagger */
+.srs-card-stage {
+  perspective: 1100px;
+}
+
+.srs-card.is-flip-entering {
+  animation: cardFlipIn 0.34s cubic-bezier(0.22, 1, 0.36, 1) both;
+  transform-origin: center center;
+}
+
+@keyframes cardFlipIn {
+  0% {
+    opacity: 0.45;
+    transform: rotateY(-18deg) scale(0.96);
+  }
+  100% {
+    opacity: 1;
+    transform: rotateY(0deg) scale(1);
+  }
+}
+
+.sm2-grid.sm2-stagger .sm2-btn {
+  animation: sm2PopIn 0.28s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+.sm2-grid.sm2-stagger .sm2-btn:nth-child(1) { animation-delay: 0ms; }
+.sm2-grid.sm2-stagger .sm2-btn:nth-child(2) { animation-delay: 45ms; }
+.sm2-grid.sm2-stagger .sm2-btn:nth-child(3) { animation-delay: 90ms; }
+.sm2-grid.sm2-stagger .sm2-btn:nth-child(4) { animation-delay: 135ms; }
+
+@keyframes sm2PopIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* 2. Directional Slide + Stamp Pop on Kartu Aksara */
+.script-focus-card.slide-from-right {
+  animation: slideFromRight 0.28s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.script-focus-card.slide-from-left {
+  animation: slideFromLeft 0.28s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes slideFromRight {
+  from {
+    opacity: 0.4;
+    transform: translateX(26px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideFromLeft {
+  from {
+    opacity: 0.4;
+    transform: translateX(-26px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.tag.stamp-pop {
+  animation: stampPop 0.38s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+@keyframes stampPop {
+  0% {
+    opacity: 0.2;
+    transform: scale(1.55) rotate(-10deg);
+  }
+  65% {
+    opacity: 1;
+    transform: scale(0.94) rotate(2deg);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+  }
+}
+
+/* 3. Quiz Micro-Feedback (Correct Spring Pop & Wrong Horizontal Shake) */
+.quiz-opt-btn.correct {
+  animation: quizCorrectPop 0.32s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+.quiz-opt-btn.wrong {
+  animation: quizWrongShake 0.28s ease-in-out both;
+}
+
+@keyframes quizCorrectPop {
+  0% { transform: scale(0.96); }
+  55% { transform: scale(1.03); }
+  100% { transform: scale(1); }
+}
+
+@keyframes quizWrongShake {
+  0%, 100% { transform: translateX(0); }
+  20% { transform: translateX(-6px); }
+  45% { transform: translateX(6px); }
+  70% { transform: translateX(-4px); }
+  88% { transform: translateX(3px); }
+}
+
+.feedback-box {
+  animation: feedbackReveal 0.24s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes feedbackReveal {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 4. Floating +XP Pop-up & Smooth Progress Bar */
+.progress-fill {
+  transition: width 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.floating-xp-pill {
+  position: fixed;
+  top: 72px;
+  right: 20px;
+  z-index: 950;
+  pointer-events: none;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: var(--accent);
+  color: #111111;
+  border: 2px solid #111111;
+  box-shadow: 3px 3px 0 #111111;
+  font-size: 0.84rem;
+  font-weight: 800;
+  animation: xpFloatUp 0.92s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@keyframes xpFloatUp {
+  0% {
+    opacity: 0;
+    transform: translateY(14px) scale(0.85);
+  }
+  20% {
+    opacity: 1;
+    transform: translateY(0) scale(1.06);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-38px) scale(0.96);
+  }
+}
+
+/* 5. Audio Soundwave Ripple while TTS is speaking */
+.audio-btn {
+  position: relative;
+}
+
+.audio-btn.is-speaking::after {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border-radius: inherit;
+  border: 2.5px solid var(--accent);
+  pointer-events: none;
+  animation: soundwaveRipple 0.95s ease-out infinite;
+}
+
+@keyframes soundwaveRipple {
+  0% {
+    opacity: 0.95;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.55);
+  }
+}
+
+/* 6. Mini Geometric Neo-Brutalism Confetti */
+.confetti-layer {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 999;
+  overflow: hidden;
+}
+
+.confetti-piece {
+  position: absolute;
+  top: 42%;
+  left: 50%;
+  width: 11px;
+  height: 11px;
+  border-radius: 3px;
+  border: 1.5px solid #111111;
+  animation: confettiBurst 1.15s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.confetti-piece.is-circle {
+  border-radius: 999px;
+}
+
+@keyframes confettiBurst {
+  0% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(0.4) rotate(0deg);
+  }
+  70% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translate(calc(-50% + var(--dx)), calc(-50% + var(--dy) + 90px)) scale(0.95) rotate(var(--rot));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .srs-card.is-flip-entering,
+  .sm2-grid.sm2-stagger .sm2-btn,
+  .script-focus-card.slide-from-right,
+  .script-focus-card.slide-from-left,
+  .tag.stamp-pop,
+  .quiz-opt-btn.correct,
+  .quiz-opt-btn.wrong,
+  .feedback-box,
+  .floating-xp-pill,
+  .audio-btn.is-speaking::after,
+  .confetti-piece {
+    animation: none !important;
+  }
+}
