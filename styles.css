@@ -5722,3 +5722,342 @@ body {
     gap: 8px;
   }
 }
+
+/* ==========================================================================
+   SINGLE-CARD AKSARA FOCUS VIEW (Zero-Scroll Mobile & Desktop Character Deck)
+   ========================================================================== */
+
+.script-focus-stage {
+  max-width: 640px;
+  margin: 0 auto 20px;
+}
+
+.script-focus-card {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 22px;
+  border-top: 6px solid var(--accent);
+}
+
+.script-focus-card.is-learned {
+  border-top-color: var(--jade);
+}
+
+.script-focus-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.script-jump-select {
+  min-height: 44px;
+  padding: 6px 12px;
+  border: 2px solid var(--border-brutal);
+  border-radius: 10px;
+  background: var(--surface-subtle);
+  color: var(--ink);
+  font-family: var(--font-script);
+  font-size: 0.86rem;
+  font-weight: 600;
+  box-shadow: 2px 2px 0 var(--shadow-ink);
+  max-width: 190px;
+}
+
+.script-focus-hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 18px 12px;
+  border-radius: 12px;
+  background: var(--surface-subtle);
+  border: 2px solid var(--border-brutal);
+}
+
+.script-focus-glyph {
+  font-family: var(--font-script);
+  font-size: clamp(4.2rem, 15vw, 6.2rem);
+  font-weight: 400;
+  font-synthesis-weight: none;
+  line-height: 1.15;
+  color: var(--ink);
+  text-align: center;
+}
+
+:root[data-lang="ar"] .script-focus-glyph,
+:root[data-lang="th"] .script-focus-glyph {
+  line-height: 1.5;
+}
+
+.script-focus-reading {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.script-focus-romaji {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--ink);
+  padding: 4px 14px;
+  border-radius: 999px;
+  background: var(--accent);
+  color: #111111;
+  border: 2px solid light-dark(#111111, #0D0E13);
+  box-shadow: 2px 2px 0 var(--shadow-ink);
+}
+
+.script-focus-details {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.script-focus-actions {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 10px;
+}
+
+.script-learned-btn {
+  width: 100%;
+  justify-content: center;
+  min-height: 48px;
+}
+
+.script-focus-nav {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  padding-top: 12px;
+  border-top: 2px dashed var(--border-strong);
+}
+
+.script-nav-btn {
+  width: 100%;
+  justify-content: center;
+  min-height: 48px;
+  font-weight: 700;
+}
+
+@media (max-width: 639px) {
+  .script-focus-card {
+    padding: 14px;
+    gap: 12px;
+  }
+
+  .script-focus-hero {
+    padding: 12px 10px;
+    gap: 8px;
+  }
+
+  .script-focus-glyph {
+    font-size: 4rem;
+  }
+
+  .script-focus-romaji {
+    font-size: 1.15rem;
+  }
+
+  .script-jump-select {
+    max-width: 150px;
+    font-size: 0.82rem;
+    padding: 4px 8px;
+  }
+
+  .script-focus-actions {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ==========================================================================
+   DESIGN THINKER UPGRADES: BOTTOM SHEET PATTERN & BENTO MOMENTUM GRID
+   ========================================================================== */
+
+/* Native Accessible Bottom Sheet (<dialog class="bottom-sheet">) */
+.bottom-sheet {
+  position: fixed;
+  inset: auto 0 0 0;
+  margin: auto 0 0 0;
+  width: 100%;
+  max-width: 100%;
+  max-height: 82dvh;
+  padding: 0;
+  border: 0;
+  border-top: 2.5px solid var(--border-brutal);
+  border-radius: 20px 20px 0 0;
+  background: var(--surface);
+  color: var(--ink);
+  box-shadow: 0 -8px 28px rgba(0, 0, 0, 0.24);
+  overflow: hidden;
+  display: none;
+  flex-direction: column;
+}
+
+.bottom-sheet[open] {
+  display: flex;
+  animation: sheetSlideUp 0.22s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.bottom-sheet::backdrop {
+  background: rgba(12, 13, 18, 0.54);
+  backdrop-filter: blur(2px);
+}
+
+@keyframes sheetSlideUp {
+  from {
+    transform: translateY(100%);
+    opacity: 0.7;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.bottom-sheet-handle-wrap {
+  display: flex;
+  justify-content: center;
+  padding: 10px 0 4px;
+  flex-shrink: 0;
+}
+
+.bottom-sheet-handle {
+  width: 44px;
+  height: 5px;
+  border-radius: 999px;
+  background: var(--border-strong);
+}
+
+.bottom-sheet-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 6px 16px 12px;
+  border-bottom: 2px solid var(--border-brutal);
+  flex-shrink: 0;
+}
+
+.bottom-sheet-head h2 {
+  font-family: var(--font-display);
+  font-size: 1.08rem;
+  font-weight: 700;
+}
+
+.bottom-sheet-body {
+  padding: 14px 16px calc(22px + env(safe-area-inset-bottom, 0px));
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+.bottom-sheet-lang-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.bottom-sheet-lang-list .lang-option {
+  min-height: 48px;
+}
+
+/* Bento UI Momentum Grid (Zeigarnik Effect + Quick Launch) */
+.bento-momentum-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.8fr) minmax(0, 1fr) minmax(0, 1fr);
+  gap: 14px;
+  align-items: stretch;
+}
+
+.bento-cell {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 18px;
+  text-align: left;
+  font-family: inherit;
+  color: var(--ink);
+}
+
+.bento-zeigarnik {
+  border-left: 6px solid var(--accent);
+  justify-content: space-between;
+}
+
+.bento-cell-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.bento-title {
+  font-family: var(--font-display);
+  font-size: 1.12rem;
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+.bento-quick-tile {
+  justify-content: center;
+  align-items: flex-start;
+  cursor: pointer;
+  transition: transform 0.14s ease, box-shadow 0.14s ease;
+}
+
+.bento-quick-tile:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0 var(--shadow-ink);
+}
+
+.bento-quick-tile:active {
+  transform: translate(2px, 2px);
+  box-shadow: 1px 1px 0 var(--shadow-ink);
+}
+
+.bento-tile-sky {
+  border-top: 6px solid var(--sky);
+}
+
+.bento-tile-jade {
+  border-top: 6px solid var(--jade);
+}
+
+.bento-tile-heading {
+  font-family: var(--font-display);
+  font-size: 1.08rem;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+@media (max-width: 1023px) {
+  .bento-momentum-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  .bento-zeigarnik {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 639px) {
+  .bento-cell {
+    padding: 14px;
+    gap: 8px;
+  }
+
+  .bento-title {
+    font-size: 1.02rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bottom-sheet[open] {
+    animation: none;
+  }
+}

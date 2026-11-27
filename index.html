@@ -16,7 +16,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=BIZ+UDPGothic:wght@400;700&family=JetBrains+Mono:wght@500;600;700&family=Noto+Naskh+Arabic:wght@400;500&family=Noto+Sans+JP:wght@400;500&family=Noto+Sans+KR:wght@400;500&family=Noto+Sans+SC:wght@400;500&family=Noto+Sans+Thai:wght@400;500&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="./styles.css">
+  <link rel="stylesheet" href="./styles.css?v=4">
   <script defer src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
   <script defer src="./data/catalog.js"></script>
   <script defer src="./data/scripts.js"></script>
@@ -25,8 +25,8 @@
   <script defer src="./data/japanese.js"></script>
   <script defer src="./data/korean.js"></script>
   <script defer src="./data/extra-packs.js"></script>
-  <script defer src="./js/storage.js"></script>
-  <script defer src="./js/app.js"></script>
+  <script defer src="./js/storage.js?v=4"></script>
+  <script defer src="./js/app.js?v=4"></script>
 </head>
 <body>
   <a href="#main-content" class="skip-link">Lewati ke konten utama</a>
@@ -348,6 +348,22 @@
       <button type="submit" value="cancel" class="btn-secondary" autofocus>Batal</button>
       <button type="submit" value="confirm" class="btn-danger">Ya, Reset Semua Data</button>
     </form>
+  </dialog>
+
+  <!-- Native Mobile Bottom Sheet (Skill Tree detail, Word Inspector, Mobile Lang Picker) -->
+  <dialog id="mobile-bottom-sheet" class="bottom-sheet" closedby="any" aria-labelledby="bottom-sheet-title">
+    <div class="bottom-sheet-handle-wrap" aria-hidden="true">
+      <span class="bottom-sheet-handle"></span>
+    </div>
+    <div class="bottom-sheet-head">
+      <h2 id="bottom-sheet-title">Detail</h2>
+      <button type="button" id="bottom-sheet-close" class="icon-btn" aria-label="Tutup panel bawah">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+          <path d="M18 6 6 18M6 6l12 12"/>
+        </svg>
+      </button>
+    </div>
+    <div id="bottom-sheet-body" class="bottom-sheet-body"></div>
   </dialog>
 
   <!-- Toast Notification Stack -->

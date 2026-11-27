@@ -658,7 +658,82 @@
     });
   }
 
+  function openBottomSheet(title, bodyHtml) {
+    const sheet = document.getElementById('mobile-bottom-sheet');
+    const titleEl = document.getElementById('bottom-sheet-title');
+    const bodyEl = document.getElementById('bottom-sheet-body');
+    if (!sheet || !titleEl || !bodyEl) return;
+    titleEl.textContent = title || 'Detail';
+    bodyEl.innerHTML = bodyHtml || '';
+    if (!sheet.open) sheet.showModal();
+  }
+
+  function closeBottomSheet() {
+    const sheet = document.getElementById('mobile-bottom-sheet');
+    if (sheet && sheet.open) sheet.close();
+  }
+
+  function initBottomSheet() {
+    const sheet = document.getElementById('mobile-bottom-sheet');
+    const closeBtn = document.getElementById('bottom-sheet-close');
+    const bodyEl = document.getElementById('bottom-sheet-body');
+    if (!sheet || !bodyEl) return;
+
+    if (closeBtn) closeBtn.addEventListener('click', closeBottomSheet);
+    sheet.addEventListener('click', (ev) => {
+      if (ev.target === sheet) closeBottomSheet();
+    });
+
+    bodyEl.addEventListener('click', (ev) => {
+      const langOpt = ev.target.closest('[data-lang-option]');
+      if (langOpt) {
+        const code = langOpt.getAttribute('data-lang-option');
+        closeBottomSheet();
+        setActiveLang(code);
+        return;
+      }
+
+      const speakBtn = ev.target.closest('[data-speak]');
+      if (speakBtn) {
+        const txt = speakBtn.getAttribute('data-speak');
+        const lang = speakBtn.getAttribute('data-speak-lang') || state.activeLang;
+        speakText(txt, lang);
+        return;
+      }
+
+      const navBtn = ev.target.closest('[data-nav]');
+      if (navBtn) {
+        const target = navBtn.getAttribute('data-nav');
+        closeBottomSheet();
+        navigate(target);
+        return;
+      }
+
+      const actBtn = ev.target.closest('[data-action]');
+      if (actBtn) {
+        const action = actBtn.getAttribute('data-action');
+        const mod = actBtn.getAttribute('data-mod');
+        closeBottomSheet();
+        if (action === 'mod-to-fc' && mod) {
+          navigate('flashcards', { fcModule: mod, fcDueOnly: false });
+        } else if (action === 'mod-to-quiz' && mod) {
+          navigate('quiz', { quizModule: mod });
+        } else if (action === 'mod-to-dialog' && mod) {
+          navigate('dialogs', { dialogModule: mod });
+        } else {
+          // Delegate back to main stage equivalent button if present
+          const sel = mod
+            ? `#main-content [data-action="${action}"][data-mod="${mod}"]`
+            : `#main-content [data-action="${action}"]`;
+          const mainBtn = document.querySelector(sel);
+          if (mainBtn) mainBtn.click();
+        }
+      }
+    });
+  }
+
   function initLangPickers() {
+    initBottomSheet();
     ['sidebar', 'topbar'].forEach((prefix) => {
       const trig = document.getElementById(`${prefix}-lang-trigger`);
       const menu = document.getElementById(`${prefix}-lang-menu`);
@@ -666,6 +741,10 @@
 
       trig.addEventListener('click', (ev) => {
         ev.stopPropagation();
+        if (prefix === 'topbar' && global.innerWidth <= 639) {
+          openBottomSheet('Pilih Bahasa Belajar', `<div class="bottom-sheet-lang-list">${menu.innerHTML}</div>`);
+          return;
+        }
         openLangPicker(prefix);
       });
 
@@ -1169,6 +1248,90 @@
   // ==========================================================================
   // VIEW 1: DASHBOARD 11 BAHASA (Editorial Contrasting Hero + 3 Clean Bands)
   // ==========================================================================
+  function renderBentoMomentumBand(meta, pack) {
+    const gate = Store.getScriptGateStatus(state, meta.code);
+    const today = Store.computeTodayProgress(state);
+    const dueCount = getDueCountForLang(meta.code);
+    const completedMap = state.completedModules[meta.code] || {};
+    const totalMods = pack ? pack.modules.length : 0;
+    const doneMods = pack ? pack.modules.filter((m) => completedMap[m.id]).length : 0;
+    const modPct = totalMods > 0 ? Math.round((doneMods / totalMods) * 100) : 0;
+
+    // Behavioral Design (B = MAP + Zeigarnik Effect): surface the single closest unfinished micro-goal
+    let nudgeTag = 'Langkah Terdekat';
+    let nudgeTitle = `Jaga ritme belajar ${meta.name_id} hari ini`;
+    let nudgeDesc = 'Mulai sesi singkat 3 menit untuk mempertahankan kebiasaan harian Anda.';
+    let nudgePct = today.percent;
+    let nudgeCtaLabel = 'Mulai 8 Soal Harian';
+    let nudgeCtaAttr = 'data-nav="quiz"';
+
+    if (!gate.unlocked) {
+      const remain = Math.max(1, gate.required - gate.learned);
+      nudgeTag = 'Hampir Terbuka · Aksara';
+      nudgeTitle = `Tinggal ${remain} huruf lagi untuk membuka semua modul ${meta.name_id}`;
+      nudgeDesc = `Anda sudah hafal ${gate.learned} dari ${gate.required} huruf dasar. Selesaikan sedikit lagi agar seluruh latihan terbuka otomatis.`;
+      nudgePct = gate.pct;
+      nudgeCtaLabel = `Hafalkan ${remain} Huruf Lagi`;
+      nudgeCtaAttr = 'data-nav="alphabet"';
+    } else if (today.percent > 0 && today.percent < 100) {
+      const leftPct = 100 - today.percent;
+      nudgeTag = `Target Harian · ${today.percent}%`;
+      nudgeTitle = `Sedikit lagi tuntas (${leftPct}% tersisa untuk target hari ini)`;
+      nudgeDesc = dueCount > 0
+        ? `Ulas beberapa kartu SRS yang jatuh tempo agar streak hari ini aman terkunci.`
+        : `Selesaikan 1 sesi quiz harian singkat agar target belajar hari ini tembus 100%.`;
+      nudgePct = today.percent;
+      nudgeCtaLabel = dueCount > 0 ? `Ulas ${Math.min(5, dueCount)} Kartu (~2 mnt)` : 'Lanjut Quiz Harian';
+      nudgeCtaAttr = dueCount > 0 ? 'data-nav="flashcards"' : 'data-nav="quiz"';
+    } else if (dueCount > 0) {
+      const estMin = Math.max(1, Math.round(dueCount * 0.4));
+      nudgeTag = 'Siap Diulas Hari Ini';
+      nudgeTitle = `${dueCount} kartu SRS menunggu pengulangan hari ini`;
+      nudgeDesc = `Mengulas tepat waktu menjaga daya ingat jangka panjang tanpa perlu menghafal ulang dari nol.`;
+      nudgePct = Math.min(100, Math.max(15, modPct));
+      nudgeCtaLabel = `Ulas ${dueCount} Kartu (~${estMin} mnt)`;
+      nudgeCtaAttr = 'data-nav="flashcards"';
+    } else if (pack && doneMods < totalMods) {
+      nudgeTag = `Progres Modul · ${doneMods}/${totalMods}`;
+      nudgeTitle = `Lanjutkan peta keahlian ${meta.name_id} Anda`;
+      nudgeDesc = `Anda telah menuntaskan ${modPct}% modul. Pilih satu modul berikutnya di Pohon Keahlian.`;
+      nudgePct = modPct;
+      nudgeCtaLabel = 'Buka Pohon Keahlian';
+      nudgeCtaAttr = 'data-nav="modules"';
+    }
+
+    return `
+      <section class="studio-section" aria-label="Ringkasan Bento dan target terdekat">
+        <div class="bento-momentum-grid">
+          <article class="card bento-cell bento-zeigarnik">
+            <div class="bento-cell-top">
+              <span class="tag accent">${esc(nudgeTag)}</span>
+              <span class="mono" style="font-size:0.82rem;font-weight:700;">${nudgePct}%</span>
+            </div>
+            <h2 class="bento-title">${esc(nudgeTitle)}</h2>
+            <p class="kpi-label">${esc(nudgeDesc)}</p>
+            <div class="progress-track" style="height:8px;"><div class="progress-fill jade" style="width:${nudgePct}%"></div></div>
+            <div>
+              <button type="button" class="btn-primary" ${nudgeCtaAttr}>${esc(nudgeCtaLabel)}</button>
+            </div>
+          </article>
+
+          <button type="button" class="card bento-cell bento-quick-tile bento-tile-sky" data-nav="quiz">
+            <span class="tag">Diperbarui Tiap Hari</span>
+            <strong class="bento-tile-heading">Quiz Harian</strong>
+            <span class="kpi-label">8 soal campuran baru hari ini</span>
+          </button>
+
+          <button type="button" class="card bento-cell bento-quick-tile bento-tile-jade" data-nav="${!gate.unlocked ? 'alphabet' : 'flashcards'}">
+            <span class="tag ${!gate.unlocked ? 'accent' : 'jade'}">${!gate.unlocked ? `${gate.learned}/${gate.required} huruf` : `${dueCount} jatuh tempo`}</span>
+            <strong class="bento-tile-heading">${!gate.unlocked ? 'Kartu Aksara' : 'Kartu SRS'}</strong>
+            <span class="kpi-label">${!gate.unlocked ? '1 huruf per kartu, tanpa scroll' : 'Pengulangan terjadwal SM-2'}</span>
+          </button>
+        </div>
+      </section>
+    `;
+  }
+
   function renderDashboardPlanStrip(meta) {
     const plan = state.studyPlans && state.studyPlans[state.activeLang];
     if (!plan || !Array.isArray(plan.days) || !plan.days.length) {
@@ -1469,7 +1632,10 @@
         </div>
       </section>
 
-      <!-- Band 2: Ringkasan Rencana Belajar & Misi Mikro Harian -->
+      <!-- Band 2: Bento Momentum Grid (Zeigarnik Effect + Quick Actions) -->
+      ${renderBentoMomentumBand(meta, pack)}
+
+      <!-- Band 3: Ringkasan Rencana Belajar & Misi Mikro Harian -->
       ${renderDashboardPlanStrip(meta)}
       ${renderDailyMissionsPanel(meta)}
 
@@ -3425,55 +3591,64 @@
         </div>
       `;
     } else {
-      mainAreaHtml = `
-        <div class="script-layout">
-          <div class="card">
-            <div class="toolbar-row" style="margin-bottom:12px;">
-              <span class="kpi-label">Ketuk huruf untuk mendengar bunyinya dan melihat tips baca.</span>
-              <span class="tag jade">Bingkai hijau = sudah hafal</span>
-            </div>
-            <div class="script-grid" style="--script-cols:${activeTab.cols || 5};" ${isRtl ? 'dir="rtl"' : ''}>
-              ${activeTab.chars.map((c) => {
-                const isAct = c.id === selectedChar.id;
-                const isLrn = Boolean(learnedMap[c.id]);
-                return `
-                  <button type="button" class="script-tile ${isAct ? 'active' : ''} ${isLrn ? 'learned' : ''}" data-action="script-pick" data-id="${esc(c.id)}" aria-pressed="${isAct}">
-                    <span class="script-char">${esc(c.char)}</span>
-                    <span class="script-romaji">${esc(c.romaji)}</span>
-                  </button>
-                `;
-              }).join('')}
-            </div>
-          </div>
+      const selectedIdx = Math.max(0, activeTab.chars.findIndex((c) => c.id === selectedChar.id));
+      const hasPrev = selectedIdx > 0;
+      const hasNext = selectedIdx < activeTab.chars.length - 1;
+      const jumpOptsHtml = activeTab.chars.map((c, idx) => {
+        const mark = learnedMap[c.id] ? ' ✓' : '';
+        return `<option value="${esc(c.id)}" ${c.id === selectedChar.id ? 'selected' : ''}>${idx + 1}. ${esc(c.char)} (${esc(c.romaji)})${mark}</option>`;
+      }).join('');
+      const exampleSpeak = extractSpeakableChar(selectedChar.example);
 
-          <aside class="card script-inspector" aria-label="Detail huruf terpilih">
-            <div class="toolbar-row" style="margin-bottom:4px;">
-              <span class="level-chart-label">Detail Huruf</span>
-              <button type="button" class="audio-btn accent-fill" data-speak="${esc(speakGlyph)}" aria-label="Putar bunyi ${esc(speakGlyph)}">${ICONS.speaker}</button>
+      mainAreaHtml = `
+        <div class="script-focus-stage">
+          <article class="card script-focus-card ${isSelectedLearned ? 'is-learned' : ''}" aria-label="Kartu aksara aktif">
+            <div class="script-focus-top">
+              <div class="toolbar-group">
+                <span class="tag accent mono">${selectedIdx + 1} / ${activeTab.chars.length}</span>
+                <span class="tag ${isSelectedLearned ? 'jade' : ''}">${isSelectedLearned ? 'Sudah Hafal' : 'Belum Hafal'}</span>
+              </div>
+              <select id="script-jump-select" class="script-jump-select" aria-label="Pilih huruf langsung">
+                ${jumpOptsHtml}
+              </select>
             </div>
-            <div class="script-big-glyph" ${isRtl ? 'dir="rtl"' : ''}>${esc(selectedChar.char)}</div>
-            <div style="text-align:center;margin-bottom:12px;">
-              <div class="mono" style="font-size:1.15rem;font-weight:700;color:var(--accent-text);">${esc(selectedChar.romaji)}</div>
-            </div>
-            <div class="pitfall-box" style="margin:0 0 12px;">
-              <div class="pitfall-title">Tips Baca</div>
-              <p>${esc(selectedChar.tip)}</p>
-            </div>
-            <div class="srs-example" style="margin-bottom:14px;">
-              <div>
-                <div class="kpi-label">Contoh kata</div>
-                <div style="font-weight:600;margin-top:2px;">${esc(selectedChar.example)}</div>
+
+            <div class="script-focus-hero">
+              <div class="script-focus-glyph" ${isRtl ? 'dir="rtl"' : ''}>${esc(selectedChar.char)}</div>
+              <div class="script-focus-reading">
+                <span class="script-focus-romaji mono">${esc(selectedChar.romaji)}</span>
+                <button type="button" class="audio-btn accent-fill" data-speak="${esc(speakGlyph)}" aria-label="Putar bunyi ${esc(speakGlyph)}">${ICONS.speaker}</button>
               </div>
             </div>
-            <div style="display:flex;flex-direction:column;gap:8px;">
-              <button type="button" class="${isSelectedLearned ? 'btn-jade' : 'btn-primary'}" data-action="script-toggle-learned" data-id="${esc(selectedChar.id)}">
-                ${isSelectedLearned ? `${ICONS.check} Sudah Hafal` : 'Tandai Hafal (+3 XP)'}
+
+            <div class="script-focus-details">
+              <div class="pitfall-box" style="margin:0;">
+                <div class="pitfall-title">Tips & Cara Baca</div>
+                <p>${esc(selectedChar.tip)}</p>
+              </div>
+              <div class="srs-example" style="margin:0;">
+                <div>
+                  <div class="kpi-label">Contoh penggunaan</div>
+                  <div style="font-weight:600;margin-top:2px;">${esc(selectedChar.example)}</div>
+                </div>
+                <button type="button" class="audio-btn" data-speak="${esc(exampleSpeak)}" aria-label="Putar audio contoh penggunaan">${ICONS.speaker}</button>
+              </div>
+            </div>
+
+            <div class="script-focus-actions">
+              <button type="button" class="${isSelectedLearned ? 'btn-jade' : 'btn-primary'} script-learned-btn" data-action="script-toggle-learned" data-id="${esc(selectedChar.id)}">
+                ${isSelectedLearned ? `${ICONS.check} Sudah Hafal` : 'Tandai Sudah Hafal (+3 XP)'}
               </button>
               <button type="button" class="btn-secondary" data-action="script-to-write" data-id="${esc(selectedChar.id)}">
-                Latih Tulis Huruf Ini
+                Latih Tulis
               </button>
             </div>
-          </aside>
+
+            <div class="script-focus-nav" role="group" aria-label="Navigasi huruf sebelumnya dan berikutnya">
+              <button type="button" class="btn-secondary script-nav-btn" data-action="script-prev" ${!hasPrev ? 'disabled' : ''}>← Sebelumnya</button>
+              <button type="button" class="btn-primary script-nav-btn" data-action="script-next" ${!hasNext ? 'disabled' : ''}>Berikutnya →</button>
+            </div>
+          </article>
         </div>
       `;
     }
@@ -3511,7 +3686,7 @@
           <p class="page-sub">${esc(sData.subtitle)}</p>
         </div>
         <div class="segmented" role="group" aria-label="Mode latihan aksara">
-          <button type="button" class="seg-btn ${ui.scriptMode === 'table' ? 'active' : ''}" data-action="script-mode" data-val="table">Tabel Huruf</button>
+          <button type="button" class="seg-btn ${ui.scriptMode === 'table' ? 'active' : ''}" data-action="script-mode" data-val="table">Kartu Huruf</button>
           <button type="button" class="seg-btn ${ui.scriptMode === 'quiz' ? 'active' : ''}" data-action="script-mode" data-val="quiz">Tebak Cepat</button>
         </div>
       </div>
@@ -4597,6 +4772,12 @@
             tIdx: Number(actEl.getAttribute('data-tidx'))
           };
           renderView();
+          if (global.innerWidth <= 1023) {
+            requestAnimationFrame(() => {
+              const insp = document.querySelector('#main-content .word-inspector');
+              if (insp) openBottomSheet('Inspektor Kata', insp.innerHTML);
+            });
+          }
           break;
         case 'reading-save-srs': {
           const pack = getActivePack();
@@ -4719,6 +4900,20 @@
           const found = tab && tab.chars.find((c) => c.id === cid);
           renderView();
           if (found) speakText(extractSpeakableChar(found.char), state.activeLang);
+          break;
+        }
+        case 'script-prev':
+        case 'script-next': {
+          const sData = SCRIPT_DATA && SCRIPT_DATA[state.activeLang];
+          const tab = getActiveScriptTab(sData);
+          if (!tab || !tab.chars.length) break;
+          const curIdx = Math.max(0, tab.chars.findIndex((c) => c.id === ui.scriptSelectedId));
+          const delta = action === 'script-next' ? 1 : -1;
+          const nextIdx = Math.max(0, Math.min(tab.chars.length - 1, curIdx + delta));
+          if (nextIdx !== curIdx) {
+            ui.scriptSelectedId = tab.chars[nextIdx].id;
+            renderView();
+          }
           break;
         }
         case 'script-toggle-learned': {
@@ -4909,12 +5104,8 @@
           renderView();
           if (global.innerWidth <= 1023) {
             requestAnimationFrame(() => {
-              const panel = document.querySelector('.tree-detail-panel');
-              if (panel) {
-                panel.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                panel.classList.add('mobile-panel-focus');
-                setTimeout(() => panel.classList.remove('mobile-panel-focus'), 900);
-              }
+              const panel = document.querySelector('#main-content .tree-detail-panel');
+              if (panel) openBottomSheet('Detail Modul', panel.innerHTML);
             });
           }
           break;
@@ -5135,6 +5326,9 @@
       if (id === 'fc-module-select') {
         ui.fcModule = ev.target.value;
         rebuildFlashcardQueue();
+        renderView();
+      } else if (id === 'script-jump-select') {
+        ui.scriptSelectedId = ev.target.value;
         renderView();
       } else if (id === 'quiz-mod-select') {
         ui.quizModule = ev.target.value;
