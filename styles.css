@@ -6476,6 +6476,118 @@ textarea {
   }
 }
 
+/* ==========================================================================
+   GUIDED 4-STEP MODULE LESSON FLOW
+   ========================================================================== */
+.lesson-shell {
+  max-width: 720px;
+  margin: 0 auto 24px;
+}
+
+.lesson-stepper {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+.lesson-step-pill {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 8px 6px;
+  border-radius: 10px;
+  border: 2px solid var(--border-brutal);
+  background: var(--surface);
+  color: var(--ink-muted);
+  font-size: 0.78rem;
+  font-weight: 700;
+  box-shadow: 2px 2px 0 var(--shadow-ink);
+}
+
+.lesson-step-pill.active {
+  background: var(--accent);
+  color: #111111;
+  border-color: light-dark(#111111, #FFD13B);
+}
+
+.lesson-step-pill.done {
+  background: var(--jade);
+  color: #111111;
+  border-color: light-dark(#111111, #0D0E13);
+}
+
+.lesson-card {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.lesson-subhead {
+  font-size: 0.94rem;
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 6px;
+}
+
+.lesson-vocab-list,
+.lesson-grammar-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.lesson-vocab-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 14px;
+  border-radius: 12px;
+  background: var(--surface-subtle);
+  border: 1.5px solid var(--border-brutal);
+}
+
+.lesson-vocab-native {
+  font-family: var(--font-script);
+  font-size: 1.2rem;
+  font-weight: 500;
+  line-height: 1.35;
+}
+
+.lesson-vocab-romaji {
+  font-size: 0.8rem;
+  color: var(--ink-muted);
+  font-style: italic;
+}
+
+.lesson-vocab-meaning {
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-top: 2px;
+}
+
+.lesson-footer-bar {
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1.5px dashed var(--border-strong);
+}
+
+.lesson-summary-card {
+  text-align: center;
+  padding: 26px 20px;
+  border-top: 6px solid var(--jade);
+}
+
+@media (max-width: 639px) {
+  .lesson-step-pill {
+    font-size: 0.72rem;
+    padding: 7px 4px;
+    gap: 4px;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .srs-card.is-flip-entering,
   .sm2-grid.sm2-stagger .sm2-btn,

@@ -786,7 +786,9 @@
         const action = actBtn.getAttribute('data-action');
         const mod = actBtn.getAttribute('data-mod');
         closeBottomSheet();
-        if (action === 'mod-to-fc' && mod) {
+        if (action === 'lesson-start' && mod) {
+          startGuidedLesson(mod);
+        } else if (action === 'mod-to-fc' && mod) {
           navigate('flashcards', { fcModule: mod, fcDueOnly: false });
         } else if (action === 'mod-to-quiz' && mod) {
           navigate('quiz', { quizModule: mod });
@@ -1051,6 +1053,8 @@
     ui.examTryoutIdx = 0;
     ui.examTryoutAnswers = {};
     ui.dashTryInput = '';
+    ui.lessonModId = null;
+    ui.lessonStep = 1;
     rebuildFlashcardQueue();
     rebuildQuizSession();
   }
@@ -1075,6 +1079,7 @@
       ui.examTryoutActive = false;
     }
     currentView = viewId;
+    if (viewId !== 'modules') ui.lessonModId = null;
     if (opts.lang && opts.lang !== state.activeLang) {
       state.activeLang = opts.lang;
       resetViewStateForLang();
@@ -1738,12 +1743,277 @@
   }
 
   // ==========================================================================
-  // VIEW 2: ROADMAP & MODUL
+  // VIEW 2: ROADMAP & MODUL (+ GUIDED 4-STEP MODULE LESSON FLOW)
   // ==========================================================================
+  function cleanModuleTitle(mod) {
+    if (!mod || !mod.title) return '';
+    const lvl = String(mod.level || '').trim();
+    if (!lvl) return mod.title;
+    const escLvl = lvl.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    return String(mod.title).replace(new RegExp(`^${escLvl}\\s*[:·\\-]\\s*`, 'i'), '').trim() || mod.title;
+  }
+
+  function buildLessonQuizzes(pack, mod) {
+    const out = [];
+    const curated = (pack.quizzes || []).filter((q) => q.module_id === mod.id && q.type === 'multiple_choice' && Array.isArray(q.options) && q.options.length >= 2);
+    curated.forEach((q) => {
+      out.push({
+        prompt: q.prompt,
+        options: q.options.slice(),
+        answer: q.answer,
+        explanation: q.explanation_id || `Jawaban tepat: ${q.answer}`
+      });
+    });
+
+    const modCards = (pack.flashcards || []).filter((c) => c.module_id === mod.id);
+    const otherCards = (pack.flashcards || []).filter((c) => c.module_id !== mod.id);
+    for (const c of modCards) {
+      if (out.length >= 4) break;
+      const distPool = otherCards
+        .concat(modCards.filter((x) => x.id !== c.id))
+        .map((x) => x.meaning_id)
+        .filter((m, idx, arr) => m && m !== c.meaning_id && arr.indexOf(m) === idx);
+      if (distPool.length < 2) continue;
+      const distractors = distPool.slice(0, 3);
+      const opts = [c.meaning_id, ...distractors].sort(() => Math.random() - 0.5);
+      out.push({
+        prompt: `Apa arti dari "${c.front}"${c.romaji && c.romaji !== c.front ? ` (${c.romaji})` : ''}?`,
+        options: opts,
+        answer: c.meaning_id,
+        explanation: `${c.front} berarti "${c.meaning_id}".`
+      });
+    }
+    return out;
+  }
+
+  function startGuidedLesson(modId) {
+    const pack = getActivePack();
+    if (!pack) return;
+    const mod = pack.modules.find((m) => m.id === modId);
+    if (!mod) return;
+    currentView = 'modules';
+    ui.lessonModId = mod.id;
+    ui.lessonStep = 1;
+    ui.lessonCardIdx = 0;
+    ui.lessonCardFlipped = false;
+    ui.lessonCardFlipAnim = false;
+    ui.lessonQuizList = buildLessonQuizzes(pack, mod);
+    ui.lessonQuizIdx = 0;
+    ui.lessonQuizPicked = null;
+    ui.lessonQuizScore = 0;
+    renderChrome();
+    renderView(true);
+    global.scrollTo({ top: 0, behavior: 'auto' });
+  }
+
+  function renderGuidedLesson(pack, meta) {
+    const mod = pack.modules.find((m) => m.id === ui.lessonModId);
+    if (!mod) {
+      ui.lessonModId = null;
+      return renderModules();
+    }
+    const title = cleanModuleTitle(mod);
+    const modCards = pack.flashcards.filter((c) => c.module_id === mod.id);
+    const modGrammar = (pack.grammar || []).filter((g) => g.module_id === mod.id || g.level === mod.level).slice(0, 2);
+    const step = ui.lessonStep || 1;
+
+    const stepsMeta = [
+      { n: 1, label: 'Materi' },
+      { n: 2, label: 'Kartu' },
+      { n: 3, label: 'Quiz' },
+      { n: 4, label: 'Selesai' }
+    ];
+    const stepperHtml = `
+      <div class="lesson-stepper" role="list" aria-label="Tahap pelajaran modul">
+        ${stepsMeta.map((s) => `
+          <div class="lesson-step-pill ${step === s.n ? 'active' : step > s.n ? 'done' : ''}" role="listitem">
+            <span class="mono">${step > s.n ? '✓' : s.n}</span>
+            <span>${s.label}</span>
+          </div>
+        `).join('')}
+      </div>
+    `;
+
+    let bodyHtml = '';
+    if (step === 1) {
+      bodyHtml = `
+        <article class="card lesson-card">
+          <div class="toolbar-group" style="margin-bottom:6px;">
+            <span class="tag accent">${esc(mod.level)}</span>
+            <span class="tag">${modCards.length} kosakata inti</span>
+            <span class="tag">${ui.lessonQuizList.length} soal quiz</span>
+          </div>
+          <h1 class="page-title" style="margin-bottom:6px;">${esc(title)}</h1>
+          <ul class="objective-list" style="margin-bottom:16px;">
+            ${mod.objectives.map((o) => `<li>${esc(o)}</li>`).join('')}
+          </ul>
+
+          <h2 class="lesson-subhead">1. Kosakata Kunci (Ketuk Audio untuk Mendengar)</h2>
+          <div class="lesson-vocab-list">
+            ${modCards.map((c) => {
+              const showRom = c.romaji && c.romaji.trim() !== c.front.trim();
+              return `
+                <div class="lesson-vocab-row">
+                  <div style="min-width:0;">
+                    <div class="lesson-vocab-native">${esc(c.front)}</div>
+                    ${showRom ? `<div class="lesson-vocab-romaji">${esc(c.romaji)}</div>` : ''}
+                    <div class="lesson-vocab-meaning">${esc(c.meaning_id)}</div>
+                  </div>
+                  <button type="button" class="audio-btn" data-speak="${esc(c.front)}" aria-label="Putar pelafalan ${esc(c.front)}">${ICONS.speaker}</button>
+                </div>
+              `;
+            }).join('')}
+          </div>
+
+          ${modGrammar.length ? `
+            <h2 class="lesson-subhead" style="margin-top:18px;">2. Pola Tata Bahasa Terkait</h2>
+            <div class="lesson-grammar-list">
+              ${modGrammar.map((g) => `
+                <div class="pitfall-box" style="margin:0;">
+                  <div class="pitfall-title">${esc(g.pattern)} · ${esc(g.meaning_id)}</div>
+                  ${g.formula ? `<div class="mono" style="font-size:0.8rem;margin:4px 0;">${esc(g.formula)}</div>` : ''}
+                  ${g.explanation_id ? `<p style="font-size:0.85rem;">${esc(g.explanation_id)}</p>` : ''}
+                </div>
+              `).join('')}
+            </div>
+          ` : ''}
+
+          <div class="lesson-footer-bar">
+            <button type="button" class="btn-primary" style="width:100%;" data-action="lesson-step" data-step="${modCards.length ? 2 : 3}">
+              ${modCards.length ? `Lanjut ke Latih Kartu (${modCards.length}) →` : 'Lanjut ke Mini Quiz →'}
+            </button>
+          </div>
+        </article>
+      `;
+    } else if (step === 2) {
+      const card = modCards[ui.lessonCardIdx] || modCards[0];
+      const flipAnimCls = ui.lessonCardFlipAnim ? 'is-flip-entering' : '';
+      ui.lessonCardFlipAnim = false;
+      const showRead = card && card.reading && card.reading.trim() !== card.front.trim();
+      bodyHtml = card ? `
+        <div class="srs-desk">
+          <div class="toolbar-row" style="margin-bottom:8px;">
+            <span class="kpi-label">Kartu Modul <strong class="mono">${ui.lessonCardIdx + 1} / ${modCards.length}</strong></span>
+            <button type="button" class="btn-ghost btn-sm" data-action="lesson-step" data-step="3">Lewati ke Quiz →</button>
+          </div>
+          <div class="srs-card-stage">
+            <div class="srs-card ${!ui.lessonCardFlipped ? 'can-flip' : ''} ${flipAnimCls}" ${!ui.lessonCardFlipped ? 'data-action="lesson-card-flip"' : ''}>
+              <div class="srs-card-top">
+                <span class="tag accent">${esc(mod.level)} · ${esc(title)}</span>
+                <button type="button" class="audio-btn" data-speak="${esc(card.front)}" aria-label="Putar audio ${esc(card.front)}">${ICONS.speaker}</button>
+              </div>
+              ${!ui.lessonCardFlipped ? `
+                <div class="srs-front-main">
+                  <div class="srs-native-lg">${esc(card.front)}</div>
+                  <p class="kpi-label">Ingat artinya dalam bahasa Indonesia, lalu balik kartu.</p>
+                </div>
+                <div style="text-align:center;">
+                  <button type="button" class="btn-primary" data-action="lesson-card-flip" style="min-width:200px;">Balik Kartu</button>
+                </div>
+              ` : `
+                <div class="srs-back-main">
+                  <div class="srs-back-head">
+                    <div class="srs-back-front">${esc(card.front)}</div>
+                    <div class="srs-reading-line">${showRead ? `${esc(card.reading)} · ` : ''}<em>${esc(card.romaji)}</em></div>
+                  </div>
+                  <div class="srs-meaning">${esc(card.meaning_id)}</div>
+                  ${card.mnemonic ? `<div class="srs-mnemonic"><strong>Catatan:</strong> ${esc(card.mnemonic)}</div>` : ''}
+                  <div class="lesson-footer-bar">
+                    <button type="button" class="btn-primary" style="width:100%;" data-action="lesson-card-next">
+                      ${ui.lessonCardIdx + 1 < modCards.length ? 'Sudah Ingat (+5 XP) · Kartu Berikutnya →' : 'Sudah Ingat (+5 XP) · Lanjut ke Quiz →'}
+                    </button>
+                  </div>
+                </div>
+              `}
+            </div>
+          </div>
+        </div>
+      ` : '';
+    } else if (step === 3) {
+      const q = ui.lessonQuizList[ui.lessonQuizIdx];
+      const answered = ui.lessonQuizPicked !== null;
+      const isRight = answered && ui.lessonQuizPicked === q.answer;
+      bodyHtml = q ? `
+        <article class="card quiz-card">
+          <div class="toolbar-row" style="margin-bottom:8px;">
+            <span class="tag accent">Mini Quiz Modul</span>
+            <span class="mono" style="font-size:0.84rem;font-weight:700;">Soal ${ui.lessonQuizIdx + 1} / ${ui.lessonQuizList.length}</span>
+          </div>
+          <div class="progress-track" style="height:6px;margin-bottom:14px;">
+            <div class="progress-fill jade" style="width:${Math.round(((ui.lessonQuizIdx + (answered ? 1 : 0)) / ui.lessonQuizList.length) * 100)}%"></div>
+          </div>
+          <h2 class="quiz-question">${esc(q.prompt)}</h2>
+          <div class="quiz-options">
+            ${q.options.map((opt) => {
+              let cls = '';
+              if (answered) {
+                if (opt === q.answer) cls = 'correct';
+                else if (opt === ui.lessonQuizPicked) cls = 'wrong';
+              }
+              return `<button type="button" class="quiz-opt-btn ${cls}" data-action="lesson-quiz-pick" data-opt="${esc(opt)}" ${answered ? 'disabled' : ''}><span>${esc(opt)}</span></button>`;
+            }).join('')}
+          </div>
+          ${answered ? `
+            <div class="feedback-box ${isRight ? 'correct' : 'wrong'}" role="status" style="margin-top:14px;">
+              <div class="feedback-title">${isRight ? 'Tepat!' : 'Belum tepat.'}</div>
+              <p>${esc(q.explanation)}</p>
+              <div style="margin-top:12px;display:flex;justify-content:flex-end;">
+                <button type="button" class="btn-primary" data-action="lesson-quiz-next">
+                  ${ui.lessonQuizIdx + 1 < ui.lessonQuizList.length ? 'Soal Berikutnya →' : 'Selesaikan Modul →'}
+                </button>
+              </div>
+            </div>
+          ` : ''}
+        </article>
+      ` : '';
+    } else {
+      const ordered = pack.modules.slice().sort((a, b) => (a.order || 0) - (b.order || 0));
+      const curPos = ordered.findIndex((m) => m.id === mod.id);
+      const nextMod = curPos >= 0 && curPos + 1 < ordered.length ? ordered[curPos + 1] : null;
+      const qTotal = ui.lessonQuizList.length;
+      const qPct = qTotal > 0 ? Math.round((ui.lessonQuizScore / qTotal) * 100) : 100;
+      bodyHtml = `
+        <article class="card lesson-summary-card">
+          <span class="tag jade" style="margin-bottom:8px;">${ICONS.check} Modul Selesai · +25 XP</span>
+          <h1 class="page-title" style="margin-bottom:6px;">${esc(title)} Tuntas!</h1>
+          <p class="page-sub" style="margin-bottom:18px;">Kamu telah mempelajari materi inti, melatih ${modCards.length} kosakata, dan menyelesaikan Mini Quiz modul ${esc(meta.name_id)}.</p>
+          <div class="mini-metrics-row" style="margin-bottom:18px;">
+            <div class="mini-metric">
+              <div class="kpi-label">Kosakata Modul</div>
+              <div class="kpi-val">${modCards.length}</div>
+            </div>
+            <div class="mini-metric">
+              <div class="kpi-label">Skor Mini Quiz</div>
+              <div class="kpi-val">${ui.lessonQuizScore}/${qTotal} (${qPct}%)</div>
+            </div>
+          </div>
+          <div class="toolbar-group" style="justify-content:center;">
+            ${nextMod ? `<button type="button" class="btn-primary" data-action="lesson-start" data-mod="${esc(nextMod.id)}">Lanjut: ${esc(cleanModuleTitle(nextMod))} →</button>` : ''}
+            <button type="button" class="btn-secondary" data-action="lesson-exit">Kembali ke Peta Belajar</button>
+          </div>
+        </article>
+      `;
+    }
+
+    return `
+      <div class="lesson-shell">
+        <div class="toolbar-row" style="margin-bottom:10px;">
+          <button type="button" class="btn-ghost btn-sm" data-action="lesson-exit">← Kembali ke Peta Belajar</button>
+          <span class="tag">${esc(meta.name_id)} · ${esc(mod.level)}</span>
+        </div>
+        ${stepperHtml}
+        ${bodyHtml}
+      </div>
+    `;
+  }
+
   function renderModules() {
     const pack = getActivePack();
     if (!pack) return renderMissingPackState('Roadmap & Modul');
     const meta = getCatalogMeta(state.activeLang);
+    if (ui.lessonModId) {
+      return renderGuidedLesson(pack, meta);
+    }
 
     const completedMap = state.completedModules[state.activeLang] || {};
     const totalMods = pack.modules.length;
@@ -1791,12 +2061,13 @@
               <span class="tag">${m.estimated_minutes || 15} menit</span>
               ${isDone ? '<span class="tag jade">Selesai</span>' : ''}
             </div>
-            <h2 class="module-title">${esc(m.title)}</h2>
+            <h2 class="module-title">${esc(cleanModuleTitle(m))}</h2>
             <ul class="objective-list">
               ${m.objectives.map((o) => `<li>${esc(o)}</li>`).join('')}
             </ul>
             <div class="module-shortcuts">
-              <button type="button" class="btn-secondary btn-sm" data-action="mod-to-fc" data-mod="${esc(m.id)}">Flashcard (${fcCount})</button>
+              <button type="button" class="btn-primary btn-sm" data-action="lesson-start" data-mod="${esc(m.id)}">Mulai Pelajaran</button>
+              <button type="button" class="btn-secondary btn-sm" data-action="mod-to-fc" data-mod="${esc(m.id)}">Kartu (${fcCount})</button>
               <button type="button" class="btn-secondary btn-sm" data-action="mod-to-quiz" data-mod="${esc(m.id)}">Quiz (${qCount})</button>
               ${dCount > 0 ? `<button type="button" class="btn-secondary btn-sm" data-action="mod-to-dialog" data-mod="${esc(m.id)}">Dialog (${dCount})</button>` : ''}
             </div>
@@ -1878,7 +2149,7 @@
                 <span class="tag ${isLocked ? '' : mast.done ? 'jade' : 'accent'}">${isLocked ? `${ICONS.lock} Terkunci` : esc(m.level)}</span>
                 <span class="mono tree-node-pct">${mast.pct}%</span>
               </div>
-              <div class="tree-node-title">${esc(m.title)}</div>
+              <div class="tree-node-title">${esc(cleanModuleTitle(m))}</div>
               <div class="tree-node-meta">${isLocked ? `Kuasai ${gate.required} huruf aksara (${gate.learned}/${gate.required}) untuk membuka` : `${mast.masteredCards}/${mast.totalCards} SRS dikuasai${prereqHint ? ' · Disarankan selesaikan tier atas dulu' : ''}`}</div>
               <div class="progress-track" style="height:5px;margin-top:8px;"><div class="progress-fill ${mast.done ? 'jade' : ''}" style="width:${mast.pct}%"></div></div>
             </button>
@@ -1921,17 +2192,20 @@
               <span class="tag">${selectedTreeMod.estimated_minutes || 15} menit</span>
               <span class="tag ${mast.done ? 'jade' : ''}">Penguasaan ${mast.pct}%</span>
             </div>
-            <h2 class="module-title" style="margin-bottom:8px;">${esc(selectedTreeMod.title)}</h2>
+            <h2 class="module-title" style="margin-bottom:8px;">${esc(cleanModuleTitle(selectedTreeMod))}</h2>
             <ul class="objective-list" style="margin-bottom:14px;">
               ${selectedTreeMod.objectives.map((o) => `<li>${esc(o)}</li>`).join('')}
             </ul>
-            <div class="toolbar-group" style="margin-bottom:12px;">
-              <button type="button" class="btn-secondary btn-sm" data-action="mod-to-fc" data-mod="${esc(selectedTreeMod.id)}">Kartu SRS (${fcCount})</button>
+            <button type="button" class="btn-primary" style="width:100%;margin-bottom:10px;" data-action="lesson-start" data-mod="${esc(selectedTreeMod.id)}">
+              Mulai Pelajaran Modul (${fcCount} kartu + Quiz)
+            </button>
+            <div class="toolbar-group" style="margin-bottom:10px;">
+              <button type="button" class="btn-secondary btn-sm" data-action="mod-to-fc" data-mod="${esc(selectedTreeMod.id)}">Kartu (${fcCount})</button>
               <button type="button" class="btn-secondary btn-sm" data-action="mod-to-quiz" data-mod="${esc(selectedTreeMod.id)}">Quiz (${qCount})</button>
               ${dCount > 0 ? `<button type="button" class="btn-secondary btn-sm" data-action="mod-to-dialog" data-mod="${esc(selectedTreeMod.id)}">Dialog (${dCount})</button>` : ''}
             </div>
-            <button type="button" class="${mast.done ? 'btn-jade' : 'btn-primary'}" style="width:100%;" data-action="toggle-module-done" data-mod="${esc(selectedTreeMod.id)}">
-              ${mast.done ? `${ICONS.check} Node Selesai` : 'Tandai Node Selesai'}
+            <button type="button" class="${mast.done ? 'btn-jade' : 'btn-ghost'}" style="width:100%;" data-action="toggle-module-done" data-mod="${esc(selectedTreeMod.id)}">
+              ${mast.done ? `${ICONS.check} Modul Selesai` : 'Tandai Selesai Manual'}
             </button>
           </aside>
         `;
@@ -5267,6 +5541,87 @@
             renderView();
           }
           break;
+        // --- Guided Module Lesson Flow ---
+        case 'lesson-start':
+          startGuidedLesson(actEl.getAttribute('data-mod'));
+          break;
+        case 'lesson-exit':
+          ui.lessonModId = null;
+          renderView(true);
+          break;
+        case 'lesson-step':
+          ui.lessonStep = Number(actEl.getAttribute('data-step')) || 1;
+          ui.lessonCardFlipped = false;
+          renderView();
+          global.scrollTo({ top: 0, behavior: 'auto' });
+          break;
+        case 'lesson-card-flip':
+          ui.lessonCardFlipped = true;
+          ui.lessonCardFlipAnim = true;
+          renderView();
+          break;
+        case 'lesson-card-next': {
+          const pack = getActivePack();
+          const modCards = pack ? pack.flashcards.filter((c) => c.module_id === ui.lessonModId) : [];
+          const card = modCards[ui.lessonCardIdx];
+          if (card) {
+            card.srs = Store.previewSM2(card.srs, 4);
+            const log = Store.ensureDayLog(state, Store.getTodayKey(0));
+            log.cards = (log.cards || 0) + 1;
+            Store.addXP(state, state.activeLang, 5);
+            spawnFloatingXp(5);
+            await persistState();
+            renderChrome();
+          }
+          ui.lessonCardFlipped = false;
+          if (ui.lessonCardIdx + 1 < modCards.length) {
+            ui.lessonCardIdx++;
+          } else {
+            ui.lessonStep = ui.lessonQuizList.length ? 3 : 4;
+          }
+          renderView();
+          break;
+        }
+        case 'lesson-quiz-pick': {
+          const q = ui.lessonQuizList[ui.lessonQuizIdx];
+          if (!q || ui.lessonQuizPicked !== null) break;
+          const opt = actEl.getAttribute('data-opt');
+          ui.lessonQuizPicked = opt;
+          const log = Store.ensureDayLog(state, Store.getTodayKey(0));
+          log.quizTotal = (log.quizTotal || 0) + 1;
+          if (opt === q.answer) {
+            ui.lessonQuizScore++;
+            log.quizCorrect = (log.quizCorrect || 0) + 1;
+            Store.addXP(state, state.activeLang, 8);
+            spawnFloatingXp(8);
+          }
+          await persistState();
+          renderChrome();
+          renderView();
+          break;
+        }
+        case 'lesson-quiz-next': {
+          if (ui.lessonQuizIdx + 1 < ui.lessonQuizList.length) {
+            ui.lessonQuizIdx++;
+            ui.lessonQuizPicked = null;
+          } else {
+            ui.lessonStep = 4;
+            state.completedModules[state.activeLang] = state.completedModules[state.activeLang] || {};
+            if (ui.lessonModId && !state.completedModules[state.activeLang][ui.lessonModId]) {
+              state.completedModules[state.activeLang][ui.lessonModId] = true;
+              const log = Store.ensureDayLog(state, Store.getTodayKey(0));
+              log.modules = (log.modules || 0) + 1;
+              Store.addXP(state, state.activeLang, 25);
+              spawnFloatingXp(25);
+            }
+            launchMiniConfetti();
+            await persistState();
+            renderChrome();
+          }
+          renderView();
+          global.scrollTo({ top: 0, behavior: 'auto' });
+          break;
+        }
         // --- Skill Tree ---
         case 'mod-view-mode':
           ui.modViewMode = actEl.getAttribute('data-val') || 'tree';
