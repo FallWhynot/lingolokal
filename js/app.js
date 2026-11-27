@@ -788,6 +788,9 @@
         closeBottomSheet();
         if (action === 'lesson-start' && mod) {
           startGuidedLesson(mod);
+        } else if (action === 'set-proficiency') {
+          const tier = actBtn.getAttribute('data-tier') || 'beginner';
+          setProficiencyTier(tier);
         } else if (action === 'mod-to-fc' && mod) {
           navigate('flashcards', { fcModule: mod, fcDueOnly: false });
         } else if (action === 'mod-to-quiz' && mod) {
@@ -1465,277 +1468,163 @@
     `;
   }
 
-  function renderDashboard() {
+  async function setProficiencyTier(tier) {
+    if (!['beginner', 'intermediate', 'advanced'].includes(tier)) return;
+    state.proficiencyByLang = state.proficiencyByLang || {};
+    state.proficiencyByLang[state.activeLang] = tier;
+    const isNonLatin = Boolean(SCRIPT_DATA && SCRIPT_DATA[state.activeLang]);
+    if (isNonLatin && tier !== 'beginner') {
+      state.scriptGateBypassed = state.scriptGateBypassed || {};
+      state.scriptGateBypassed[state.activeLang] = true;
+    }
+    ui.quizModule = 'ALL';
+    ui.quizFilterIds = null;
+    rebuildQuizSession();
+    await persistState();
+    renderChrome();
+    renderView();
+    const pack = getActivePack();
+    const prof = Store.getProficiencyMeta(state, state.activeLang, pack && pack.language && pack.language.roadmap_levels);
+    showToast(`Level ${getCatalogMeta(state.activeLang).name_id} diatur ke ${prof.fullLabel}.`, 'success');
+  }
+
+  function openProficiencySheet() {
     const meta = getCatalogMeta(state.activeLang);
     const pack = getActivePack();
-    const streak = Store.computeStreakInfo(state);
-    const gStats = Store.computeGlobalStats(state);
-    const langXp = (state.xpByLang && state.xpByLang[meta.code]) || 0;
-    const rank = Store.getRankInfo(langXp);
-    const sprintRec = (state.sprintBestByLang && state.sprintBestByLang[meta.code]) || { bestScore: 0, rounds: 0 };
-
-    // Build Level Bar Chart for Active Language
-    const levels = (pack && pack.language && pack.language.roadmap_levels) || meta.roadmap_levels;
-    const modCounts = levels.map((lvl) => {
-      const mods = pack ? pack.modules.filter((m) => m.level === lvl) : [];
-      const done = mods.filter((m) => state.completedModules[meta.code] && state.completedModules[meta.code][m.id]).length;
-      return { lvl, total: mods.length, done };
-    });
-    const maxCount = Math.max(1, ...modCounts.map((x) => x.total));
-
-    const levelBarsHtml = modCounts.map((item) => {
-      const pct = item.total > 0 ? Math.max(26, Math.round((item.total / maxCount) * 100)) : 12;
-      const cls = item.total > 0 && item.done === item.total ? 'done' : item.total > 0 ? 'has-data' : '';
+    const lvls = (pack && pack.language && pack.language.roadmap_levels) || meta.roadmap_levels;
+    const cur = Store.getProficiencyMeta(state, state.activeLang, lvls);
+    const tiers = [
+      { id: 'beginner', title: 'Pemula', desc: 'Fokus kosakata dasar, sapaan, dan kalimat harian ringan.' },
+      { id: 'intermediate', title: 'Menengah', desc: 'Percakapan lancar, cerita pengalaman, opini, dan bacaan.' },
+      { id: 'advanced', title: 'Lanjut', desc: 'Bahasa kerja, argumen tajam, idiom, dan persiapan ujian.' }
+    ].map((t) => {
+      const m = Store.getAllowedLevelsForTier(state.activeLang, t.id, lvls);
+      const rng = m.length > 1 ? `${m[0]}–${m[m.length - 1]}` : m[0];
+      const active = cur.tier === t.id;
       return `
-        <button type="button" class="hero-level-bar" data-action="jump-level" data-level="${esc(item.lvl)}" aria-label="Level ${esc(item.lvl)}: ${item.total} modul, ${item.done} selesai">
-          <div class="hero-level-col ${cls}" style="height: ${pct}%"></div>
-          <span class="mono" style="font-size:0.7rem;font-weight:700;">${esc(item.lvl)}</span>
-          <span class="mono" style="font-size:0.68rem;opacity:0.8;">${item.total}</span>
+        <button type="button" class="ob-choice-btn ${active ? 'active' : ''}" data-action="set-proficiency" data-tier="${t.id}" style="width:100%;">
+          <strong>${t.title} (${rng}) ${active ? '· Aktif' : ''}</strong>
+          <small>${t.desc}</small>
         </button>
       `;
     }).join('');
+    openBottomSheet(`Level Penguasaan ${meta.name_id}`, `<p class="kpi-label" style="margin-bottom:12px;">Soal Quiz Harian dan rekomendasi belajar akan otomatis disesuaikan dengan level pilihanmu.</p><div class="onboarding-choice-grid">${tiers}</div>`);
+  }
 
-    // Integrated Guided Active Module inside the Hero Ink Card
-    let focusBandHtml = '';
-    if (pack) {
-      const mod = getRecommendedModule(pack);
-      const completedMap = state.completedModules[state.activeLang] || {};
-      const doneCount = pack.modules.filter((m) => completedMap[m.id]).length;
-      if (mod) {
-        const isModDone = Boolean(completedMap[mod.id]);
-        const modCards = pack.flashcards.filter((c) => c.module_id === mod.id);
-        const reviewedCards = modCards.filter((c) => c.srs && (c.srs.repetitions > 0 || c.srs.due_date)).length;
-        const step1Done = modCards.length > 0 && reviewedCards >= Math.min(3, modCards.length);
-        const modQuizzes = pack.quizzes.filter((q) => q.module_id === mod.id);
-        const today = Store.computeTodayProgress(state);
-        const step2Done = today.quizTotal > 0;
-        const hasDialog = pack.dialogs.some((d) => d.module_id === mod.id);
-        const hasReading = pack.readings.some((r) => r.module_id === mod.id);
-        const step3Action = hasDialog
-          ? `data-action="mod-to-dialog" data-mod="${esc(mod.id)}"`
-          : hasReading
-            ? 'data-nav="readings"'
-            : 'data-nav="grammar"';
-        const step3Title = hasDialog ? 'Dialog' : hasReading ? 'Bacaan' : 'Tata Bahasa';
-        const nextStep = !step1Done ? 1 : !step2Done ? 2 : !isModDone ? 3 : 4;
-        const primaryCta = nextStep === 1
-          ? { label: `Mulai Langkah 1: Kartu SRS (${modCards.length})`, attrs: `data-action="mod-to-fc" data-mod="${esc(mod.id)}"` }
-          : nextStep === 2
-            ? { label: `Lanjut Langkah 2: Quiz (${modQuizzes.length})`, attrs: `data-action="mod-to-quiz" data-mod="${esc(mod.id)}"` }
-            : nextStep === 3
-              ? { label: `Lanjut Langkah 3: ${step3Title}`, attrs: step3Action }
-              : { label: 'Buka Semua Modul', attrs: 'data-nav="modules"' };
+  function renderDashboard() {
+    const meta = getCatalogMeta(state.activeLang);
+    const pack = getActivePack();
+    const langXp = (state.xpByLang && state.xpByLang[meta.code]) || 0;
+    const levels = (pack && pack.language && pack.language.roadmap_levels) || meta.roadmap_levels;
+    const prof = Store.getProficiencyMeta(state, meta.code, levels);
+    const gate = Store.getScriptGateStatus(state, meta.code);
+    const dueCount = getDueCountForLang(meta.code);
+    const today = Store.computeTodayProgress(state);
+    const completedMap = state.completedModules[meta.code] || {};
+    const totalMods = pack ? pack.modules.length : 0;
+    const doneMods = pack ? pack.modules.filter((m) => completedMap[m.id]).length : 0;
 
-        focusBandHtml = `
-          <div class="hero-focus-band">
-            <div class="hero-focus-head">
-              <div>
-                <div style="font-size:0.74rem;font-weight:800;letter-spacing:0.06em;text-transform:uppercase;color:var(--ink-muted);">Fokus Belajar Sekarang · ${esc(mod.level)} (${doneCount}/${pack.modules.length} modul)</div>
-                <div class="hero-focus-title">${esc(mod.title)}</div>
-              </div>
-              <button type="button" class="hero-cta-primary" ${primaryCta.attrs}>${esc(primaryCta.label)}</button>
-            </div>
-            <div class="hero-step-rail">
-              <button type="button" class="hero-step-btn ${step1Done ? 'is-done' : nextStep === 1 ? 'is-next' : ''}" data-action="mod-to-fc" data-mod="${esc(mod.id)}">
-                <span class="hero-step-idx"><span>01</span><span>${step1Done ? 'Selesai' : nextStep === 1 ? 'Mulai' : ''}</span></span>
-                <span class="hero-step-name">Kartu SRS</span>
-                <span class="hero-step-sub">${reviewedCards}/${modCards.length} diulas</span>
-              </button>
-              <button type="button" class="hero-step-btn ${step2Done ? 'is-done' : nextStep === 2 ? 'is-next' : ''}" data-action="mod-to-quiz" data-mod="${esc(mod.id)}">
-                <span class="hero-step-idx"><span>02</span><span>${step2Done ? 'Aktif' : nextStep === 2 ? 'Lanjut' : ''}</span></span>
-                <span class="hero-step-name">Quiz Modul</span>
-                <span class="hero-step-sub">${modQuizzes.length} soal</span>
-              </button>
-              <button type="button" class="hero-step-btn ${nextStep === 3 ? 'is-next' : ''}" ${step3Action}>
-                <span class="hero-step-idx"><span>03</span><span>${nextStep === 3 ? 'Lanjut' : ''}</span></span>
-                <span class="hero-step-name">${esc(step3Title)}</span>
-                <span class="hero-step-sub">Konteks nyata</span>
-              </button>
-              <button type="button" class="hero-step-btn ${isModDone ? 'is-done' : nextStep === 4 ? 'is-next' : ''}" data-action="toggle-module-done" data-mod="${esc(mod.id)}">
-                <span class="hero-step-idx"><span>04</span><span>${isModDone ? 'Tercapai' : ''}</span></span>
-                <span class="hero-step-name">${isModDone ? 'Selesai' : 'Tandai Selesai'}</span>
-                <span class="hero-step-sub">+25 XP</span>
-              </button>
-            </div>
-          </div>
-        `;
-      }
+    const allowedSet = new Set(prof.allowedLevels);
+    const orderedMods = pack ? pack.modules.slice().sort((a, b) => (a.order || 0) - (b.order || 0)) : [];
+    const tierMods = orderedMods.filter((m) => allowedSet.has(m.level));
+    const recMod = tierMods.find((m) => !completedMap[m.id])
+      || orderedMods.find((m) => !completedMap[m.id])
+      || tierMods[0]
+      || orderedMods[0]
+      || null;
+
+    let heroEyebrow = `Fokus Belajar · ${prof.fullLabel}`;
+    let heroHeading = recMod ? cleanModuleTitle(recMod) : `Mulai Belajar ${meta.name_id}`;
+    let heroSub = recMod
+      ? `Selesaikan materi ringkas, kartu hafalan, dan mini quiz untuk modul ${recMod.level} ini.`
+      : `Pilih modul pertama atau mulai kuis harian sesuai levelmu.`;
+    let heroPct = totalMods > 0 ? Math.round((doneMods / totalMods) * 100) : 0;
+    let heroPctLabel = `${doneMods}/${totalMods} modul selesai`;
+    let heroCtaLabel = recMod ? 'Mulai Pelajaran Modul' : 'Buka Peta Belajar';
+    let heroCtaAttrs = recMod ? `data-action="lesson-start" data-mod="${esc(recMod.id)}"` : 'data-nav="modules"';
+
+    if (!gate.unlocked) {
+      const remain = Math.max(1, gate.required - gate.learned);
+      heroEyebrow = `Langkah Awal · Fondasi Aksara`;
+      heroHeading = `Kenali ${remain} huruf ${meta.name_id} lagi`;
+      heroSub = `Hafalkan minimal ${gate.required} huruf dasar di Kartu Aksara agar seluruh modul dan Quiz Harian terbuka.`;
+      heroPct = gate.pct;
+      heroPctLabel = `${gate.learned}/${gate.required} huruf dasar`;
+      heroCtaLabel = `Mulai Kartu Aksara (${gate.learned}/${gate.required})`;
+      heroCtaAttrs = 'data-nav="alphabet"';
     }
 
-    // Interactive Try-Now Phonetic Sandbox (for JA & KO) or Audio Preview (for others)
-    const supportsPhonetic = meta.code === 'ja' || meta.code === 'ko';
-    const tryValue = ui.dashTryInput || (meta.quick_chips[0] || '');
-    const converted = supportsPhonetic ? convertPhonetic(meta.code, tryValue) : meta.sample_word.native;
-    const quickChipsHtml = meta.quick_chips.map((w) =>
-      `<button type="button" class="quick-chip-btn" data-action="try-chip" data-word="${esc(w)}">${esc(w)}</button>`
-    ).join('');
-
-    // Language Directory Filter
-    const filteredLangs = LANGUAGE_CATALOG.filter((l) => {
-      const has = Boolean(state.packs[l.code]);
-      if (ui.dashFilter === 'active') return has;
-      if (ui.dashFilter === 'importable') return !has;
-      return true;
-    });
-
-    const langCardsHtml = filteredLangs.map((lang) => {
-      const p = state.packs[lang.code];
-      const isCurrent = lang.code === state.activeLang;
-      if (p) {
-        const doneMods = p.modules.filter((m) => state.completedModules[lang.code] && state.completedModules[lang.code][m.id]).length;
-        const due = getDueCountForLang(lang.code);
-        const modPct = p.modules.length > 0 ? Math.round((doneMods / p.modules.length) * 100) : 0;
-        return `
-          <article class="lang-card ${isCurrent ? 'is-active-lang' : ''}">
-            <div class="lang-card-top">
-              <div class="lang-card-id">
-                <span class="stamp-badge">${esc(lang.stamp)}</span>
-                <div>
-                  <h3 class="lang-card-title">${esc(lang.name_id)}</h3>
-                  <p class="lang-card-native">${esc(lang.name_native)}</p>
-                </div>
-              </div>
-              <span class="tag ${isCurrent ? 'accent' : 'jade'}">${isCurrent ? 'Sedang Dipelajari' : `${p.modules.length} modul`}</span>
-            </div>
-            <p class="lang-card-focus">${esc(lang.focus)}</p>
-            <div>
-              <div class="daily-goal-head" style="margin-bottom:5px;">
-                <span class="kpi-label">Progres modul</span>
-                <span class="mono" style="font-size:0.78rem;">${doneMods}/${p.modules.length} (${modPct}%)</span>
-              </div>
-              <div class="progress-track"><div class="progress-fill ${modPct === 100 ? 'jade' : ''}" style="width:${modPct}%"></div></div>
-            </div>
-            <div class="lang-card-metrics">
-              <span class="tag accent">${due} SRS</span>
-              <span class="tag">${p.quizzes.length} quiz</span>
-              <span class="tag">${p.dialogs.length} dialog</span>
-            </div>
-            <div class="lang-card-actions">
-              <button type="button" class="btn-primary btn-sm" data-action="open-lang-modules" data-lang="${lang.code}">Lanjut Belajar</button>
-              <button type="button" class="btn-secondary btn-sm" data-action="open-lang-srs" data-lang="${lang.code}">SRS (${due})</button>
-            </div>
-          </article>
-        `;
-      }
-      return `
-        <article class="lang-card ${isCurrent ? 'is-active-lang' : ''}">
-          <div class="lang-card-top">
-            <div class="lang-card-id">
-              <span class="stamp-badge" style="background:var(--surface-subtle);color:var(--ink-muted);border-color:var(--border);">${esc(lang.stamp)}</span>
-              <div>
-                <h3 class="lang-card-title">${esc(lang.name_id)}</h3>
-                <p class="lang-card-native">${esc(lang.name_native)}</p>
-              </div>
-            </div>
-            <span class="tag">Siap Import</span>
-          </div>
-          <p class="lang-card-focus">${esc(lang.focus)}</p>
-          <div class="lang-card-actions">
-            <button type="button" class="btn-secondary btn-sm" data-action="go-import" data-lang="${lang.code}">${ICONS.plus} Import JSON</button>
-          </div>
-        </article>
-      `;
-    }).join('');
+    const plan = state.studyPlans && state.studyPlans[meta.code];
+    const planLabel = plan && Array.isArray(plan.days) && plan.days.length
+      ? `Jadwal ${plan.totalDays} hari aktif (${plan.dailyMinutes} mnt/hari)`
+      : `Target harian ${state.settings.targetMinutes} menit`;
 
     return `
-      <!-- Band 1: Iconic Contrasting Studio Hero + Live Sandbox -->
-      <section class="studio-hero" aria-label="Ruang belajar bahasa aktif">
-        <div class="hero-ink-card">
-          <div class="hero-ink-top">
-            <div class="dash-lang-title">
-              <span class="hero-ink-stamp">${esc(meta.stamp)}</span>
-              <div>
-                <h1 class="hero-ink-native">${esc(meta.name_native)}</h1>
-                <p class="hero-ink-sub">${esc(meta.name_id)} · ${esc(meta.focus)}</p>
-              </div>
-            </div>
-            <div class="toolbar-group">
-              <span class="hero-ink-pill coral">${esc(rank.title)} · ${langXp} XP</span>
-              <span class="hero-ink-pill">${pack ? `${pack.modules.length} modul` : 'Belum diimpor'}</span>
+      <!-- Tier 1: Calm Single-Focus Hero (Zero Nested Boxes) -->
+      <section class="card calm-hero" aria-label="Fokus belajar aktif">
+        <div class="calm-hero-top">
+          <div class="dash-lang-title">
+            <span class="stamp-badge lg">${esc(meta.stamp)}</span>
+            <div>
+              <h1 class="calm-lang-title">${esc(meta.name_id)} <span class="calm-lang-native">${esc(meta.name_native)}</span></h1>
+              <p class="kpi-label">${langXp} XP · ${esc(planLabel)}</p>
             </div>
           </div>
+          <button type="button" class="calm-level-pill" data-action="open-level-sheet" aria-label="Ubah level penguasaan bahasa">
+            <span>Level: <strong>${esc(prof.fullLabel)}</strong></span>
+            <span class="calm-level-edit">Ubah</span>
+          </button>
+        </div>
 
-          ${focusBandHtml}
-
-          <div>
-            <div class="level-chart-head" style="margin-bottom:8px;">
-              <span style="font-size:0.74rem;font-weight:800;letter-spacing:0.06em;text-transform:uppercase;">Jalur Level ${esc(meta.name_id)}</span>
-              <span style="font-size:0.74rem;font-weight:600;opacity:0.82;">Ketuk level untuk lompat ke modul</span>
-            </div>
-            <div class="hero-level-strip">${levelBarsHtml}</div>
+        <div class="calm-hero-body">
+          <span class="tag accent">${esc(heroEyebrow)}</span>
+          <h2 class="calm-focus-heading">${esc(heroHeading)}</h2>
+          <p class="calm-focus-sub">${esc(heroSub)}</p>
+          <div class="calm-progress-row">
+            <div class="progress-track" style="height:8px;flex:1;"><div class="progress-fill jade" style="width:${heroPct}%"></div></div>
+            <span class="mono" style="font-size:0.78rem;font-weight:700;color:var(--ink-muted);">${esc(heroPctLabel)}</span>
           </div>
         </div>
 
-        <div class="hero-side-stack">
-          <div class="try-box" aria-label="Coba pelafalan dan ketik fonetik">
-            <span class="level-chart-label">Coba Sekarang · ${esc(meta.signature)}</span>
-            <div class="try-sample-row">
-              <button type="button" class="audio-btn accent-fill" data-speak="${esc(meta.sample_word.native)}" data-speak-lang="${meta.code}" aria-label="Dengarkan pelafalan ${esc(meta.sample_word.native)}">
-                ${ICONS.speaker}
-              </button>
-              <div>
-                <div class="try-native">${esc(meta.sample_word.native)}</div>
-                <div class="try-romaji">${esc(meta.sample_word.romaji)}</div>
-                <div class="try-meaning">${esc(meta.sample_word.meaning)}</div>
-              </div>
-            </div>
-
-            ${supportsPhonetic ? `
-              <div>
-                <label for="dash-phonetic-input" class="field-label-sm">Ketik bunyi huruf Latin, langsung jadi ${meta.code === 'ja' ? 'Hiragana' : 'Hangul'}:</label>
-                <input id="dash-phonetic-input" type="text" class="phonetic-input" value="${esc(tryValue)}" placeholder="${meta.code === 'ja' ? 'konnichiwa' : 'saranghaeyo'}" autocomplete="off">
-              </div>
-              <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;">
-                <div class="phonetic-output" id="dash-phonetic-output">${esc(converted)}</div>
-                <button type="button" class="audio-btn" id="dash-phonetic-speak" aria-label="Putar hasil ketikan fonetik">${ICONS.speaker}</button>
-              </div>
-              <div class="toolbar-group">
-                <span class="kpi-label">Coba:</span>
-                ${quickChipsHtml}
-              </div>
-            ` : `
-              <p class="page-sub" style="font-size:0.86rem;">Tekan tombol audio di atas untuk mendengar pelafalan ${esc(meta.name_id)} (${esc(meta.tts_lang)}). Semua modul ${esc(meta.name_id)} siap dipelajari di Jalur Modul.</p>
-            `}
-          </div>
-
-          <div class="mini-metrics-row" aria-label="Ringkasan progres nyata">
-            <div class="mini-metric">
-              <div class="kpi-label">Kosakata Dikuasai</div>
-              <div class="kpi-val" style="font-size:1.25rem;">${gStats.masteredCards}/${gStats.totalCards}</div>
-            </div>
-            <div class="mini-metric">
-              <div class="kpi-label">Akurasi Quiz</div>
-              <div class="kpi-val" style="font-size:1.25rem;">${gStats.quizAccuracy === null ? 'Belum ada' : `${gStats.quizAccuracy}%`}</div>
-            </div>
-            <div class="mini-metric">
-              <div class="kpi-label">Rekor Streak</div>
-              <div class="kpi-val" style="font-size:1.25rem;">${streak.best} hari</div>
-            </div>
-            <div class="mini-metric">
-              <div class="kpi-label">Rekor Sprint (${esc(meta.name_id)})</div>
-              <div class="kpi-val" style="font-size:1.25rem;">${sprintRec.bestScore}</div>
-            </div>
-          </div>
+        <div class="calm-hero-actions">
+          <button type="button" class="btn-primary calm-primary-cta" ${heroCtaAttrs}>${esc(heroCtaLabel)}</button>
+          <button type="button" class="btn-secondary" data-nav="modules">Lihat Peta Belajar</button>
         </div>
       </section>
 
-      <!-- Band 2: Bento Momentum Grid (Zeigarnik Effect + Quick Actions) -->
-      ${renderBentoMomentumBand(meta, pack)}
+      <!-- Tier 2: 3 Calm Core Actions -->
+      <section class="studio-section" aria-label="Aktivitas belajar utama">
+        <div class="calm-action-grid">
+          <button type="button" class="card calm-action-card" data-nav="quiz">
+            <span class="tag accent">Sesuai Level ${esc(prof.range)}</span>
+            <strong class="calm-card-title">Quiz Harian (8 Soal)</strong>
+            <span class="kpi-label">Soal diperbarui tiap hari khusus level ${esc(prof.label)}.</span>
+          </button>
 
-      <!-- Band 3: Ringkasan Rencana Belajar & Misi Mikro Harian -->
-      ${renderDashboardPlanStrip(meta)}
-      ${renderDailyMissionsPanel(meta)}
+          <button type="button" class="card calm-action-card" data-nav="${!gate.unlocked ? 'alphabet' : 'flashcards'}">
+            <span class="tag ${!gate.unlocked ? 'accent' : 'jade'}">${!gate.unlocked ? `${gate.learned}/${gate.required} huruf` : `${dueCount} siap diulas`}</span>
+            <strong class="calm-card-title">${!gate.unlocked ? 'Kartu Aksara' : 'Kartu Hafalan'}</strong>
+            <span class="kpi-label">${!gate.unlocked ? '1 huruf per kartu dengan audio pelafalan.' : 'Ulas kosakata terjadwal dalam 2 menit.'}</span>
+          </button>
 
-      <!-- Compact Language Explorer & Onboarding Trigger (replaces bulky 11-card grid on Beranda) -->
-      <section class="studio-section" aria-label="Jelajah bahasa dan pengaturan awal">
-        <div class="card dash-compact-footer">
+          <button type="button" class="card calm-action-card" data-nav="dialogs">
+            <span class="tag">Imersi Praktis</span>
+            <strong class="calm-card-title">Dialog & Bacaan</strong>
+            <span class="kpi-label">Latih percakapan nyata & bacaan klik-kata.</span>
+          </button>
+        </div>
+      </section>
+
+      <!-- Tier 3: Calm Compact Utility Bar -->
+      <section class="studio-section" aria-label="Ringkasan target dan bahasa">
+        <div class="card calm-footer-strip">
           <div>
-            <h2 style="font-size:1rem;font-weight:700;">Ingin ganti atau jelajah 11 bahasa lain?</h2>
-            <p class="kpi-label">Semua ${Object.keys(state.packs).length} bahasa aktif tersimpan offline dan bisa diganti kapan saja.</p>
+            <div style="font-weight:700;font-size:0.95rem;">Target Hari Ini: <span class="mono">${today.percent}%</span></div>
+            <p class="kpi-label">${today.minutes}/${state.settings.targetMinutes} menit · ${today.cards} kartu diulas · ${Object.keys(state.packs).length} bahasa siap offline</p>
           </div>
           <div class="toolbar-group">
-            <button type="button" class="btn-secondary" data-action="open-catalog-sheet">Jelajah 11 Bahasa</button>
-            <button type="button" class="btn-ghost" data-action="open-onboarding">Atur Ulang Target</button>
+            <button type="button" class="btn-secondary btn-sm" data-action="open-catalog-sheet">Ganti Bahasa (11)</button>
+            <button type="button" class="btn-ghost btn-sm" data-nav="stats">Statistik & Misi</button>
           </div>
         </div>
       </section>
@@ -2547,57 +2436,77 @@
     return state.dailyQuizMeta[langCode];
   }
 
-  function buildDynamicDailyQuizzes(pack, langCode, rng) {
+  function buildDynamicDailyQuizzes(pack, langCode, rng, allowedLevels = null, targetModId = null) {
     const dynamic = [];
-    const cards = (pack && Array.isArray(pack.flashcards)) ? pack.flashcards : [];
-    const validCards = cards.filter((c) => c && c.front && c.meaning_id);
+    const allCards = (pack && Array.isArray(pack.flashcards)) ? pack.flashcards : [];
+    const validAll = allCards.filter((c) => c && c.front && c.meaning_id);
+    const allowedSet = Array.isArray(allowedLevels) && allowedLevels.length ? new Set(allowedLevels) : null;
 
-    if (validCards.length >= 4) {
-      const sampled = seededShuffle(validCards, rng).slice(0, 6);
+    let poolCards = validAll;
+    if (targetModId) {
+      const modCards = validAll.filter((c) => c.module_id === targetModId);
+      if (modCards.length > 0) poolCards = modCards;
+    } else if (allowedSet) {
+      const tierCards = validAll.filter((c) => allowedSet.has(c.level));
+      if (tierCards.length >= 4) poolCards = tierCards;
+    }
+
+    const distractorSource = allowedSet && validAll.filter((c) => allowedSet.has(c.level)).length >= 4
+      ? validAll.filter((c) => allowedSet.has(c.level))
+      : validAll;
+
+    if (poolCards.length >= 1 && distractorSource.length >= 4) {
+      const sampled = seededShuffle(poolCards, rng).slice(0, 8);
       sampled.forEach((card, idx) => {
-        const others = seededShuffle(validCards.filter((o) => o.id !== card.id && o.meaning_id !== card.meaning_id), rng).slice(0, 3);
+        const others = seededShuffle(distractorSource.filter((o) => o.id !== card.id && o.meaning_id !== card.meaning_id), rng).slice(0, 3);
         if (others.length === 3) {
           if (idx % 2 === 0) {
             const opts = seededShuffle([card.meaning_id, ...others.map((o) => o.meaning_id)], rng);
             dynamic.push({
               id: `daily-fc-m-${card.id}-${idx}`,
               module_id: card.module_id,
+              level: card.level,
               type: 'multiple_choice',
-              prompt: `Apa arti dari "${card.front}"${card.romaji ? ` (${card.romaji})` : ''}?`,
+              prompt: `Apa arti dari "${card.front}"${card.romaji && card.romaji !== card.front ? ` (${card.romaji})` : ''}?`,
               options: opts,
               answer: card.meaning_id,
-              explanation_id: `"${card.front}" (${card.romaji || '-'}) berarti "${card.meaning_id}".`
+              explanation_id: `"${card.front}" berarti "${card.meaning_id}".`
             });
           } else {
             const opts = seededShuffle([card.front, ...others.map((o) => o.front)], rng);
             dynamic.push({
               id: `daily-fc-f-${card.id}-${idx}`,
               module_id: card.module_id,
+              level: card.level,
               type: 'multiple_choice',
               prompt: `Pilih ungkapan ${getCatalogMeta(langCode).name_id} yang berarti "${card.meaning_id}":`,
               options: opts,
               answer: card.front,
-              explanation_id: `"${card.meaning_id}" dalam bahasa ${getCatalogMeta(langCode).name_id} adalah "${card.front}" (${card.romaji || '-'}).`
+              explanation_id: `"${card.meaning_id}" dalam bahasa ${getCatalogMeta(langCode).name_id} adalah "${card.front}".`
             });
           }
         }
       });
 
-      const matchCards = seededShuffle(validCards, rng).slice(0, 4);
+      const matchSource = poolCards.length >= 4 ? poolCards : distractorSource;
+      const matchCards = seededShuffle(matchSource, rng).slice(0, 4);
       if (matchCards.length === 4) {
         dynamic.push({
           id: `daily-match-${matchCards.map((c) => c.id).join('-')}`,
           module_id: matchCards[0].module_id,
+          level: matchCards[0].level,
           type: 'matching',
-          prompt: 'Pasangkan kosakata harian berikut dengan artinya:',
+          prompt: 'Pasangkan kosakata berikut dengan artinya:',
           pairs: matchCards.map((c) => ({ left: c.front, right: c.meaning_id })),
-          explanation_id: 'Semua pasangan kosakata harian cocok dengan tepat.'
+          explanation_id: 'Semua pasangan kosakata cocok dengan tepat.'
         });
       }
     }
 
+    // Include conjugation drills only for intermediate/advanced tiers (so beginners stay on beginner level)
+    const tier = (state && state.proficiencyByLang && state.proficiencyByLang[langCode]) || 'beginner';
     const conjData = CONJUGATION_DATA && CONJUGATION_DATA[langCode];
-    if (conjData && Array.isArray(conjData.items) && conjData.items.length > 0) {
+    if (!targetModId && tier !== 'beginner' && conjData && Array.isArray(conjData.items) && conjData.items.length > 0) {
       seededShuffle(conjData.items, rng).slice(0, 2).forEach((item) => {
         const opts = seededShuffle([item.answer, ...(item.distractors || [])], rng);
         dynamic.push({
@@ -2640,7 +2549,10 @@
       return;
     }
     const dMeta = getDailyQuizMeta(state.activeLang);
-    const seedStr = `${today}|${state.activeLang}|${ui.quizModule}|${dMeta.nonce}`;
+    const prof = Store.getProficiencyMeta(state, state.activeLang, pack.language && pack.language.roadmap_levels);
+    const allowedSet = new Set(prof.allowedLevels);
+    const modLevelById = new Map((pack.modules || []).map((m) => [m.id, m.level]));
+    const seedStr = `${today}|${state.activeLang}|${prof.tier}|${ui.quizModule}|${dMeta.nonce}`;
     const rng = createSeededRng(seedStr);
 
     let list = pack.quizzes.slice();
@@ -2648,13 +2560,23 @@
       list = list.filter((q) => ui.quizFilterIds.includes(q.id));
       list = seededShuffle(list, rng).map((q) => cloneAndShuffleQuestion(q, rng));
     } else if (ui.quizModule !== 'ALL') {
-      list = list.filter((q) => q.module_id === ui.quizModule);
-      list = seededShuffle(list, rng).map((q) => cloneAndShuffleQuestion(q, rng));
+      const modStatic = seededShuffle(list.filter((q) => q.module_id === ui.quizModule), rng);
+      const modLevel = modLevelById.get(ui.quizModule);
+      const modDynamic = seededShuffle(
+        buildDynamicDailyQuizzes(pack, state.activeLang, rng, modLevel ? [modLevel, ...prof.allowedLevels] : prof.allowedLevels, ui.quizModule),
+        rng
+      );
+      const needed = Math.max(0, 6 - modStatic.length);
+      list = seededShuffle([...modStatic, ...modDynamic.slice(0, needed)], rng)
+        .slice(0, Math.max(6, modStatic.length))
+        .map((q) => cloneAndShuffleQuestion(q, rng));
     } else {
-      const dynamicPool = buildDynamicDailyQuizzes(pack, state.activeLang, rng);
-      const staticShuffled = seededShuffle(list, rng).slice(0, 5);
-      const dynamicShuffled = seededShuffle(dynamicPool, rng).slice(0, 3);
-      list = seededShuffle([...staticShuffled, ...dynamicShuffled], rng)
+      const tierStatic = list.filter((q) => allowedSet.has(modLevelById.get(q.module_id)));
+      const dynamicPool = buildDynamicDailyQuizzes(pack, state.activeLang, rng, prof.allowedLevels, null);
+      const staticPicked = seededShuffle(tierStatic, rng).slice(0, 5);
+      const needed = Math.max(3, 8 - staticPicked.length);
+      const dynamicPicked = seededShuffle(dynamicPool, rng).slice(0, needed);
+      list = seededShuffle([...staticPicked, ...dynamicPicked], rng)
         .slice(0, 8)
         .map((q) => cloneAndShuffleQuestion(q, rng));
     }
@@ -2703,12 +2625,26 @@
       rebuildQuizSession();
     }
     const dMeta = getDailyQuizMeta(state.activeLang);
+    const lvls = pack.language && pack.language.roadmap_levels;
+    const prof = Store.getProficiencyMeta(state, state.activeLang, lvls);
+    const tierBtnsHtml = ['beginner', 'intermediate', 'advanced'].map((t) => {
+      const m = Store.getAllowedLevelsForTier(state.activeLang, t, lvls);
+      const rngTxt = m.length > 1 ? `${m[0]}–${m[m.length - 1]}` : m[0];
+      const lbl = t === 'beginner' ? 'Pemula' : t === 'intermediate' ? 'Menengah' : 'Lanjut';
+      return `<button type="button" class="seg-btn ${prof.tier === t ? 'active' : ''}" data-action="set-proficiency" data-tier="${t}">${lbl} (${rngTxt})</button>`;
+    }).join('');
 
-    const modOpts = `<option value="ALL" ${ui.quizModule === 'ALL' ? 'selected' : ''}>Set Harian Campuran (8 soal baru/hari)</option>` +
+    const modOpts = `<option value="ALL" ${ui.quizModule === 'ALL' ? 'selected' : ''}>Set Harian · ${esc(prof.fullLabel)} (8 soal)</option>` +
       pack.modules.map((m) => {
-        const cnt = pack.quizzes.filter((q) => q.module_id === m.id).length;
-        return `<option value="${esc(m.id)}" ${ui.quizModule === m.id ? 'selected' : ''}>${esc(m.level)} · ${esc(m.title)} (${cnt})</option>`;
+        return `<option value="${esc(m.id)}" ${ui.quizModule === m.id ? 'selected' : ''}>${esc(m.level)} · ${esc(cleanModuleTitle(m))} (6+ soal)</option>`;
       }).join('');
+
+    const quizLevelBarHtml = `
+      <div class="quiz-level-bar" role="group" aria-label="Pilih level soal quiz harian">
+        <span class="kpi-label" style="font-weight:700;">Level Penguasaan:</span>
+        <div class="segmented">${tierBtnsHtml}</div>
+      </div>
+    `;
 
     const drillBanner = ui.quizFilterIds ? `
       <div class="session-banner" style="padding:12px 16px;margin-bottom:16px;">
@@ -2870,6 +2806,7 @@
         </div>
       </div>
 
+      ${quizLevelBarHtml}
       ${drillBanner}
 
       <div class="quiz-arena">
@@ -5528,6 +5465,12 @@
         case 'open-onboarding':
           openOnboardingModal(true);
           break;
+        case 'open-level-sheet':
+          openProficiencySheet();
+          break;
+        case 'set-proficiency':
+          await setProficiencyTier(actEl.getAttribute('data-tier') || 'beginner');
+          break;
         case 'pwa-install':
           if (deferredInstallPrompt) {
             deferredInstallPrompt.prompt();
@@ -6031,17 +5974,26 @@
         </div>
       `;
     } else if (obState.step === 2) {
+      const pack = state.packs[obState.lang];
+      const lvls = (pack && pack.language && pack.language.roadmap_levels) || selMeta.roadmap_levels;
+      const tierList = [
+        { id: 'beginner', title: 'Pemula', desc: isNonLatin ? 'Mulai dari Kartu Aksara & kosakata paling dasar.' : 'Mulai dari sapaan inti, kalimat dasar, dan Quiz level pemula.' },
+        { id: 'intermediate', title: 'Menengah', desc: 'Sudah paham dasar; lanjut ke percakapan lancar, opini & bacaan.' },
+        { id: 'advanced', title: 'Lanjut', desc: 'Fokus bahasa profesional, argumen tajam, idiom & persiapan ujian.' }
+      ];
       bodyHtml = `
-        <p class="kpi-label" style="margin-bottom:12px;">Langkah 2 dari 3 · Seberapa akrab kamu dengan bahasa <strong>${esc(selMeta.name_id)}</strong>?</p>
+        <p class="kpi-label" style="margin-bottom:12px;">Langkah 2 dari 3 · Pilih level penguasaan bahasa <strong>${esc(selMeta.name_id)}</strong> kamu saat ini:</p>
         <div class="onboarding-choice-grid">
-          <button type="button" class="ob-choice-btn ${obState.level === 'beginner' ? 'active' : ''}" data-ob-level="beginner">
-            <strong>Pemula dari Nol</strong>
-            <small>${isNonLatin ? 'Mulai pelan dari Kartu Aksara dasar dulu.' : 'Mulai dari sapaan inti & kartu hafalan dasar.'}</small>
-          </button>
-          <button type="button" class="ob-choice-btn ${obState.level === 'basic' ? 'active' : ''}" data-ob-level="basic">
-            <strong>Sudah Bisa Baca Dasar</strong>
-            <small>${isNonLatin ? 'Langsung buka semua modul, Quiz, dan Kartu Hafalan.' : 'Langsung masuk ke latihan kosakata & percakapan.'}</small>
-          </button>
+          ${tierList.map((t) => {
+            const m = Store.getAllowedLevelsForTier(obState.lang, t.id, lvls);
+            const rng = m.length > 1 ? `${m[0]}–${m[m.length - 1]}` : m[0];
+            return `
+              <button type="button" class="ob-choice-btn ${obState.level === t.id ? 'active' : ''}" data-ob-level="${t.id}">
+                <strong>${t.title} (${rng})</strong>
+                <small>${t.desc}</small>
+              </button>
+            `;
+          }).join('')}
         </div>
         <div class="dialog-actions">
           <button type="button" class="btn-secondary" data-ob-next="1">← Kembali</button>
@@ -6129,9 +6081,11 @@
       if (ev.target.closest('[data-ob-finish]')) {
         state.activeLang = obState.lang;
         state.settings.targetMinutes = obState.minutes;
+        state.proficiencyByLang = state.proficiencyByLang || {};
+        state.proficiencyByLang[obState.lang] = ['beginner', 'intermediate', 'advanced'].includes(obState.level) ? obState.level : 'beginner';
         state.onboardingDone = true;
         const isNonLatin = Boolean(SCRIPT_DATA && SCRIPT_DATA[obState.lang]);
-        if (isNonLatin && obState.level === 'basic') {
+        if (isNonLatin && obState.level !== 'beginner') {
           state.scriptGateBypassed = state.scriptGateBypassed || {};
           state.scriptGateBypassed[obState.lang] = true;
         }

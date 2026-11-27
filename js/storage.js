@@ -66,6 +66,7 @@
       canvasPracticedIds: {}, // { [langCode]: { [cardId]: true } }
       learnedChars: {},      // { [langCode]: { [charId]: true } }
       scriptGateBypassed: {}, // { [langCode]: true }
+      proficiencyByLang: {}, // { [langCode]: 'beginner' | 'intermediate' | 'advanced' }
       studyPlans: {},        // { [langCode]: { goal, dailyMinutes, totalDays, startDate, days: [...], completedTasks: {} } }
       conjugationStats: {},  // { [langCode]: { total: 0, correct: 0, bestStreak: 0 } }
       examHistory: {},       // { [langCode]: [{ date, score, total, durationSec }] }
@@ -185,6 +186,7 @@
       canvasPracticedIds: loaded.canvasPracticedIds || {},
       learnedChars: loaded.learnedChars || {},
       scriptGateBypassed: loaded.scriptGateBypassed || {},
+      proficiencyByLang: loaded.proficiencyByLang || {},
       studyPlans: loaded.studyPlans || {},
       conjugationStats: loaded.conjugationStats || {},
       examHistory: loaded.examHistory || {},
@@ -693,6 +695,36 @@
     return { code, isNewLanguage: false, added };
   }
 
+  function getAllowedLevelsForTier(langCode, tier, roadmapLevels) {
+    const lvls = Array.isArray(roadmapLevels) && roadmapLevels.length
+      ? roadmapLevels
+      : ['A0', 'A1', 'A2', 'B1', 'B2', 'C1', 'C2'];
+    if (tier === 'intermediate') {
+      const slice = lvls.slice(2, 4);
+      return slice.length ? slice : lvls;
+    }
+    if (tier === 'advanced') {
+      const slice = lvls.slice(4);
+      return slice.length ? slice : lvls.slice(-2);
+    }
+    // default: beginner (first 2 levels, e.g. A0-A1, A0-N5, A0-HSK1)
+    return lvls.slice(0, 2);
+  }
+
+  function getProficiencyMeta(state, langCode, roadmapLevels) {
+    const tier = (state && state.proficiencyByLang && state.proficiencyByLang[langCode]) || 'beginner';
+    const allowed = getAllowedLevelsForTier(langCode, tier, roadmapLevels);
+    const rangeText = allowed.length > 1 ? `${allowed[0]}–${allowed[allowed.length - 1]}` : allowed[0];
+    const nameMap = { beginner: 'Pemula', intermediate: 'Menengah', advanced: 'Lanjut' };
+    return {
+      tier,
+      label: nameMap[tier] || 'Pemula',
+      range: rangeText,
+      fullLabel: `${nameMap[tier] || 'Pemula'} (${rangeText})`,
+      allowedLevels: allowed
+    };
+  }
+
   global.LingoStorage = {
     getTodayKey,
     getWeekKey,
@@ -712,6 +744,8 @@
     getRankInfo,
     getDailyMissions,
     getScriptGateStatus,
+    getAllowedLevelsForTier,
+    getProficiencyMeta,
     computeModuleMastery,
     generateStudyPlan,
     computeAchievements,
