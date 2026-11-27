@@ -1,5 +1,5 @@
 /* LingoLokal Service Worker: Offline-First App Shell + Network-First Fresh Updates */
-const CACHE_NAME = 'lingolokal-v10';
+const CACHE_NAME = 'lingolokal-v11';
 
 const CORE_ASSETS = [
   './',
