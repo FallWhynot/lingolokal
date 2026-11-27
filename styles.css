@@ -96,6 +96,9 @@
 html {
   font-size: 16px;
   -webkit-text-size-adjust: 100%;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: clip;
 }
 
 body {
@@ -104,8 +107,10 @@ body {
   background: var(--bg);
   color: var(--ink);
   line-height: 1.55;
+  width: 100%;
+  max-width: 100%;
   min-height: 100svh;
-  overflow-x: hidden;
+  overflow-x: clip;
 }
 
 /* Pointer cursor affordance (R-39) */
@@ -6059,5 +6064,127 @@ body {
 @media (prefers-reduced-motion: reduce) {
   .bottom-sheet[open] {
     animation: none;
+  }
+}
+
+/* ==========================================================================
+   ZOOM-SAFE & CLIP-FREE CONTAINMENT LAYER (Mobile Zoom-Out & Narrow Viewports)
+   ========================================================================== */
+
+/* Prevent any grid/flex child from forcing tracks wider than the viewport */
+.app-shell,
+.main-column,
+.main-stage,
+.topbar,
+.mobile-bottom-nav {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+}
+
+.main-stage > *,
+.studio-hero > *,
+.bento-momentum-grid > *,
+.reading-layout > *,
+.skill-tree-layout > *,
+.writing-layout > *,
+.settings-grid > *,
+.card,
+.hero-ink-card,
+.hero-focus-band,
+.script-focus-card {
+  min-width: 0;
+  max-width: 100%;
+}
+
+/* Safe fluid auto-fill grids (never overflow even on 320px or zoomed viewports) */
+.lang-grid {
+  grid-template-columns: repeat(auto-fill, minmax(min(280px, 100%), 1fr));
+}
+
+.dict-grid,
+.latin-highlight-grid {
+  grid-template-columns: repeat(auto-fill, minmax(min(220px, 100%), 1fr));
+}
+
+.badge-grid {
+  grid-template-columns: repeat(auto-fit, minmax(min(185px, 100%), 1fr));
+}
+
+/* Safe wrapping for toolbars, segmented controls, and long text */
+.toolbar-row,
+.toolbar-group,
+.segmented {
+  max-width: 100%;
+  flex-wrap: wrap;
+}
+
+.card,
+.page-title,
+.module-title,
+.bento-title,
+.quiz-question,
+.dialog-native,
+.srs-meaning {
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+
+img,
+svg,
+canvas,
+select,
+input,
+textarea {
+  max-width: 100%;
+}
+
+/* Use minmax(0, 1fr) instead of 1fr on tablet/mobile so children never clip */
+@media (max-width: 1023px) {
+  .app-shell,
+  .studio-hero,
+  .dash-hero,
+  .reading-layout,
+  .skill-tree-layout,
+  .writing-layout,
+  .settings-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .hero-level-strip {
+    display: flex;
+    overflow-x: auto;
+    max-width: 100%;
+    gap: 6px;
+    padding-bottom: 4px;
+    scrollbar-width: none;
+  }
+
+  .hero-level-strip::-webkit-scrollbar {
+    display: none;
+  }
+
+  .hero-level-bar {
+    flex: 1 0 44px;
+    min-width: 44px;
+  }
+}
+
+@media (max-width: 639px) {
+  .module-card,
+  .matching-grid,
+  .form-row-2,
+  .script-focus-actions {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .segmented {
+    width: 100%;
+  }
+
+  .segmented .seg-btn {
+    flex: 1 1 auto;
+    justify-content: center;
   }
 }
