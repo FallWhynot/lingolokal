@@ -554,14 +554,24 @@
   function updateTimerDisplay() {
     const today = Store.getTodayKey(0);
     const log = state.dailyLogs[today] || { seconds: 0 };
+    const formatted = formatTimer(log.seconds || 0);
     const clock = document.getElementById('timer-display');
     const dot = document.getElementById('timer-dot');
     const lbl = document.getElementById('timer-toggle-label');
     const btn = document.getElementById('timer-toggle-btn');
-    if (clock) clock.textContent = formatTimer(log.seconds || 0);
+    if (clock) clock.textContent = formatted;
     if (dot) dot.classList.toggle('paused', timerPaused);
     if (lbl) lbl.textContent = timerPaused ? 'Lanjut' : 'Jeda';
     if (btn) btn.setAttribute('aria-label', timerPaused ? 'Lanjutkan timer belajar' : 'Jeda timer belajar');
+
+    const dClock = document.getElementById('drawer-timer-display');
+    const dDot = document.getElementById('drawer-timer-dot');
+    const dLbl = document.getElementById('drawer-timer-toggle-label');
+    const dBtn = document.getElementById('drawer-timer-toggle-btn');
+    if (dClock) dClock.textContent = formatted;
+    if (dDot) dDot.classList.toggle('paused', timerPaused);
+    if (dLbl) dLbl.textContent = timerPaused ? 'Lanjut' : 'Jeda';
+    if (dBtn) dBtn.setAttribute('aria-label', timerPaused ? 'Lanjutkan timer belajar' : 'Jeda timer belajar');
   }
 
   // --- Global Chrome (Nav, Language Selector, Streak, Goal Progress) ---
@@ -755,6 +765,38 @@
       const el = document.getElementById(id);
       if (el) el.innerHTML = buildItems(group);
     });
+
+    // Sync mobile bottom navigation bar
+    const bottomNav = document.getElementById('mobile-bottom-nav');
+    if (bottomNav) {
+      const primaryViews = new Set(['dashboard', 'modules', 'flashcards', 'quiz']);
+      bottomNav.querySelectorAll('.bottom-nav-btn[data-nav]').forEach((btn) => {
+        const target = btn.getAttribute('data-nav');
+        if (target === currentView) {
+          btn.setAttribute('aria-current', 'page');
+        } else {
+          btn.removeAttribute('aria-current');
+        }
+      });
+      const menuBtn = document.getElementById('bottom-nav-menu-btn');
+      if (menuBtn) {
+        if (!primaryViews.has(currentView)) {
+          menuBtn.setAttribute('aria-current', 'page');
+        } else {
+          menuBtn.removeAttribute('aria-current');
+        }
+      }
+      const dueBadge = document.getElementById('bottom-nav-due');
+      if (dueBadge) {
+        const fcGated = !gate.unlocked && SCRIPT_GATED_VIEWS.has('flashcards');
+        if (!fcGated && dueCount > 0) {
+          dueBadge.textContent = dueCount > 99 ? '99+' : String(dueCount);
+          dueBadge.hidden = false;
+        } else {
+          dueBadge.hidden = true;
+        }
+      }
+    }
   }
 
   function updateGoalBars() {
@@ -1800,11 +1842,13 @@
       const p5 = Store.previewSM2(card.srs, 5);
       const mastered = Store.isCardMastered(card);
 
+      const showReading = card.reading && card.reading.trim() && card.reading.trim() !== card.front.trim();
+
       stageHtml = `
         <div class="srs-desk">
-          <div class="toolbar-row" style="margin-bottom:10px;">
+          <div class="toolbar-row" style="margin-bottom:8px;">
             <span class="kpi-label">Antrean tersisa: <strong class="mono">${ui.fcQueue.length}</strong> kartu</span>
-            <span class="kpi-label">Shortcut: <kbd class="mono">Spasi</kbd> balik · <kbd class="mono">1-4</kbd> nilai · <kbd class="mono">A</kbd> audio</span>
+            <span class="kpi-label desktop-only-hint">Shortcut: <kbd class="mono">Spasi</kbd> balik · <kbd class="mono">1-4</kbd> nilai · <kbd class="mono">A</kbd> audio</span>
           </div>
 
           <div class="srs-card-stage">
@@ -1826,13 +1870,13 @@
                   <p class="kpi-label">Ingat artinya dalam bahasa Indonesia, lalu balik kartu.</p>
                 </div>
                 <div style="text-align:center;">
-                  <button type="button" class="btn-primary" data-action="fc-flip" style="min-width:210px;">Balik Kartu (Spasi)</button>
+                  <button type="button" class="btn-primary" data-action="fc-flip" style="min-width:200px;">Balik Kartu</button>
                 </div>
               ` : `
                 <div class="srs-back-main">
-                  <div style="display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap;">
-                    <div style="font-size:1.7rem;font-weight:700;">${esc(card.front)}</div>
-                    <div class="srs-reading-line">${esc(card.reading)} · <em>${esc(card.romaji)}</em></div>
+                  <div class="srs-back-head">
+                    <div class="srs-back-front">${esc(card.front)}</div>
+                    <div class="srs-reading-line">${showReading ? `${esc(card.reading)} · ` : ''}<em>${esc(card.romaji)}</em></div>
                   </div>
                   <div class="srs-meaning">${esc(card.meaning_id)}</div>
                   ${card.mnemonic ? `<div class="srs-mnemonic"><strong>Catatan:</strong> ${esc(card.mnemonic)}</div>` : ''}
@@ -1840,7 +1884,7 @@
                     <div class="srs-example">
                       <div>
                         <div style="font-weight:600;">${esc(card.example_native)}</div>
-                        ${card.example_romaji ? `<div style="font-size:0.82rem;color:var(--ink-muted);font-style:italic;">${esc(card.example_romaji)}</div>` : ''}
+                        ${card.example_romaji && card.example_romaji.trim() !== card.example_native.trim() ? `<div style="font-size:0.82rem;color:var(--ink-muted);font-style:italic;">${esc(card.example_romaji)}</div>` : ''}
                         <div style="font-size:0.86rem;color:var(--ink-muted);">${esc(card.example_id)}</div>
                       </div>
                       <button type="button" class="audio-btn" data-speak="${esc(card.example_native)}" aria-label="Putar audio contoh kalimat">
@@ -4314,15 +4358,17 @@
     // Custom animated language dropdowns
     initLangPickers();
 
-    // Timer pause/resume
-    const timerBtn = document.getElementById('timer-toggle-btn');
-    if (timerBtn) {
-      timerBtn.addEventListener('click', () => {
-        timerPaused = !timerPaused;
-        updateTimerDisplay();
-        if (timerPaused) persistState();
-      });
-    }
+    // Timer pause/resume (desktop topbar + mobile drawer)
+    ['timer-toggle-btn', 'drawer-timer-toggle-btn'].forEach((btnId) => {
+      const btn = document.getElementById(btnId);
+      if (btn) {
+        btn.addEventListener('click', () => {
+          timerPaused = !timerPaused;
+          updateTimerDisplay();
+          if (timerPaused) persistState();
+        });
+      }
+    });
 
     // Topbar theme toggle
     const themeBtn = document.getElementById('theme-toggle-btn');
@@ -4849,6 +4895,10 @@
           if (dlg) dlg.showModal();
           break;
         }
+        // --- Mobile Drawer trigger from Bottom Nav ---
+        case 'open-drawer':
+          if (global.LingoDrawer) global.LingoDrawer.open();
+          break;
         // --- Skill Tree ---
         case 'mod-view-mode':
           ui.modViewMode = actEl.getAttribute('data-val') || 'tree';
@@ -4857,6 +4907,16 @@
         case 'tree-select-node':
           ui.treeSelectedId = actEl.getAttribute('data-mod');
           renderView();
+          if (global.innerWidth <= 1023) {
+            requestAnimationFrame(() => {
+              const panel = document.querySelector('.tree-detail-panel');
+              if (panel) {
+                panel.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                panel.classList.add('mobile-panel-focus');
+                setTimeout(() => panel.classList.remove('mobile-panel-focus'), 900);
+              }
+            });
+          }
           break;
         // --- Sentence Mining ---
         case 'fc-toggle-mined':

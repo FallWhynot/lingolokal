@@ -170,6 +170,15 @@
           <ul class="nav-list" id="mobile-nav-secondary"></ul>
         </div>
         <div class="drawer-footer">
+          <div class="drawer-timer-row" role="group" aria-label="Timer belajar seluler">
+            <span class="drawer-timer-info">
+              <span class="timer-dot" id="drawer-timer-dot" aria-hidden="true"></span>
+              <span class="timer-clock mono" id="drawer-timer-display">00:00</span>
+            </span>
+            <button type="button" id="drawer-timer-toggle-btn" class="btn-secondary btn-sm" aria-label="Jeda atau lanjut timer belajar">
+              <span id="drawer-timer-toggle-label">Jeda</span>
+            </button>
+          </div>
           <div class="daily-goal-card">
             <div class="daily-goal-head">
               <span class="daily-goal-title">Target Hari Ini</span>
@@ -184,6 +193,48 @@
       </nav>
     </div>
   </dialog>
+
+  <!-- Mobile Bottom Navigation Bar (Thumb-Reachable Core Destinations) -->
+  <nav class="mobile-bottom-nav" id="mobile-bottom-nav" aria-label="Navigasi cepat seluler">
+    <button type="button" class="bottom-nav-btn" data-nav="dashboard" aria-current="page">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <rect x="3" y="3" width="7" height="7" rx="1.5"/>
+        <rect x="14" y="3" width="7" height="7" rx="1.5"/>
+        <rect x="3" y="14" width="7" height="7" rx="1.5"/>
+        <rect x="14" y="14" width="7" height="7" rx="1.5"/>
+      </svg>
+      <span>Beranda</span>
+    </button>
+    <button type="button" class="bottom-nav-btn" data-nav="modules">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/>
+      </svg>
+      <span>Modul</span>
+    </button>
+    <button type="button" class="bottom-nav-btn" data-nav="flashcards">
+      <span class="bottom-nav-icon-wrap">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <rect x="3" y="6" width="14" height="14" rx="2"/>
+          <path d="M7 6V4a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-2"/>
+        </svg>
+        <span class="bottom-nav-badge" id="bottom-nav-due" hidden>0</span>
+      </span>
+      <span>Kartu</span>
+    </button>
+    <button type="button" class="bottom-nav-btn" data-nav="quiz">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M9 11l3 3L22 4"/>
+        <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/>
+      </svg>
+      <span>Quiz</span>
+    </button>
+    <button type="button" class="bottom-nav-btn" data-action="open-drawer" aria-controls="mobile-drawer" aria-expanded="false" id="bottom-nav-menu-btn">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+        <path d="M4 7h16M4 12h16M4 17h16"/>
+      </svg>
+      <span>Menu</span>
+    </button>
+  </nav>
 
   <!-- Native Modal Dialog: Tambah Flashcard Baru -->
   <dialog id="modal-add-card" class="app-dialog" closedby="any" aria-labelledby="modal-add-card-title">
