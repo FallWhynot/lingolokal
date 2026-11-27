@@ -1612,7 +1612,10 @@
       </section>
 
       <!-- Tier 2: 3 Calm Core Actions -->
-      <section class="studio-section" aria-label="Aktivitas belajar utama">
+      <section class="studio-section" aria-labelledby="dash-practice-heading">
+        <div class="calm-section-head">
+          <h2 id="dash-practice-heading" class="calm-section-title">Mulai, kerjain yuk</h2>
+        </div>
         <div class="calm-action-grid">
           <button type="button" class="card calm-action-card" data-nav="quiz">
             <span class="tag accent">Sesuai Level ${esc(prof.range)}</span>
@@ -1635,7 +1638,10 @@
       </section>
 
       <!-- Tier 3: Calm Compact Utility Bar -->
-      <section class="studio-section" aria-label="Ringkasan target dan bahasa">
+      <section class="studio-section" aria-labelledby="dash-target-heading">
+        <div class="calm-section-head">
+          <h2 id="dash-target-heading" class="calm-section-title">Target Belajarmu</h2>
+        </div>
         <div class="card calm-footer-strip">
           <div>
             <div style="font-weight:700;font-size:0.95rem;">Target Hari Ini: <span class="mono">${today.percent}%</span></div>
@@ -2157,25 +2163,30 @@
         </div>
       </div>
 
-      ${ui.modViewMode === 'tree' ? treeHtml : `
-        <div class="level-tabs" role="tablist" aria-label="Filter level modul">
-          ${levelTabsHtml}
+      <section class="studio-section" aria-labelledby="modules-section-heading">
+        <div class="calm-section-head">
+          <h2 id="modules-section-heading" class="calm-section-title">${ui.modViewMode === 'tree' ? 'Jalur Belajarmu' : 'Pilih Modul Belajarmu'}</h2>
         </div>
-
-        <div class="toolbar-row">
-          <div style="flex:1;min-width:220px;max-width:360px;">
-            <label for="mod-search" class="sr-only">Cari modul</label>
-            <input id="mod-search" type="search" class="phonetic-input" value="${esc(ui.modQuery)}" placeholder="Cari judul atau tujuan modul...">
+        ${ui.modViewMode === 'tree' ? treeHtml : `
+          <div class="level-tabs" role="tablist" aria-label="Filter level modul">
+            ${levelTabsHtml}
           </div>
-          <div class="segmented" role="group" aria-label="Status modul">
-            <button type="button" class="seg-btn ${ui.modStatus === 'all' ? 'active' : ''}" data-action="mod-status" data-val="all">Semua</button>
-            <button type="button" class="seg-btn ${ui.modStatus === 'todo' ? 'active' : ''}" data-action="mod-status" data-val="todo">Belum</button>
-            <button type="button" class="seg-btn ${ui.modStatus === 'done' ? 'active' : ''}" data-action="mod-status" data-val="done">Selesai</button>
-          </div>
-        </div>
 
-        <div class="module-list">${cardsHtml}</div>
-      `}
+          <div class="toolbar-row">
+            <div style="flex:1;min-width:220px;max-width:360px;">
+              <label for="mod-search" class="sr-only">Cari modul</label>
+              <input id="mod-search" type="search" class="phonetic-input" value="${esc(ui.modQuery)}" placeholder="Cari judul atau tujuan modul...">
+            </div>
+            <div class="segmented" role="group" aria-label="Status modul">
+              <button type="button" class="seg-btn ${ui.modStatus === 'all' ? 'active' : ''}" data-action="mod-status" data-val="all">Semua</button>
+              <button type="button" class="seg-btn ${ui.modStatus === 'todo' ? 'active' : ''}" data-action="mod-status" data-val="todo">Belum</button>
+              <button type="button" class="seg-btn ${ui.modStatus === 'done' ? 'active' : ''}" data-action="mod-status" data-val="done">Selesai</button>
+            </div>
+          </div>
+
+          <div class="module-list">${cardsHtml}</div>
+        `}
+      </section>
     `;
   }
 
@@ -2390,13 +2401,17 @@
       ${renderStudyBreadcrumb('Kartu SRS')}
       <div class="section-header">
         <div>
-          <h1 class="page-title">Flashcard SRS (SM-2)</h1>
-          <p class="page-sub">Klik kartu atau tekan Spasi untuk membalik, lalu beri nilai seberapa cepat Anda mengingatnya.</p>
+          <h1 class="page-title">Kartu Hafalan</h1>
+          <p class="page-sub">Ulas kosakatamu hari ini. Klik kartu atau tekan Spasi buat membalik, lalu pilih seberapa cepat kamu mengingatnya.</p>
         </div>
         <div class="toolbar-group">
           <button type="button" class="btn-secondary" data-action="open-mine-custom">Tambang Teks Sendiri</button>
           <button type="button" class="btn-primary" data-action="open-add-card">${ICONS.plus} Kartu Baru</button>
         </div>
+      </div>
+
+      <div class="calm-section-head">
+        <h2 class="calm-section-title">Ulas Kartumu Sekarang</h2>
       </div>
 
       <div class="toolbar-row">
@@ -2819,8 +2834,8 @@
             <span class="tag jade">Set Harian · ${esc(today)}${dMeta.nonce > 0 ? ` (#${dMeta.nonce + 1})` : ''}</span>
             ${dMeta.setsDone > 0 ? `<span class="tag">Selesai hari ini: ${dMeta.setsDone} set</span>` : ''}
           </div>
-          <h1 class="page-title">Quiz 5 Tipe</h1>
-          <p class="page-sub">Soal diperbarui otomatis setiap hari dari gabungan modul, kosakata SRS, dan pola konjugasi.</p>
+          <h1 class="page-title">Quiz Harian</h1>
+          <p class="page-sub">Soal diperbarui otomatis setiap hari sesuai level pilihanmu dari gabungan modul, kosakata, dan pola kalimat.</p>
         </div>
         <div class="toolbar-group">
           <label for="quiz-mod-select" class="sr-only">Filter modul quiz</label>
@@ -2834,6 +2849,9 @@
       ${quizLevelBarHtml}
       ${drillBanner}
 
+      <div class="calm-section-head">
+        <h2 class="calm-section-title">Mulai, kerjain yuk</h2>
+      </div>
       <div class="quiz-arena">
         <div class="card">
           <div class="toolbar-row" style="margin-bottom:10px;">
@@ -4587,11 +4605,15 @@
       <div class="section-header">
         <div>
           <h1 class="page-title">Statistik & Streak Harian</h1>
-          <p class="page-sub">Hari tercapai jika belajar minimal ${s.targetMinutes} menit ATAU menyelesaikan ${s.targetModules} modul dan ${s.targetCards} kartu SRS, atau memakai Streak Freeze.</p>
+          <p class="page-sub">Target harian tercapai jika kamu belajar minimal ${s.targetMinutes} menit, atau menyelesaikan ${s.targetModules} modul dan ${s.targetCards} kartu, atau memakai Streak Freeze.</p>
         </div>
       </div>
 
-      <div class="kpi-strip">
+      <section aria-labelledby="stats-summary-heading">
+        <div class="calm-section-head">
+          <h2 id="stats-summary-heading" class="calm-section-title">Target Belajarmu</h2>
+        </div>
+        <div class="kpi-strip">
         <div class="kpi-card">
           <div class="kpi-label">Streak Aktif</div>
           <div class="kpi-val">${streak.current} hari</div>
@@ -4613,16 +4635,25 @@
             ${streak.todayFrozen ? 'Freeze Sudah Aktif' : streak.todayAchieved ? 'Target Hari Ini Tercapai' : 'Aktifkan Freeze Hari Ini'}
           </button>
         </div>
-      </div>
-
-      <div class="card" style="margin-bottom:18px;">
-        <h2 style="font-size:1.05rem;font-weight:700;margin-bottom:12px;">Menit belajar dan kartu SRS (7 hari terakhir)</h2>
-        <div class="chart-container-fixed">
-          <canvas id="weekly-chart" aria-label="Grafik batang menit belajar dan kartu SRS 7 hari terakhir"></canvas>
         </div>
-      </div>
+      </section>
 
-      <div class="settings-grid">
+      <section class="studio-section" aria-labelledby="stats-weekly-heading">
+        <div class="calm-section-head">
+          <h2 id="stats-weekly-heading" class="calm-section-title">Aktivitas 7 Hari Terakhir</h2>
+        </div>
+        <div class="card">
+          <div class="chart-container-fixed">
+            <canvas id="weekly-chart" aria-label="Grafik batang menit belajar dan kartu SRS 7 hari terakhir"></canvas>
+          </div>
+        </div>
+      </section>
+
+      <section class="studio-section" aria-labelledby="stats-consistency-heading">
+        <div class="calm-section-head">
+          <h2 id="stats-consistency-heading" class="calm-section-title">Konsistensi & Penguasaan</h2>
+        </div>
+        <div class="settings-grid">
         <div class="card">
           <h2 style="font-size:1.05rem;font-weight:700;">Heatmap Konsistensi 90 Hari</h2>
           <div class="heatmap-grid">${heatCells.join('')}</div>
@@ -4639,16 +4670,20 @@
           <h2 style="font-size:1.05rem;font-weight:700;margin-bottom:14px;">Penguasaan per Bahasa Aktif</h2>
           ${langProgressHtml}
         </div>
-      </div>
-
-      <div class="card" style="margin-top:18px;">
-        <div class="toolbar-row" style="margin-bottom:8px;">
-          <div>
-            <h2 style="font-size:1.05rem;font-weight:700;">Sistem Pencapaian & Lencana Bertingkat</h2>
-            <p class="kpi-label">Terbuka otomatis dengan notifikasi seketika saat Anda mencapai target belajar.</p>
-          </div>
-          <span class="tag jade">${Store.computeAchievements(state).filter((b) => b.unlocked).length} / ${Store.computeAchievements(state).length} terbuka</span>
         </div>
+      </section>
+
+      <section class="studio-section" aria-labelledby="stats-achievements-heading">
+        <div class="calm-section-head">
+          <h2 id="stats-achievements-heading" class="calm-section-title">Pencapaian & Lencanamu</h2>
+        </div>
+        <div class="card">
+          <div class="toolbar-row" style="margin-bottom:8px;">
+            <div>
+              <p class="kpi-label">Terbuka otomatis setiap kali kamu mencapai target belajar.</p>
+            </div>
+            <span class="tag jade">${Store.computeAchievements(state).filter((b) => b.unlocked).length} / ${Store.computeAchievements(state).length} terbuka</span>
+          </div>
         <div class="toolbar-group" style="margin-bottom:14px;">
           ${['ALL', 'Konsistensi', 'Penguasaan', 'Eksplorasi', 'Tantangan'].map((cat) => `
             <button type="button" class="chip ${ui.achCategory === cat ? 'active' : ''}" data-action="ach-cat" data-cat="${esc(cat)}">
@@ -4672,7 +4707,8 @@
             `;
           }).join('')}
         </div>
-      </div>
+        </div>
+      </section>
     `;
   }
 
@@ -4741,11 +4777,14 @@
     return `
       <div class="section-header">
         <div>
-          <h1 class="page-title">Import Materi & Backup Lokal</h1>
-          <p class="page-sub">Tambah bahasa baru dari file JSON skema 1.0, atur target harian, dan cadangkan seluruh progres Anda.</p>
+          <h1 class="page-title">Pengaturan & Data Lokal</h1>
+          <p class="page-sub">Atur target harian, tampilan, kecepatan audio, impor materi JSON, dan cadangkan progres belajarmu.</p>
         </div>
       </div>
 
+      <div class="calm-section-head">
+        <h2 class="calm-section-title">Preferensi & Cadanganmu</h2>
+      </div>
       <div class="settings-grid">
         <!-- Import JSON Pack -->
         <section class="card">
