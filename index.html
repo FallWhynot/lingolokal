@@ -22,7 +22,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=BIZ+UDPGothic:wght@400;700&family=JetBrains+Mono:wght@500;600;700&family=Noto+Naskh+Arabic:wght@400;500&family=Noto+Sans+JP:wght@400;500&family=Noto+Sans+KR:wght@400;500&family=Noto+Sans+SC:wght@400;500&family=Noto+Sans+Thai:wght@400;500&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="./styles.css?v=11">
+  <link rel="stylesheet" href="./styles.css?v=12">
   <script defer src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
   <script defer src="./data/catalog.js"></script>
   <script defer src="./data/scripts.js"></script>
@@ -30,9 +30,9 @@
   <script defer src="./data/exams.js"></script>
   <script defer src="./data/japanese.js"></script>
   <script defer src="./data/korean.js"></script>
-  <script defer src="./data/extra-packs.js?v=11"></script>
-  <script defer src="./js/storage.js?v=11"></script>
-  <script defer src="./js/app.js?v=11"></script>
+  <script defer src="./data/extra-packs.js?v=12"></script>
+  <script defer src="./js/storage.js?v=12"></script>
+  <script defer src="./js/app.js?v=12"></script>
 </head>
 <body>
   <a href="#main-content" class="skip-link">Lewati ke konten utama</a>
@@ -87,13 +87,6 @@
     <div class="main-column">
       <header class="topbar">
         <div class="topbar-left">
-          <button type="button" id="drawer-open" class="btn-ghost mobile-menu-btn" aria-label="Buka menu navigasi" aria-expanded="false" aria-controls="mobile-drawer">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true">
-              <path d="M4 7h16M4 12h16M4 17h16"/>
-            </svg>
-            <span>Menu</span>
-          </button>
-
           <div class="topbar-lang-mobile">
             <div class="lang-picker compact" data-lang-picker="topbar">
               <button type="button" id="topbar-lang-trigger" class="lang-trigger compact" aria-haspopup="listbox" aria-expanded="false" aria-label="Pilih bahasa aktif"></button>
@@ -122,11 +115,6 @@
               <path d="M12 2c.5 4.2-3 6.2-3 10a5 5 0 0 0 10 0c0-3.5-2.5-5.6-3.5-8.5-.4 1.8-1.5 2.7-2.5 2.7-.2-1.6-.4-3-1-4.2Z"/>
             </svg>
             <span class="mono" id="topbar-streak-text">0 hari</span>
-          </button>
-
-          <!-- Audio Speed Toggle (1x / 0.75x Pelan untuk pemula) -->
-          <button type="button" id="audio-speed-btn" class="audio-speed-btn mono" aria-pressed="false" aria-label="Kecepatan audio pelafalan 1x (ketuk untuk 0.75x pelan)" title="Kecepatan audio (1x / 0.75x pelan)">
-            1x
           </button>
 
           <!-- Two-state Theme Toggle (System default vs Override) -->

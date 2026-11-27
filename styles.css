@@ -38,6 +38,15 @@
   --pink: light-dark(#FF9EE8, #F48CE0);
   --pink-soft: light-dark(#FFE6FA, #3B1E35);
 
+  /* Standardized Z-Index Scale */
+  --z-topbar: 30;
+  --z-bottom-nav: 40;
+  --z-dropdown: 60;
+  --z-toast: 100;
+  --z-skip-link: 200;
+  --z-floating-xp: 950;
+  --z-confetti: 999;
+
   --amber: light-dark(#FFB84D, #FFB84D);
   --amber-soft: light-dark(#FFF0D4, #3B2B12);
 
@@ -155,7 +164,7 @@ select:disabled,
   position: absolute;
   top: -100px;
   left: 16px;
-  z-index: 200;
+  z-index: var(--z-skip-link);
   background: var(--accent);
   color: var(--accent-ink);
   padding: 10px 16px;
@@ -456,7 +465,7 @@ h1, h2, h3, h4, p, ul, ol {
 .topbar {
   position: sticky;
   top: 0;
-  z-index: 30;
+  z-index: var(--z-topbar);
   min-height: var(--topbar-h);
   display: flex;
   align-items: center;
@@ -475,7 +484,6 @@ h1, h2, h3, h4, p, ul, ol {
   min-width: 0;
 }
 
-.mobile-menu-btn,
 .topbar-lang-mobile {
   display: none;
 }
@@ -2071,7 +2079,7 @@ dialog::backdrop {
   position: fixed;
   right: 18px;
   bottom: 18px;
-  z-index: 100;
+  z-index: var(--z-toast);
   display: flex;
   flex-direction: column;
   gap: 8px;
@@ -2114,7 +2122,6 @@ dialog::backdrop {
     display: none;
   }
 
-  .mobile-menu-btn,
   .topbar-lang-mobile {
     display: inline-flex;
   }
@@ -2153,59 +2160,6 @@ dialog::backdrop {
 }
 
 @media (max-width: 639px) {
-  .topbar {
-    flex-wrap: wrap;
-    padding: 8px 12px;
-    gap: 8px;
-  }
-
-  .topbar-left {
-    display: contents;
-  }
-
-  .mobile-menu-btn {
-    order: 1;
-    padding: 8px 10px;
-    gap: 6px;
-  }
-
-  .topbar-right {
-    order: 2;
-    margin-left: auto;
-    gap: 6px;
-  }
-
-  .topbar-lang-mobile {
-    order: 3;
-    width: 100%;
-    flex-basis: 100%;
-  }
-
-  .topbar-lang-mobile .lang-select.compact {
-    width: 100%;
-    max-width: none;
-  }
-
-  .study-timer {
-    padding: 4px 5px 4px 8px;
-    gap: 5px;
-  }
-
-  .timer-clock {
-    font-size: 0.8rem;
-  }
-
-  .timer-btn {
-    padding: 4px 7px;
-    font-size: 0.74rem;
-  }
-
-  .streak-pill {
-    padding: 6px 8px;
-    font-size: 0.8rem;
-    gap: 4px;
-  }
-
   .main-stage {
     padding: 16px 14px 40px;
   }
@@ -3564,7 +3518,7 @@ kbd.mono {
   min-width: 230px;
   max-height: min(390px, 60svh);
   overflow-y: auto;
-  z-index: 60;
+  z-index: var(--z-dropdown);
   padding: 6px;
   background: var(--surface);
   border: 1px solid var(--border-strong);
@@ -4168,32 +4122,6 @@ body {
   border-bottom: 2.5px solid var(--border-brutal);
 }
 
-.nav-item-btn {
-  border: 2px solid transparent;
-  font-weight: 600;
-  transition: transform 0.14s ease, box-shadow 0.14s ease, background-color 0.14s ease, border-color 0.14s ease;
-}
-
-.nav-item-btn:hover {
-  background: var(--surface-subtle);
-  border-color: var(--border-brutal);
-  transform: translate(-1px, -1px);
-  box-shadow: 2px 2px 0 var(--border-brutal);
-}
-
-.nav-item-btn.active {
-  background: var(--accent);
-  color: #111111;
-  border: 2px solid var(--border-brutal);
-  box-shadow: 3px 3px 0 var(--border-brutal);
-  font-weight: 700;
-}
-
-.nav-item-btn.active .nav-badge {
-  background: #111111;
-  color: #FFD13B;
-}
-
 .nav-badge {
   border: 1.5px solid var(--border-brutal);
   background: var(--surface);
@@ -4795,7 +4723,7 @@ body {
   .btn-primary,
   .btn-secondary,
   .btn-jade,
-  .nav-item-btn,
+  .nav-btn,
   .tree-node,
   .lang-trigger {
     transition: none;
@@ -4905,7 +4833,7 @@ body {
 /* Reduce overall heavy boldness on small UI tags/chips so pages feel cleaner */
 .tag,
 .chip,
-.nav-item-btn {
+.nav-btn {
   font-weight: 600;
 }
 
@@ -5200,28 +5128,19 @@ body {
   outline-offset: 2px;
 }
 
-/* Consistent Neo-Brutalism style for mobile menu button (visible on tablet) */
-.mobile-menu-btn {
-  border: 2px solid var(--border-brutal);
-  background: var(--surface);
-  box-shadow: 2px 2px 0 var(--shadow-ink);
-  font-weight: 700;
-  min-height: 44px;
-}
-
 /* Tablet & Mobile Shared Reflow (<= 1023px) */
 @media (max-width: 1023px) {
   .desktop-only-hint {
     display: none !important;
   }
 
-  /* Fixed Bottom Navigation Bar */
+  /* Fixed Bottom Navigation Bar (Full-Width on Tablet & Mobile) */
   .mobile-bottom-nav {
     position: fixed;
     left: 0;
     right: 0;
     bottom: 0;
-    z-index: 60;
+    z-index: var(--z-bottom-nav);
     display: grid;
     grid-template-columns: repeat(5, minmax(0, 1fr));
     gap: 4px;
@@ -5382,7 +5301,6 @@ body {
     gap: 8px;
   }
 
-  .mobile-menu-btn,
   .topbar .study-timer {
     display: none;
   }
@@ -6384,7 +6302,7 @@ textarea {
   position: fixed;
   top: 72px;
   right: 20px;
-  z-index: 950;
+  z-index: var(--z-floating-xp);
   pointer-events: none;
   padding: 6px 12px;
   border-radius: 999px;
@@ -6443,7 +6361,7 @@ textarea {
   position: fixed;
   inset: 0;
   pointer-events: none;
-  z-index: 999;
+  z-index: var(--z-confetti);
   overflow: hidden;
 }
 
@@ -6591,13 +6509,6 @@ textarea {
 /* ==========================================================================
    V2 USER FEEDBACK POLISH: CALM BERANDA, LEVEL BAR & DESKTOP MENU FIX
    ========================================================================== */
-
-/* Fix desktop Menu button leak (never show mobile Menu button when sidebar is visible) */
-@media (min-width: 1024px) {
-  .mobile-menu-btn {
-    display: none !important;
-  }
-}
 
 /* Soften grid-paper background so the interface feels calm and breathable */
 body {

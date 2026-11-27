@@ -239,14 +239,20 @@
   }
 
   // --- Web Speech API (1x normal / 0.75x pelan) with voice detection ---
+  function renderAudioSpeedToggle() {
+    const slow = Boolean(state && state.settings && state.settings.slowAudio);
+    return `<button type="button" class="audio-speed-btn mono ${slow ? 'is-slow' : ''}" data-action="toggle-audio-speed" aria-pressed="${slow}" aria-label="${slow ? 'Kecepatan audio pelan 0.75x (ketuk untuk normal 1x)' : 'Kecepatan audio normal 1x (ketuk untuk pelan 0.75x)'}" title="Kecepatan audio (${slow ? '0.75x pelan' : '1x normal'})">${slow ? '0.75x' : '1x'}</button>`;
+  }
+
   function updateAudioSpeedUI() {
-    const btn = document.getElementById('audio-speed-btn');
-    if (!btn || !state) return;
+    if (!state) return;
     const slow = Boolean(state.settings && state.settings.slowAudio);
-    btn.textContent = slow ? '0.75x' : '1x';
-    btn.classList.toggle('is-slow', slow);
-    btn.setAttribute('aria-pressed', String(slow));
-    btn.setAttribute('aria-label', slow ? 'Kecepatan audio pelan 0.75x (ketuk untuk normal 1x)' : 'Kecepatan audio normal 1x (ketuk untuk pelan 0.75x)');
+    document.querySelectorAll('[data-action="toggle-audio-speed"]').forEach((btn) => {
+      btn.textContent = slow ? '0.75x' : '1x';
+      btn.classList.toggle('is-slow', slow);
+      btn.setAttribute('aria-pressed', String(slow));
+      btn.setAttribute('aria-label', slow ? 'Kecepatan audio pelan 0.75x (ketuk untuk normal 1x)' : 'Kecepatan audio normal 1x (ketuk untuk pelan 0.75x)');
+    });
   }
 
   function speakText(text, langCode, triggerBtn = null) {
@@ -342,9 +348,9 @@
   // --- Mobile Navigation Drawer (Modern Web Guidance: navigation-drawer) ---
   function initMobileDrawer() {
     const drawer = document.getElementById('mobile-drawer');
-    const openBtn = document.getElementById('drawer-open');
+    const openBtn = document.getElementById('bottom-nav-menu-btn');
     const closeBtn = document.getElementById('drawer-close');
-    if (!drawer || !openBtn || !closeBtn) return;
+    if (!drawer || !closeBtn) return;
 
     const scroller = drawer.querySelector('.Drawer-scroller');
     const sheet = drawer.querySelector('.Drawer-sheet');
@@ -357,7 +363,7 @@
         await new Promise((r) => requestAnimationFrame(() => requestAnimationFrame(r)));
       }
       scroller.scrollTo({ left: 0, behavior: 'auto' });
-      openBtn.setAttribute('aria-expanded', 'true');
+      if (openBtn) openBtn.setAttribute('aria-expanded', 'true');
     }
 
     let closeTimer = null;
@@ -368,7 +374,10 @@
         closeTimer = null;
       }
       if (drawer.open) drawer.close();
-      openBtn.setAttribute('aria-expanded', 'false');
+      if (openBtn) {
+        openBtn.setAttribute('aria-expanded', 'false');
+        if (global.innerWidth <= 1023) openBtn.focus({ preventScroll: true });
+      }
     }
 
     function closeDrawer() {
@@ -405,12 +414,11 @@
       if (drawer.open && entry.intersectionRatio < visibleThreshold) {
         finishClose();
       } else if (drawer.open && entry.intersectionRatio >= 0.99) {
-        openBtn.setAttribute('aria-expanded', 'true');
+        if (openBtn) openBtn.setAttribute('aria-expanded', 'true');
       }
     }, { root: drawer, threshold: [visibleThreshold, 1] });
     observer.observe(sheet);
 
-    openBtn.addEventListener('click', openDrawer);
     closeBtn.addEventListener('click', closeDrawer);
     drawer.addEventListener('click', (ev) => {
       if (!sheet.contains(ev.target)) closeDrawer();
@@ -936,30 +944,41 @@
       if (el) el.innerHTML = buildHubs(group);
     });
 
-    // Sync mobile bottom navigation bar
+    syncActiveNav(currentView, dueCount, gate);
+  }
+
+  function syncActiveNav(viewId, dueCount, gate) {
+    const activeHub = HUB_NAV.find((h) => h.views.includes(viewId));
+    // Sync aria-current across Desktop Sidebar & Mobile Drawer
+    ['desktop-nav-start', 'desktop-nav-secondary', 'mobile-nav-start', 'mobile-nav-secondary'].forEach((listId) => {
+      const list = document.getElementById(listId);
+      if (!list) return;
+      list.querySelectorAll('.nav-btn[data-nav]').forEach((btn) => {
+        const target = btn.getAttribute('data-nav');
+        const isAct = activeHub && activeHub.views.includes(target);
+        if (isAct) btn.setAttribute('aria-current', 'page');
+        else btn.removeAttribute('aria-current');
+      });
+    });
+
+    // Sync Mobile/Tablet Bottom Navigation Bar
     const bottomNav = document.getElementById('mobile-bottom-nav');
     if (bottomNav) {
       const learnViews = new Set(['modules', 'alphabet', 'writing', 'grammar']);
       const primaryViews = new Set(['dashboard', 'modules', 'alphabet', 'writing', 'grammar', 'flashcards', 'quiz']);
       bottomNav.querySelectorAll('.bottom-nav-btn[data-nav]').forEach((btn) => {
         const target = btn.getAttribute('data-nav');
-        const isCurrent = target === currentView || (target === 'modules' && learnViews.has(currentView));
-        if (isCurrent) {
-          btn.setAttribute('aria-current', 'page');
-        } else {
-          btn.removeAttribute('aria-current');
-        }
+        const isCurrent = target === viewId || (target === 'modules' && learnViews.has(viewId));
+        if (isCurrent) btn.setAttribute('aria-current', 'page');
+        else btn.removeAttribute('aria-current');
       });
       const menuBtn = document.getElementById('bottom-nav-menu-btn');
       if (menuBtn) {
-        if (!primaryViews.has(currentView)) {
-          menuBtn.setAttribute('aria-current', 'page');
-        } else {
-          menuBtn.removeAttribute('aria-current');
-        }
+        if (!primaryViews.has(viewId)) menuBtn.setAttribute('aria-current', 'page');
+        else menuBtn.removeAttribute('aria-current');
       }
       const dueBadge = document.getElementById('bottom-nav-due');
-      if (dueBadge) {
+      if (dueBadge && gate) {
         const fcGated = !gate.unlocked && SCRIPT_GATED_VIEWS.has('flashcards');
         if (!fcGated && dueCount > 0) {
           dueBadge.textContent = dueCount > 99 ? '99+' : String(dueCount);
@@ -1888,7 +1907,10 @@
       <div class="lesson-shell">
         <div class="toolbar-row" style="margin-bottom:10px;">
           <button type="button" class="btn-ghost btn-sm" data-action="lesson-exit">← Kembali ke Peta Belajar</button>
-          <span class="tag">${esc(meta.name_id)} · ${esc(mod.level)}</span>
+          <div class="toolbar-group">
+            ${(step === 1 || step === 2) ? renderAudioSpeedToggle() : ''}
+            <span class="tag">${esc(meta.name_id)} · ${esc(mod.level)}</span>
+          </div>
         </div>
         ${stepperHtml}
         ${bodyHtml}
@@ -2287,7 +2309,10 @@
         <div class="srs-desk">
           <div class="toolbar-row" style="margin-bottom:8px;">
             <span class="kpi-label">Antrean tersisa: <strong class="mono">${ui.fcQueue.length}</strong> kartu</span>
-            <span class="kpi-label desktop-only-hint">Shortcut: <kbd class="mono">Spasi</kbd> balik · <kbd class="mono">1-4</kbd> nilai · <kbd class="mono">A</kbd> audio</span>
+            <div class="toolbar-group">
+              ${renderAudioSpeedToggle()}
+              <span class="kpi-label desktop-only-hint">Shortcut: <kbd class="mono">Spasi</kbd> balik · <kbd class="mono">1-4</kbd> nilai · <kbd class="mono">A</kbd> audio</span>
+            </div>
           </div>
 
           <div class="srs-card-stage">
@@ -2938,6 +2963,7 @@
           </div>
 
           <div class="toolbar-group">
+            ${renderAudioSpeedToggle()}
             <button type="button" class="chip ${ui.dialogShowRomaji ? 'active' : ''}" data-action="dialog-toggle-romaji" aria-pressed="${ui.dialogShowRomaji}">Romaji</button>
             <button type="button" class="chip ${ui.dialogShowTrans ? 'active' : ''}" data-action="dialog-toggle-trans" aria-pressed="${ui.dialogShowTrans}">Terjemahan</button>
           </div>
@@ -3064,6 +3090,7 @@
         </div>
         <div class="toolbar-group">
           ${readingSelectHtml}
+          ${renderAudioSpeedToggle()}
           <div class="segmented" role="group" aria-label="Mode tampilan bacaan">
             <button type="button" class="seg-btn ${ui.readingMode === 'translation' ? 'active' : ''}" data-action="reading-mode" data-val="translation">Terjemahan</button>
             <button type="button" class="seg-btn ${ui.readingMode === 'romaji' ? 'active' : ''}" data-action="reading-mode" data-val="romaji">Romaji</button>
@@ -3947,6 +3974,7 @@
               <div class="script-focus-reading">
                 <span class="script-focus-romaji mono">${esc(selectedChar.romaji)}</span>
                 <button type="button" class="audio-btn accent-fill" data-speak="${esc(speakGlyph)}" aria-label="Putar bunyi ${esc(speakGlyph)}">${ICONS.speaker}</button>
+                ${renderAudioSpeedToggle()}
               </div>
             </div>
 
@@ -4766,6 +4794,14 @@
               <button type="button" class="seg-btn ${storedScheme === 'dark' ? 'active' : ''}" data-action="set-theme" data-val="dark">Gelap</button>
             </div>
           </div>
+
+          <div style="border-top:1px solid var(--border);margin-top:14px;padding-top:14px;display:flex;align-items:center;justify-content:space-between;gap:12px;">
+            <div>
+              <span class="field-label-sm" style="margin-bottom:2px;">Kecepatan Audio Pelafalan</span>
+              <p class="kpi-label" style="font-size:0.8rem;">Aktifkan 0.75x agar pelafalan lebih pelan dan jelas untuk pemula.</p>
+            </div>
+            ${renderAudioSpeedToggle()}
+          </div>
         </section>
 
         <!-- Backup & Restore -->
@@ -5470,6 +5506,12 @@
           break;
         case 'set-proficiency':
           await setProficiencyTier(actEl.getAttribute('data-tier') || 'beginner');
+          break;
+        case 'toggle-audio-speed':
+          state.settings.slowAudio = !state.settings.slowAudio;
+          updateAudioSpeedUI();
+          await persistState();
+          showToast(state.settings.slowAudio ? 'Mode audio pelan (0.75x) aktif untuk pemula.' : 'Kecepatan audio kembali normal (1x).', 'default');
           break;
         case 'pwa-install':
           if (deferredInstallPrompt) {
