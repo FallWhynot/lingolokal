@@ -35,23 +35,35 @@
   ]);
 
   const NAV_ITEMS = [
-    { id: 'dashboard', label: 'Beranda', group: 'start', title: 'Beranda · Mulai Belajar' },
-    { id: 'studyplan', label: 'Rencana Belajar', group: 'start', title: 'Rencana Belajar Personal' },
-    { id: 'alphabet', label: 'Pengenalan Aksara', group: 'start', title: 'Pengenalan Huruf & Aksara' },
-    { id: 'modules', label: 'Jalur Modul & Pohon', group: 'start', title: 'Skill Tree & Jalur Modul' },
-    { id: 'flashcards', label: 'Kartu SRS', group: 'practice', title: 'Kartu Hafalan SRS (SM-2)' },
-    { id: 'conjugation', label: 'Latihan Konjugasi', group: 'practice', title: 'Pelatih Konjugasi & Pola Bentuk' },
-    { id: 'quiz', label: 'Quiz Interaktif', group: 'practice', title: 'Quiz Interaktif 5 Tipe' },
-    { id: 'dialogs', label: 'Dialog Role-Play', group: 'practice', title: 'Dialog Role-Play' },
-    { id: 'readings', label: 'Bacaan Klik-Kata', group: 'practice', title: 'Bacaan Klik-Kata & Sentence Mining' },
-    { id: 'grammar', label: 'Tata Bahasa', group: 'practice', title: 'Katalog Tata Bahasa' },
-    { id: 'exam', label: 'Strategi Ujian', group: 'practice', title: 'Strategi Ujian & Mini Try-Out' },
-    { id: 'dictionary', label: 'Kamus 3x3', group: 'practice', title: 'Kamus Bahasa (Grid 3x3)' },
+    { id: 'dashboard', label: 'Beranda', group: 'start', title: 'Beranda · Fokus Hari Ini' },
+    { id: 'modules', label: 'Peta Belajar', group: 'start', title: 'Peta Belajar & Jalur Modul' },
+    { id: 'alphabet', label: 'Kartu Aksara', group: 'start', title: 'Pengenalan Huruf & Aksara' },
+    { id: 'writing', label: 'Tulis Aksara', group: 'start', title: 'Latihan Tulis Aksara' },
+    { id: 'grammar', label: 'Tata Bahasa', group: 'start', title: 'Katalog Tata Bahasa' },
+    { id: 'flashcards', label: 'Kartu Hafalan', group: 'practice', title: 'Kartu Hafalan Terjadwal' },
+    { id: 'quiz', label: 'Quiz Harian', group: 'practice', title: 'Quiz Interaktif Harian' },
+    { id: 'conjugation', label: 'Perubahan Kata', group: 'practice', title: 'Latihan Perubahan Kata' },
     { id: 'sprint', label: 'Sprint 60 Detik', group: 'practice', title: 'Mode Sprint 60 Detik' },
-    { id: 'writing', label: 'Tulis Aksara', group: 'practice', title: 'Kanvas Latihan Tulis Aksara' },
-    { id: 'stats', label: 'Statistik & Lencana', group: 'secondary', title: 'Statistik, Streak & Pencapaian' },
-    { id: 'settings', label: 'Import & Backup', group: 'secondary', title: 'Import Materi & Backup Lokal' }
+    { id: 'dialogs', label: 'Dialog', group: 'practice', title: 'Dialog Role-Play' },
+    { id: 'readings', label: 'Bacaan', group: 'practice', title: 'Bacaan Klik-Kata & Simpan Kalimat' },
+    { id: 'dictionary', label: 'Kamus 3x3', group: 'practice', title: 'Kamus Bahasa (Grid 3x3)' },
+    { id: 'stats', label: 'Statistik', group: 'secondary', title: 'Statistik, Streak & Lencana' },
+    { id: 'studyplan', label: 'Rencana Belajar', group: 'secondary', title: 'Rencana Belajar Personal' },
+    { id: 'exam', label: 'Strategi Ujian', group: 'secondary', title: 'Strategi Ujian & Try-Out' },
+    { id: 'settings', label: 'Pengaturan', group: 'secondary', title: 'Pengaturan, Import & Backup' }
   ];
+
+  // Consolidated 6 Primary Hubs (reduces 16 flat sidebar items to 6 clear destinations)
+  const HUB_NAV = [
+    { id: 'hub-dashboard', label: 'Beranda', icon: 'dashboard', group: 'start', defaultView: 'dashboard', views: ['dashboard'] },
+    { id: 'hub-learn', label: 'Belajar', icon: 'modules', group: 'start', defaultView: 'modules', views: ['modules', 'alphabet', 'writing', 'grammar'] },
+    { id: 'hub-practice', label: 'Latihan', icon: 'flashcards', group: 'start', defaultView: 'flashcards', views: ['flashcards', 'quiz', 'conjugation', 'sprint'] },
+    { id: 'hub-immerse', label: 'Imersi', icon: 'dialogs', group: 'start', defaultView: 'dialogs', views: ['dialogs', 'readings', 'dictionary'] },
+    { id: 'hub-progress', label: 'Progres', icon: 'stats', group: 'secondary', defaultView: 'stats', views: ['stats', 'studyplan', 'exam'] },
+    { id: 'hub-settings', label: 'Pengaturan', icon: 'settings', group: 'secondary', defaultView: 'settings', views: ['settings'] }
+  ];
+
+  const ttsWarnedLangs = new Set();
 
   // --- Runtime App State ---
   let state = null;
@@ -185,7 +197,17 @@
     }, 3400);
   }
 
-  // --- Web Speech API (TTS rate 0.92) with active speaking feedback ---
+  // --- Web Speech API (1x normal / 0.75x pelan) with voice detection ---
+  function updateAudioSpeedUI() {
+    const btn = document.getElementById('audio-speed-btn');
+    if (!btn || !state) return;
+    const slow = Boolean(state.settings && state.settings.slowAudio);
+    btn.textContent = slow ? '0.75x' : '1x';
+    btn.classList.toggle('is-slow', slow);
+    btn.setAttribute('aria-pressed', String(slow));
+    btn.setAttribute('aria-label', slow ? 'Kecepatan audio pelan 0.75x (ketuk untuk normal 1x)' : 'Kecepatan audio normal 1x (ketuk untuk pelan 0.75x)');
+  }
+
   function speakText(text, langCode, triggerBtn = null) {
     if (!text) return;
     try {
@@ -197,10 +219,19 @@
       const meta = getCatalogMeta(langCode || state.activeLang);
       const pack = state.packs[meta.code];
       const ttsLang = (pack && pack.language && pack.language.tts_lang) || meta.tts_lang || 'en-US';
+      const voices = global.speechSynthesis.getVoices ? global.speechSynthesis.getVoices() : [];
+      if (voices.length > 0 && !ttsWarnedLangs.has(meta.code)) {
+        const prefix = ttsLang.split('-')[0].toLowerCase();
+        const hasMatch = voices.some((v) => String(v.lang || '').toLowerCase().startsWith(prefix));
+        if (!hasMatch) {
+          ttsWarnedLangs.add(meta.code);
+          showToast(`Paket suara ${meta.name_id} belum terpasang di perangkat ini; memakai suara default.`, 'default');
+        }
+      }
       global.speechSynthesis.cancel();
       const utter = new SpeechSynthesisUtterance(text);
       utter.lang = ttsLang;
-      utter.rate = 0.92;
+      utter.rate = (state && state.settings && state.settings.slowAudio) ? 0.72 : 0.92;
       if (triggerBtn) {
         triggerBtn.classList.add('is-speaking');
         const clearBtn = () => triggerBtn.classList.remove('is-speaking');
@@ -798,6 +829,25 @@
     });
   }
 
+  function renderHubSubtabs(activeViewId) {
+    const hub = HUB_NAV.find((h) => h.views.includes(activeViewId));
+    if (!hub || hub.views.length <= 1) return '';
+    const gate = Store.getScriptGateStatus(state, state.activeLang);
+    const tabsHtml = hub.views.map((vid) => {
+      const meta = NAV_ITEMS.find((n) => n.id === vid);
+      if (!meta) return '';
+      const active = vid === activeViewId;
+      const isGated = !gate.unlocked && SCRIPT_GATED_VIEWS.has(vid);
+      return `
+        <button type="button" class="hub-subtab-btn ${active ? 'active' : ''} ${isGated ? 'is-gated' : ''}" data-nav="${esc(vid)}" ${active ? 'aria-current="page"' : ''}>
+          ${isGated ? `<span class="hub-tab-lock">${ICONS.lock}</span>` : ''}
+          <span>${esc(meta.label)}</span>
+        </button>
+      `;
+    }).join('');
+    return `<nav class="hub-subtabs" aria-label="Submenu ${esc(hub.label)}">${tabsHtml}</nav>`;
+  }
+
   function renderNavLists() {
     const dueCount = getDueCountForLang(state.activeLang);
     const pack = getActivePack();
@@ -805,53 +855,50 @@
       ? pack.modules.filter((m) => state.completedModules[state.activeLang] && state.completedModules[state.activeLang][m.id]).length
       : 0;
     const totalMods = pack ? pack.modules.length : 0;
-
     const gate = Store.getScriptGateStatus(state, state.activeLang);
 
-    const buildItems = (group) => NAV_ITEMS.filter((n) => n.group === group).map((item) => {
-      const active = currentView === item.id;
-      const isGated = !gate.unlocked && SCRIPT_GATED_VIEWS.has(item.id);
+    const buildHubs = (group) => HUB_NAV.filter((h) => h.group === group).map((hub) => {
+      const active = hub.views.includes(currentView);
+      const targetView = (hub.id === 'hub-learn' && !gate.unlocked) ? 'alphabet' : hub.defaultView;
       let badge = '';
-      if (isGated) {
-        badge = `<span class="nav-lock-pill" title="Kuasai ${gate.required} huruf aksara dulu">${ICONS.lock}</span>`;
-      } else if (item.id === 'flashcards' && dueCount > 0) {
-        badge = `<span class="nav-badge" aria-label="${dueCount} kartu jatuh tempo">${dueCount}</span>`;
-      } else if (item.id === 'modules' && totalMods > 0) {
-        badge = `<span class="nav-badge-muted" aria-label="${doneMods} dari ${totalMods} modul selesai">${doneMods}/${totalMods}</span>`;
-      } else if (item.id === 'alphabet') {
-        const sData = SCRIPT_DATA && SCRIPT_DATA[state.activeLang];
-        if (sData) {
-          const allChars = sData.tabs.reduce((acc, t) => acc + t.chars.length, 0);
-          const learnedMap = (state.learnedChars && state.learnedChars[state.activeLang]) || {};
-          const learnedCnt = sData.tabs.reduce((acc, t) => acc + t.chars.filter((c) => learnedMap[c.id]).length, 0);
-          badge = `<span class="nav-badge-muted" aria-label="${learnedCnt} dari ${allChars} huruf dihafal">${learnedCnt}/${allChars}</span>`;
-        } else {
-          badge = '<span class="nav-badge-muted">Latin</span>';
+      if (hub.id === 'hub-learn') {
+        if (!gate.unlocked) {
+          badge = `<span class="nav-badge" title="Kuasai ${gate.required} huruf aksara">${gate.learned}/${gate.required}</span>`;
+        } else if (totalMods > 0) {
+          badge = `<span class="nav-badge-muted">${doneMods}/${totalMods}</span>`;
         }
+      } else if (hub.id === 'hub-practice') {
+        if (!gate.unlocked) {
+          badge = `<span class="nav-lock-pill" title="Kuasai ${gate.required} huruf aksara dulu">${ICONS.lock}</span>`;
+        } else if (dueCount > 0) {
+          badge = `<span class="nav-badge" aria-label="${dueCount} kartu jatuh tempo">${dueCount}</span>`;
+        }
+      } else if (hub.id === 'hub-immerse' && !gate.unlocked) {
+        badge = `<span class="nav-lock-pill" title="Kuasai ${gate.required} huruf aksara dulu">${ICONS.lock}</span>`;
       }
-      return `<li><button type="button" class="nav-btn ${isGated ? 'is-gated' : ''}" data-nav="${item.id}" ${active ? 'aria-current="page"' : ''}>${ICONS[item.id]}<span>${esc(item.label)}</span>${badge}</button></li>`;
+      return `<li><button type="button" class="nav-btn" data-nav="${targetView}" ${active ? 'aria-current="page"' : ''}>${ICONS[hub.icon]}<span>${esc(hub.label)}</span>${badge}</button></li>`;
     }).join('');
 
     const slots = [
       ['desktop-nav-start', 'start'],
-      ['desktop-nav-practice', 'practice'],
       ['desktop-nav-secondary', 'secondary'],
       ['mobile-nav-start', 'start'],
-      ['mobile-nav-practice', 'practice'],
       ['mobile-nav-secondary', 'secondary']
     ];
     slots.forEach(([id, group]) => {
       const el = document.getElementById(id);
-      if (el) el.innerHTML = buildItems(group);
+      if (el) el.innerHTML = buildHubs(group);
     });
 
     // Sync mobile bottom navigation bar
     const bottomNav = document.getElementById('mobile-bottom-nav');
     if (bottomNav) {
-      const primaryViews = new Set(['dashboard', 'modules', 'flashcards', 'quiz']);
+      const learnViews = new Set(['modules', 'alphabet', 'writing', 'grammar']);
+      const primaryViews = new Set(['dashboard', 'modules', 'alphabet', 'writing', 'grammar', 'flashcards', 'quiz']);
       bottomNav.querySelectorAll('.bottom-nav-btn[data-nav]').forEach((btn) => {
         const target = btn.getAttribute('data-nav');
-        if (target === currentView) {
+        const isCurrent = target === currentView || (target === 'modules' && learnViews.has(currentView));
+        if (isCurrent) {
           btn.setAttribute('aria-current', 'page');
         } else {
           btn.removeAttribute('aria-current');
@@ -912,6 +959,7 @@
     renderNavLists();
     updateGoalBars();
     updateTimerDisplay();
+    updateAudioSpeedUI();
     const navMeta = NAV_ITEMS.find((n) => n.id === currentView);
     const topTitle = document.getElementById('topbar-title');
     if (topTitle && navMeta) topTitle.textContent = navMeta.title;
@@ -1570,13 +1618,6 @@
             </div>
             <div class="hero-level-strip">${levelBarsHtml}</div>
           </div>
-
-          <div class="toolbar-group" style="margin-top:auto;">
-            ${SCRIPT_DATA && SCRIPT_DATA[meta.code] ? '<button type="button" class="hero-cta-ghost" data-nav="alphabet">Pengenalan Aksara</button>' : ''}
-            <button type="button" class="hero-cta-ghost" data-nav="dictionary">Kamus 3x3</button>
-            <button type="button" class="hero-cta-ghost" data-nav="sprint">Sprint 60 Detik</button>
-            <button type="button" class="hero-cta-ghost" data-nav="writing">Tulis Aksara</button>
-          </div>
         </div>
 
         <div class="hero-side-stack">
@@ -1639,17 +1680,18 @@
       ${renderDashboardPlanStrip(meta)}
       ${renderDailyMissionsPanel(meta)}
 
-      <!-- Band 3: Katalog 11 Bahasa -->
-      <section class="studio-section" aria-label="Katalog 11 bahasa">
-        <div class="toolbar-row">
-          <h2 style="font-size:1.15rem;font-weight:700;">Katalog 11 Bahasa</h2>
-          <div class="segmented" role="group" aria-label="Filter bahasa">
-            <button type="button" class="seg-btn ${ui.dashFilter === 'all' ? 'active' : ''}" data-action="dash-filter" data-val="all" aria-pressed="${ui.dashFilter === 'all'}">Semua (11)</button>
-            <button type="button" class="seg-btn ${ui.dashFilter === 'active' ? 'active' : ''}" data-action="dash-filter" data-val="active" aria-pressed="${ui.dashFilter === 'active'}">Aktif (${Object.keys(state.packs).length})</button>
-            <button type="button" class="seg-btn ${ui.dashFilter === 'importable' ? 'active' : ''}" data-action="dash-filter" data-val="importable" aria-pressed="${ui.dashFilter === 'importable'}">Siap Import (${11 - Object.keys(state.packs).length})</button>
+      <!-- Compact Language Explorer & Onboarding Trigger (replaces bulky 11-card grid on Beranda) -->
+      <section class="studio-section" aria-label="Jelajah bahasa dan pengaturan awal">
+        <div class="card dash-compact-footer">
+          <div>
+            <h2 style="font-size:1rem;font-weight:700;">Ingin ganti atau jelajah 11 bahasa lain?</h2>
+            <p class="kpi-label">Semua ${Object.keys(state.packs).length} bahasa aktif tersimpan offline dan bisa diganti kapan saja.</p>
+          </div>
+          <div class="toolbar-group">
+            <button type="button" class="btn-secondary" data-action="open-catalog-sheet">Jelajah 11 Bahasa</button>
+            <button type="button" class="btn-ghost" data-action="open-onboarding">Atur Ulang Target</button>
           </div>
         </div>
-        <div class="lang-grid">${langCardsHtml}</div>
       </section>
     `;
   }
@@ -1947,6 +1989,26 @@
     if (dlg) dlg.showModal();
   }
 
+  function checkAutoCompleteModule(langCode, moduleId) {
+    if (!moduleId || !state || !state.packs[langCode]) return false;
+    state.completedModules[langCode] = state.completedModules[langCode] || {};
+    if (state.completedModules[langCode][moduleId]) return false;
+    const pack = state.packs[langCode];
+    const mod = pack.modules.find((m) => m.id === moduleId);
+    if (!mod) return false;
+    const modCards = pack.flashcards.filter((c) => c.module_id === moduleId);
+    if (!modCards.length) return false;
+    const allReviewed = modCards.every((c) => c.srs && c.srs.repetitions > 0);
+    if (!allReviewed) return false;
+    state.completedModules[langCode][moduleId] = true;
+    const today = Store.getTodayKey(0);
+    const log = Store.ensureDayLog(state, today);
+    log.modules = (log.modules || 0) + 1;
+    Store.addXP(state, langCode, 25);
+    showToast(`Modul "${mod.title}" otomatis selesai (+25 XP)!`, 'achievement');
+    return true;
+  }
+
   async function rateCurrentCard(quality) {
     const pack = getActivePack();
     if (!pack || ui.fcQueue.length === 0) return;
@@ -1961,6 +2023,10 @@
     const log = Store.ensureDayLog(state, today);
     log.cards = (log.cards || 0) + 1;
     Store.addXP(state, state.activeLang, 5);
+
+    if (quality >= 3 && card.module_id) {
+      checkAutoCompleteModule(state.activeLang, card.module_id);
+    }
 
     // Remove from current slot; if quality === 1 (Lupa), re-queue at end of session
     ui.fcQueue.splice(ui.fcIndex, 1);
@@ -4512,7 +4578,8 @@
       main.classList.remove('is-revealing');
       void main.offsetWidth; // Force reflow so reveal restarts cleanly on every tab switch
     }
-    main.innerHTML = html;
+    const subtabsHtml = renderHubSubtabs(currentView);
+    main.innerHTML = `${subtabsHtml}${html}`;
     if (animate) {
       main.classList.add('is-revealing');
       if (revealTimer) clearTimeout(revealTimer);
@@ -4544,6 +4611,17 @@
         });
       }
     });
+
+    // Audio speed toggle (1x / 0.75x pelan)
+    const audioSpeedBtn = document.getElementById('audio-speed-btn');
+    if (audioSpeedBtn) {
+      audioSpeedBtn.addEventListener('click', async () => {
+        state.settings.slowAudio = !state.settings.slowAudio;
+        updateAudioSpeedUI();
+        await persistState();
+        showToast(state.settings.slowAudio ? 'Mode audio pelan (0.75x) aktif untuk pemula.' : 'Kecepatan audio kembali normal (1x).', 'default');
+      });
+    }
 
     // Topbar theme toggle
     const themeBtn = document.getElementById('theme-toggle-btn');
@@ -5094,6 +5172,14 @@
         case 'open-drawer':
           if (global.LingoDrawer) global.LingoDrawer.open();
           break;
+        case 'open-catalog-sheet': {
+          const menu = document.getElementById('topbar-lang-menu') || document.getElementById('sidebar-lang-menu');
+          if (menu) openBottomSheet('Jelajah 11 Bahasa', `<div class="bottom-sheet-lang-list">${menu.innerHTML}</div>`);
+          break;
+        }
+        case 'open-onboarding':
+          openOnboardingModal(true);
+          break;
         // --- Skill Tree ---
         case 'mod-view-mode':
           ui.modViewMode = actEl.getAttribute('data-val') || 'tree';
@@ -5476,12 +5562,163 @@
     });
   }
 
+  // --- 20-Second First-Time Onboarding Wizard ---
+  const obState = { step: 1, lang: 'ja', level: 'beginner', minutes: 20 };
+
+  function renderOnboardingStep() {
+    const box = document.getElementById('onboarding-content');
+    if (!box) return;
+    const selMeta = getCatalogMeta(obState.lang);
+    const isNonLatin = Boolean(SCRIPT_DATA && SCRIPT_DATA[obState.lang]);
+
+    let bodyHtml = '';
+    if (obState.step === 1) {
+      bodyHtml = `
+        <p class="kpi-label" style="margin-bottom:12px;">Langkah 1 dari 3 · Pilih bahasa utama yang ingin kamu mulai hari ini:</p>
+        <div class="onboarding-lang-grid">
+          ${LANGUAGE_CATALOG.map((l) => `
+            <button type="button" class="ob-choice-btn ${obState.lang === l.code ? 'active' : ''}" data-ob-lang="${esc(l.code)}">
+              <span class="ob-stamp">${esc(l.stamp)}</span>
+              <span><strong>${esc(l.name_id)}</strong><small>${esc(l.name_native)}</small></span>
+            </button>
+          `).join('')}
+        </div>
+        <div class="dialog-actions">
+          <button type="button" class="btn-ghost" data-ob-skip="1">Lewati</button>
+          <button type="button" class="btn-primary" data-ob-next="2">Lanjut →</button>
+        </div>
+      `;
+    } else if (obState.step === 2) {
+      bodyHtml = `
+        <p class="kpi-label" style="margin-bottom:12px;">Langkah 2 dari 3 · Seberapa akrab kamu dengan bahasa <strong>${esc(selMeta.name_id)}</strong>?</p>
+        <div class="onboarding-choice-grid">
+          <button type="button" class="ob-choice-btn ${obState.level === 'beginner' ? 'active' : ''}" data-ob-level="beginner">
+            <strong>Pemula dari Nol</strong>
+            <small>${isNonLatin ? 'Mulai pelan dari Kartu Aksara dasar dulu.' : 'Mulai dari sapaan inti & kartu hafalan dasar.'}</small>
+          </button>
+          <button type="button" class="ob-choice-btn ${obState.level === 'basic' ? 'active' : ''}" data-ob-level="basic">
+            <strong>Sudah Bisa Baca Dasar</strong>
+            <small>${isNonLatin ? 'Langsung buka semua modul, Quiz, dan Kartu Hafalan.' : 'Langsung masuk ke latihan kosakata & percakapan.'}</small>
+          </button>
+        </div>
+        <div class="dialog-actions">
+          <button type="button" class="btn-secondary" data-ob-next="1">← Kembali</button>
+          <button type="button" class="btn-primary" data-ob-next="3">Lanjut →</button>
+        </div>
+      `;
+    } else {
+      bodyHtml = `
+        <p class="kpi-label" style="margin-bottom:12px;">Langkah 3 dari 3 · Berapa menit waktu belajar harianmu?</p>
+        <div class="onboarding-choice-grid">
+          ${[
+            { m: 10, t: '10 menit / hari', s: 'Santai, cocok untuk sela-sela aktivitas' },
+            { m: 20, t: '20 menit / hari (Disarankan)', s: 'Ritme ideal untuk hafalan & quiz rutin' },
+            { m: 30, t: '30 menit / hari', s: 'Intensif, progres cepat dalam 14 hari' }
+          ].map((opt) => `
+            <button type="button" class="ob-choice-btn ${obState.minutes === opt.m ? 'active' : ''}" data-ob-min="${opt.m}">
+              <strong>${opt.t}</strong>
+              <small>${opt.s}</small>
+            </button>
+          `).join('')}
+        </div>
+        <div class="dialog-actions">
+          <button type="button" class="btn-secondary" data-ob-next="2">← Kembali</button>
+          <button type="button" class="btn-primary" data-ob-finish="1">Mulai Belajar ${esc(selMeta.name_id)}</button>
+        </div>
+      `;
+    }
+
+    box.innerHTML = `
+      <div class="dialog-head">
+        <h2 id="onboarding-title">Atur Ruang Belajarmu (20 Detik)</h2>
+        <button type="button" class="icon-btn" data-ob-skip="1" aria-label="Tutup panduan awal">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>
+        </button>
+      </div>
+      ${bodyHtml}
+    `;
+  }
+
+  function openOnboardingModal(force = false) {
+    const dlg = document.getElementById('modal-onboarding');
+    if (!dlg || (!force && state && state.onboardingDone)) return;
+    obState.step = 1;
+    obState.lang = (state && state.activeLang) || 'ja';
+    obState.level = 'beginner';
+    obState.minutes = (state && state.settings && state.settings.targetMinutes) || 20;
+    renderOnboardingStep();
+    if (!dlg.open) dlg.showModal();
+  }
+
+  function bindOnboardingEvents() {
+    const dlg = document.getElementById('modal-onboarding');
+    if (!dlg) return;
+    dlg.addEventListener('click', async (ev) => {
+      const langBtn = ev.target.closest('[data-ob-lang]');
+      if (langBtn) {
+        obState.lang = langBtn.getAttribute('data-ob-lang');
+        renderOnboardingStep();
+        return;
+      }
+      const lvlBtn = ev.target.closest('[data-ob-level]');
+      if (lvlBtn) {
+        obState.level = lvlBtn.getAttribute('data-ob-level');
+        renderOnboardingStep();
+        return;
+      }
+      const minBtn = ev.target.closest('[data-ob-min]');
+      if (minBtn) {
+        obState.minutes = Number(minBtn.getAttribute('data-ob-min')) || 20;
+        renderOnboardingStep();
+        return;
+      }
+      const nextBtn = ev.target.closest('[data-ob-next]');
+      if (nextBtn) {
+        obState.step = Number(nextBtn.getAttribute('data-ob-next')) || 1;
+        renderOnboardingStep();
+        return;
+      }
+      if (ev.target.closest('[data-ob-skip]')) {
+        state.onboardingDone = true;
+        await persistState();
+        if (dlg.open) dlg.close();
+        return;
+      }
+      if (ev.target.closest('[data-ob-finish]')) {
+        state.activeLang = obState.lang;
+        state.settings.targetMinutes = obState.minutes;
+        state.onboardingDone = true;
+        const isNonLatin = Boolean(SCRIPT_DATA && SCRIPT_DATA[obState.lang]);
+        if (isNonLatin && obState.level === 'basic') {
+          state.scriptGateBypassed = state.scriptGateBypassed || {};
+          state.scriptGateBypassed[obState.lang] = true;
+        }
+        const pack = state.packs[obState.lang];
+        if (pack) {
+          state.studyPlans = state.studyPlans || {};
+          state.studyPlans[obState.lang] = Store.generateStudyPlan(obState.lang, pack, {
+            goal: 'conversation',
+            dailyMinutes: obState.minutes,
+            totalDays: 14
+          });
+        }
+        resetViewStateForLang();
+        await persistState();
+        if (dlg.open) dlg.close();
+        const startView = (isNonLatin && obState.level === 'beginner') ? 'alphabet' : 'dashboard';
+        navigate(startView);
+        showToast(`Ruang belajar ${getCatalogMeta(obState.lang).name_id} siap (${obState.minutes} mnt/hari)!`, 'success');
+      }
+    });
+  }
+
   // --- Bootstrap ---
   async function init() {
     applyColorScheme(getStoredScheme());
     initMobileDrawer();
     initDialogs();
     bindGlobalEvents();
+    bindOnboardingEvents();
 
     state = await Store.loadState();
     Store.detectNewlyUnlockedAchievements(state);
@@ -5490,6 +5727,9 @@
     renderChrome();
     renderView(true);
     startStudyTimer();
+    if (!state.onboardingDone) {
+      requestAnimationFrame(() => openOnboardingModal(false));
+    }
   }
 
   document.addEventListener('DOMContentLoaded', init);

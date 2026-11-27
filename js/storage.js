@@ -54,8 +54,10 @@
       settings: {
         targetMinutes: 20,
         targetCards: 20,
-        targetModules: 1
+        targetModules: 1,
+        slowAudio: false
       },
+      onboardingDone: false,
       // Clean user history: 0 minutes, 0 streak, 0 completed modules
       completedModules: {}, // { [langCode]: { [moduleId]: true } }
       readDictionaryIds: {}, // { [langCode]: { [cardId]: true } }
@@ -195,6 +197,12 @@
     };
     if (!merged.packs.ja) merged.packs.ja = deepClone(global.LingoData.PACK_JA);
     if (!merged.packs.ko) merged.packs.ko = deepClone(global.LingoData.PACK_KO);
+    if (typeof loaded.onboardingDone !== 'boolean') {
+      const hasXp = Object.values(merged.xpByLang || {}).some((v) => v > 0);
+      const hasChars = Object.values(merged.learnedChars || {}).some((m) => m && Object.keys(m).length > 0);
+      const hasMods = Object.values(merged.completedModules || {}).some((m) => m && Object.keys(m).length > 0);
+      merged.onboardingDone = hasXp || hasChars || hasMods;
+    }
     return applyBuiltInPacks(merged);
   }
 

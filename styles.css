@@ -6188,3 +6188,168 @@ textarea {
     justify-content: center;
   }
 }
+
+/* ==========================================================================
+   PRIORITY 1 & 2: 6-HUB SUBTABS, AUDIO 0.75x, ONBOARDING & CALMER HIERARCHY
+   ========================================================================== */
+
+/* Top Hub Sub-Tab Bar inside multi-view Hubs (Belajar, Latihan, Imersi, Progres) */
+.hub-subtabs {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  overflow-x: auto;
+  padding: 2px 2px 12px;
+  margin-bottom: 10px;
+  scrollbar-width: none;
+  max-width: 100%;
+}
+
+.hub-subtabs::-webkit-scrollbar {
+  display: none;
+}
+
+.hub-subtab-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 44px;
+  padding: 8px 14px;
+  border-radius: 999px;
+  border: 2px solid var(--border-brutal);
+  background: var(--surface);
+  color: var(--ink);
+  font-family: inherit;
+  font-size: 0.86rem;
+  font-weight: 700;
+  white-space: nowrap;
+  flex-shrink: 0;
+  box-shadow: 2px 2px 0 var(--shadow-ink);
+  transition: transform 0.12s ease, background-color 0.12s ease;
+}
+
+.hub-subtab-btn.active {
+  background: var(--accent);
+  color: #111111;
+  border-color: light-dark(#111111, #FFD13B);
+}
+
+.hub-subtab-btn.is-gated {
+  opacity: 0.75;
+}
+
+.hub-tab-lock {
+  display: inline-flex;
+  align-items: center;
+}
+
+/* Audio Speed Toggle Pill (1x / 0.75x) */
+.audio-speed-btn {
+  min-height: 44px;
+  min-width: 44px;
+  padding: 0 10px;
+  border-radius: 10px;
+  border: 2px solid var(--border-brutal);
+  background: var(--surface);
+  color: var(--ink);
+  font-size: 0.78rem;
+  font-weight: 700;
+  box-shadow: 2px 2px 0 var(--shadow-ink);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.12s ease, transform 0.12s ease;
+}
+
+.audio-speed-btn.is-slow {
+  background: var(--sky);
+  color: #111111;
+  border-color: light-dark(#111111, #0D0E13);
+}
+
+/* Calmer Visual Hierarchy on Secondary Beranda Cards (reduce visual noise) */
+.plan-promo-bar,
+.mission-card,
+.dash-compact-footer {
+  border-width: 1.5px;
+  box-shadow: 2px 2px 0 var(--shadow-ink);
+}
+
+.dash-compact-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+/* 20-Second Onboarding Dialog */
+.onboarding-dialog {
+  width: min(560px, calc(100dvw - 24px));
+}
+
+.onboarding-lang-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(150px, 100%), 1fr));
+  gap: 8px;
+}
+
+.onboarding-choice-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.ob-choice-btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 52px;
+  padding: 10px 12px;
+  text-align: left;
+  border-radius: 12px;
+  border: 2px solid var(--border-brutal);
+  background: var(--surface-subtle);
+  color: var(--ink);
+  font-family: inherit;
+  box-shadow: 2px 2px 0 var(--shadow-ink);
+  transition: transform 0.12s ease, background-color 0.12s ease;
+}
+
+.onboarding-choice-grid .ob-choice-btn {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 3px;
+}
+
+.ob-choice-btn small {
+  display: block;
+  font-size: 0.78rem;
+  color: var(--ink-muted);
+}
+
+.ob-choice-btn.active {
+  background: var(--accent);
+  color: #111111;
+  border-color: light-dark(#111111, #FFD13B);
+}
+
+.ob-choice-btn.active small {
+  color: #111111;
+}
+
+.ob-stamp {
+  width: 34px;
+  height: 34px;
+  border-radius: 8px;
+  background: var(--surface);
+  color: var(--ink);
+  border: 1.5px solid var(--border-brutal);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-script);
+  font-weight: 700;
+  font-size: 0.82rem;
+  flex-shrink: 0;
+}
