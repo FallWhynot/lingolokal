@@ -6404,9 +6404,15 @@ textarea {
 
 .lesson-stepper {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(5, minmax(0, 1fr));
   gap: 8px;
   margin-bottom: 14px;
+}
+
+@media (max-width: 639px) {
+  .lesson-stepper {
+    grid-template-columns: repeat(auto-fit, minmax(92px, 1fr));
+  }
 }
 
 .lesson-step-pill {

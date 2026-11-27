@@ -1,5 +1,5 @@
 /* LingoLokal Service Worker: Offline-First App Shell + Network-First Fresh Updates */
-const CACHE_NAME = 'lingolokal-v13';
+const CACHE_NAME = 'lingolokal-v14';
 
 const CORE_ASSETS = [
   './',
@@ -17,6 +17,7 @@ const CORE_ASSETS = [
   './data/korean.js',
   './data/extra-packs.js',
   './js/storage.js',
+  './js/content-engine.js',
   './js/app.js'
 ];
 

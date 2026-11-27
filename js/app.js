@@ -4,6 +4,7 @@
 
   const { LANGUAGE_CATALOG, SCRIPT_DATA, LATIN_NOTES, CONJUGATION_DATA, EXAM_DATA, convertPhonetic, buildJsonTemplate } = global.LingoData;
   const Store = global.LingoStorage;
+  const CE = global.LingoContentEngine;
 
   // --- SVG Icon Library (Consistent 1.8px stroke, relevant to each function) ---
   const ICONS = {
@@ -117,8 +118,11 @@
     readingCompAnswer: null,
     grammarQuery: '',
     dictLevel: 'ALL',
+    dictModule: 'ALL',
     dictQuery: '',
     dictBatchIds: [],
+    sprintScope: 'level', // level | all | module
+    sprintModule: 'ALL',
     sprintActive: false,
     sprintPaused: false,
     sprintFinished: false,
@@ -131,6 +135,7 @@
     sprintQuestion: null,
     sprintFlash: null, // { opt, ok }
     writeIndex: 0,
+    writeModule: 'ALL',
     writeShowGhost: true,
     writeStrokes: [],
     writeCustomItem: null,
@@ -1045,8 +1050,13 @@
     ui.readingCompAnswer = null;
     ui.grammarQuery = '';
     ui.dictLevel = 'ALL';
+    ui.dictModule = 'ALL';
     ui.dictQuery = '';
     ui.dictBatchIds = [];
+    ui.sprintScope = 'level';
+    ui.sprintModule = 'ALL';
+    ui.writeModule = 'ALL';
+    ui.writeIndex = 0;
     stopSprintTimer();
     ui.sprintActive = false;
     ui.sprintFinished = false;
@@ -1668,6 +1678,9 @@
   }
 
   function buildLessonQuizzes(pack, mod) {
+    if (CE && typeof CE.synthesizeLessonMcQuizzes === 'function') {
+      return CE.synthesizeLessonMcQuizzes(pack, mod.id, 6);
+    }
     const out = [];
     const curated = (pack.quizzes || []).filter((q) => q.module_id === mod.id && q.type === 'multiple_choice' && Array.isArray(q.options) && q.options.length >= 2);
     curated.forEach((q) => {
@@ -1678,25 +1691,6 @@
         explanation: q.explanation_id || `Jawaban tepat: ${q.answer}`
       });
     });
-
-    const modCards = (pack.flashcards || []).filter((c) => c.module_id === mod.id);
-    const otherCards = (pack.flashcards || []).filter((c) => c.module_id !== mod.id);
-    for (const c of modCards) {
-      if (out.length >= 4) break;
-      const distPool = otherCards
-        .concat(modCards.filter((x) => x.id !== c.id))
-        .map((x) => x.meaning_id)
-        .filter((m, idx, arr) => m && m !== c.meaning_id && arr.indexOf(m) === idx);
-      if (distPool.length < 2) continue;
-      const distractors = distPool.slice(0, 3);
-      const opts = [c.meaning_id, ...distractors].sort(() => Math.random() - 0.5);
-      out.push({
-        prompt: `Apa arti dari "${c.front}"${c.romaji && c.romaji !== c.front ? ` (${c.romaji})` : ''}?`,
-        options: opts,
-        answer: c.meaning_id,
-        explanation: `${c.front} berarti "${c.meaning_id}".`
-      });
-    }
     return out;
   }
 
@@ -1728,14 +1722,18 @@
     }
     const title = cleanModuleTitle(mod);
     const modCards = pack.flashcards.filter((c) => c.module_id === mod.id);
-    const modGrammar = (pack.grammar || []).filter((g) => g.module_id === mod.id || g.level === mod.level).slice(0, 2);
+    const modNotes = CE ? CE.synthesizeModuleNotes(pack, mod.id) : [];
+    const modDialog = (pack.dialogs || []).find((d) => d.module_id === mod.id) || null;
+    const modReading = CE ? CE.synthesizeModuleReading(pack, mod.id) : ((pack.readings || []).find((r) => r.module_id === mod.id) || null);
+    const hasContext = Boolean(modDialog || (modReading && modReading.sentences && modReading.sentences.length));
     const step = ui.lessonStep || 1;
 
     const stepsMeta = [
       { n: 1, label: 'Materi' },
       { n: 2, label: 'Kartu' },
-      { n: 3, label: 'Quiz' },
-      { n: 4, label: 'Selesai' }
+      { n: 3, label: 'Konteks' },
+      { n: 4, label: 'Quiz' },
+      { n: 5, label: 'Selesai' }
     ];
     const stepperHtml = `
       <div class="lesson-stepper" role="list" aria-label="Tahap pelajaran modul">
@@ -1779,22 +1777,22 @@
             }).join('')}
           </div>
 
-          ${modGrammar.length ? `
-            <h2 class="lesson-subhead" style="margin-top:18px;">2. Pola Tata Bahasa Terkait</h2>
+          ${modNotes.length ? `
+            <h2 class="lesson-subhead" style="margin-top:18px;">2. Pola & Catatan Inti</h2>
             <div class="lesson-grammar-list">
-              ${modGrammar.map((g) => `
+              ${modNotes.map((n) => `
                 <div class="pitfall-box" style="margin:0;">
-                  <div class="pitfall-title">${esc(g.pattern)} · ${esc(g.meaning_id)}</div>
-                  ${g.formula ? `<div class="mono" style="font-size:0.8rem;margin:4px 0;">${esc(g.formula)}</div>` : ''}
-                  ${g.explanation_id ? `<p style="font-size:0.85rem;">${esc(g.explanation_id)}</p>` : ''}
+                  <div class="pitfall-title">${esc(n.title)}</div>
+                  ${n.formula ? `<div class="mono" style="font-size:0.8rem;margin:4px 0;">${esc(n.formula)}</div>` : ''}
+                  ${n.body ? `<p style="font-size:0.85rem;">${esc(n.body)}</p>` : ''}
                 </div>
               `).join('')}
             </div>
           ` : ''}
 
           <div class="lesson-footer-bar">
-            <button type="button" class="btn-primary" style="width:100%;" data-action="lesson-step" data-step="${modCards.length ? 2 : 3}">
-              ${modCards.length ? `Lanjut ke Latih Kartu (${modCards.length}) →` : 'Lanjut ke Mini Quiz →'}
+            <button type="button" class="btn-primary" style="width:100%;" data-action="lesson-step" data-step="${modCards.length ? 2 : hasContext ? 3 : 4}">
+              ${modCards.length ? `Lanjut ke Latih Kartu (${modCards.length}) →` : hasContext ? 'Lanjut ke Konteks Kalimat →' : 'Lanjut ke Mini Quiz →'}
             </button>
           </div>
         </article>
@@ -1808,7 +1806,7 @@
         <div class="srs-desk">
           <div class="toolbar-row" style="margin-bottom:8px;">
             <span class="kpi-label">Kartu Modul <strong class="mono">${ui.lessonCardIdx + 1} / ${modCards.length}</strong></span>
-            <button type="button" class="btn-ghost btn-sm" data-action="lesson-step" data-step="3">Lewati ke Quiz →</button>
+            <button type="button" class="btn-ghost btn-sm" data-action="lesson-step" data-step="${hasContext ? 3 : 4}">${hasContext ? 'Lewati ke Konteks →' : 'Lewati ke Quiz →'}</button>
           </div>
           <div class="srs-card-stage">
             <div class="srs-card ${!ui.lessonCardFlipped ? 'can-flip' : ''} ${flipAnimCls}" ${!ui.lessonCardFlipped ? 'data-action="lesson-card-flip"' : ''}>
@@ -1834,7 +1832,7 @@
                   ${card.mnemonic ? `<div class="srs-mnemonic"><strong>Catatan:</strong> ${esc(card.mnemonic)}</div>` : ''}
                   <div class="lesson-footer-bar">
                     <button type="button" class="btn-primary" style="width:100%;" data-action="lesson-card-next">
-                      ${ui.lessonCardIdx + 1 < modCards.length ? 'Sudah Ingat (+5 XP) · Kartu Berikutnya →' : 'Sudah Ingat (+5 XP) · Lanjut ke Quiz →'}
+                      ${ui.lessonCardIdx + 1 < modCards.length ? 'Sudah Ingat (+5 XP) · Kartu Berikutnya →' : hasContext ? 'Sudah Ingat (+5 XP) · Lanjut ke Konteks →' : 'Sudah Ingat (+5 XP) · Lanjut ke Quiz →'}
                     </button>
                   </div>
                 </div>
@@ -1844,6 +1842,50 @@
         </div>
       ` : '';
     } else if (step === 3) {
+      const isRtl = state.activeLang === 'ar';
+      const contextTitle = modDialog ? modDialog.title : (modReading ? modReading.title : `Latihan Kalimat: ${title}`);
+      const contextLines = modDialog
+        ? modDialog.lines.map((ln) => ({
+            speaker: (modDialog.roles && modDialog.roles[ln.role]) || ln.role,
+            native: ln.native,
+            romaji: ln.romaji,
+            trans: ln.translation_id
+          }))
+        : (modReading ? modReading.sentences.map((s) => ({
+            speaker: '',
+            native: s.native,
+            romaji: s.romaji,
+            trans: s.translation_id
+          })) : []);
+      bodyHtml = `
+        <article class="card lesson-card">
+          <div class="toolbar-row" style="margin-bottom:8px;">
+            <span class="tag accent">${modDialog ? 'Dialog Konteks' : 'Konteks Kalimat'}</span>
+            <button type="button" class="btn-ghost btn-sm" data-action="lesson-step" data-step="4">Lanjut ke Quiz →</button>
+          </div>
+          <h2 class="page-title" style="font-size:1.3rem;margin-bottom:6px;">${esc(contextTitle)}</h2>
+          <p class="page-sub" style="margin-bottom:14px;">Dengarkan cara kata-kata modul ini dipakai dalam kalimat nyata sebelum mulai Mini Quiz.</p>
+          <div class="lesson-vocab-list">
+            ${contextLines.map((ln) => `
+              <div class="lesson-vocab-row">
+                <div style="min-width:0;">
+                  ${ln.speaker ? `<div class="kpi-label" style="font-weight:700;margin-bottom:2px;">${esc(ln.speaker)}</div>` : ''}
+                  <div class="lesson-vocab-native" style="font-size:1.05rem;" ${isRtl ? 'dir="rtl"' : ''}>${esc(ln.native)}</div>
+                  ${ln.romaji && ln.romaji !== ln.native ? `<div class="lesson-vocab-romaji">${esc(ln.romaji)}</div>` : ''}
+                  <div class="lesson-vocab-meaning">${esc(ln.trans)}</div>
+                </div>
+                <button type="button" class="audio-btn" data-speak="${esc(ln.native)}" aria-label="Putar audio kalimat">${ICONS.speaker}</button>
+              </div>
+            `).join('')}
+          </div>
+          <div class="lesson-footer-bar">
+            <button type="button" class="btn-primary" style="width:100%;" data-action="lesson-step" data-step="4">
+              Lanjut ke Mini Quiz (${ui.lessonQuizList.length} Soal) →
+            </button>
+          </div>
+        </article>
+      `;
+    } else if (step === 4) {
       const q = ui.lessonQuizList[ui.lessonQuizIdx];
       const answered = ui.lessonQuizPicked !== null;
       const isRight = answered && ui.lessonQuizPicked === q.answer;
@@ -2600,16 +2642,21 @@
       list = list.filter((q) => ui.quizFilterIds.includes(q.id));
       list = seededShuffle(list, rng).map((q) => cloneAndShuffleQuestion(q, rng));
     } else if (ui.quizModule !== 'ALL') {
-      const modStatic = seededShuffle(list.filter((q) => q.module_id === ui.quizModule), rng);
-      const modLevel = modLevelById.get(ui.quizModule);
-      const modDynamic = seededShuffle(
-        buildDynamicDailyQuizzes(pack, state.activeLang, rng, modLevel ? [modLevel, ...prof.allowedLevels] : prof.allowedLevels, ui.quizModule),
-        rng
-      );
-      const needed = Math.max(0, 6 - modStatic.length);
-      list = seededShuffle([...modStatic, ...modDynamic.slice(0, needed)], rng)
-        .slice(0, Math.max(6, modStatic.length))
-        .map((q) => cloneAndShuffleQuestion(q, rng));
+      if (CE && typeof CE.synthesizeModuleQuizzes === 'function') {
+        const synList = CE.synthesizeModuleQuizzes(pack, ui.quizModule, 8, rng);
+        list = seededShuffle(synList, rng).map((q) => cloneAndShuffleQuestion(q, rng));
+      } else {
+        const modStatic = seededShuffle(list.filter((q) => q.module_id === ui.quizModule), rng);
+        const modLevel = modLevelById.get(ui.quizModule);
+        const modDynamic = seededShuffle(
+          buildDynamicDailyQuizzes(pack, state.activeLang, rng, modLevel ? [modLevel, ...prof.allowedLevels] : prof.allowedLevels, ui.quizModule),
+          rng
+        );
+        const needed = Math.max(0, 6 - modStatic.length);
+        list = seededShuffle([...modStatic, ...modDynamic.slice(0, needed)], rng)
+          .slice(0, Math.max(6, modStatic.length))
+          .map((q) => cloneAndShuffleQuestion(q, rng));
+      }
     } else {
       const tierStatic = list.filter((q) => allowedSet.has(modLevelById.get(q.module_id)));
       const dynamicPool = buildDynamicDailyQuizzes(pack, state.activeLang, rng, prof.allowedLevels, null);
@@ -2999,15 +3046,16 @@
   function renderReadings() {
     const pack = getActivePack();
     if (!pack) return renderMissingPackState('Bacaan Klik-Kata');
-    if (!pack.readings.length) {
+    const allReadings = (CE && typeof CE.getAllReadingsForPack === 'function') ? CE.getAllReadingsForPack(pack) : (pack.readings || []);
+    if (!allReadings.length) {
       return `<div class="empty-state"><h1>Belum ada bacaan</h1><p>Impor paket bacaan bertoken melalui menu Pengaturan.</p></div>`;
     }
 
-    const reading = pack.readings.find((r) => r.id === ui.readingId) || pack.readings[0];
+    const reading = allReadings.find((r) => r.id === ui.readingId) || allReadings[0];
     ui.readingId = reading.id;
     const isRtl = state.activeLang === 'ar';
-    const readingSelectHtml = pack.readings.length > 1
-      ? `<select id="reading-select" class="lang-select" style="width:auto;min-width:210px;" aria-label="Pilih teks bacaan">${pack.readings.map((r) => `<option value="${esc(r.id)}" ${r.id === reading.id ? 'selected' : ''}>${esc(r.level)} · ${esc(r.title)}</option>`).join('')}</select>`
+    const readingSelectHtml = allReadings.length > 1
+      ? `<select id="reading-select" class="lang-select" style="width:auto;min-width:210px;" aria-label="Pilih teks bacaan">${allReadings.map((r) => `<option value="${esc(r.id)}" ${r.id === reading.id ? 'selected' : ''}>${esc(r.level)} · ${esc(r.title)}</option>`).join('')}</select>`
       : '';
 
     const sentencesHtml = reading.sentences.map((sent, sIdx) => {
@@ -3209,6 +3257,7 @@
     if (!pack || !Array.isArray(pack.flashcards)) return [];
     const q = ui.dictQuery.trim().toLowerCase();
     return pack.flashcards.filter((c) => {
+      if (ui.dictModule !== 'ALL' && c.module_id !== ui.dictModule) return false;
       if (ui.dictLevel !== 'ALL' && c.level !== ui.dictLevel) return false;
       if (q) {
         const hay = `${c.front || ''} ${c.reading || ''} ${c.romaji || ''} ${c.meaning_id || ''} ${c.example_native || ''} ${c.example_id || ''}`.toLowerCase();
@@ -3394,9 +3443,16 @@
 
       <div class="toolbar-row">
         <div class="chip-row">${levelChipsHtml}</div>
-        <div style="min-width:220px;flex:0 1 280px;">
-          <label for="dict-search" class="sr-only">Cari kata di kamus</label>
-          <input id="dict-search" type="search" class="phonetic-input" value="${esc(ui.dictQuery)}" placeholder="Cari kata, ejaan, atau arti...">
+        <div class="toolbar-group" style="flex:1;justify-content:flex-end;">
+          <label for="dict-mod-select" class="sr-only">Filter modul kamus</label>
+          <select id="dict-mod-select" class="lang-select" style="width:auto;min-width:190px;">
+            <option value="ALL" ${ui.dictModule === 'ALL' ? 'selected' : ''}>Semua Modul (${pack.modules.length})</option>
+            ${pack.modules.map((m) => `<option value="${esc(m.id)}" ${ui.dictModule === m.id ? 'selected' : ''}>${esc(m.level)} · ${esc(cleanModuleTitle(m))}</option>`).join('')}
+          </select>
+          <div style="min-width:180px;flex:0 1 240px;">
+            <label for="dict-search" class="sr-only">Cari kata di kamus</label>
+            <input id="dict-search" type="search" class="phonetic-input" value="${esc(ui.dictQuery)}" placeholder="Cari kata, ejaan, atau arti...">
+          </div>
         </div>
       </div>
 
@@ -3415,11 +3471,29 @@
     }
   }
 
+  function getSprintPool(pack) {
+    const all = (pack && pack.flashcards) ? pack.flashcards : [];
+    if (!all.length) return [];
+    if (ui.sprintModule && ui.sprintModule !== 'ALL' && ui.sprintModule !== 'LEVEL') {
+      const modCards = all.filter((c) => c.module_id === ui.sprintModule);
+      return modCards.length ? modCards : all;
+    }
+    if (ui.sprintModule === 'LEVEL' || ui.sprintScope === 'level') {
+      const prof = Store.getProficiencyMeta(state, state.activeLang, pack.language && pack.language.roadmap_levels);
+      const allowed = new Set(prof.allowedLevels);
+      const tierCards = all.filter((c) => allowed.has(c.level));
+      if (tierCards.length >= 4) return tierCards;
+    }
+    return all;
+  }
+
   function buildSprintQuestion(pack) {
-    const cards = (pack && pack.flashcards) ? pack.flashcards : [];
-    if (cards.length < 2) return null;
-    const target = cards[Math.floor(Math.random() * cards.length)];
-    const pool = cards.filter((c) => c.id !== target.id && c.meaning_id !== target.meaning_id);
+    const allCards = (pack && pack.flashcards) ? pack.flashcards : [];
+    const poolCards = getSprintPool(pack);
+    if (poolCards.length < 1 || allCards.length < 2) return null;
+    const target = poolCards[Math.floor(Math.random() * poolCards.length)];
+    const distractorSource = poolCards.length >= 4 ? poolCards : allCards;
+    const pool = distractorSource.filter((c) => c.id !== target.id && c.meaning_id !== target.meaning_id);
     const distractors = [];
     const used = new Set([target.meaning_id]);
     const shuffled = pool.slice().sort(() => Math.random() - 0.5);
@@ -3525,11 +3599,23 @@
 
     let bodyHtml = '';
     if (!ui.sprintActive && !ui.sprintFinished) {
+      const prof = Store.getProficiencyMeta(state, state.activeLang, pack.language && pack.language.roadmap_levels);
+      const sprintPoolCount = getSprintPool(pack).length;
+      const sprintSelVal = ui.sprintModule === 'ALL' && ui.sprintScope === 'level' ? 'LEVEL' : ui.sprintModule;
+      const sprintOpts = `
+        <option value="LEVEL" ${sprintSelVal === 'LEVEL' ? 'selected' : ''}>Sesuai Levelmu · ${esc(prof.fullLabel)}</option>
+        <option value="ALL" ${sprintSelVal === 'ALL' ? 'selected' : ''}>Semua Modul (${pack.flashcards.length} kartu)</option>
+        ${pack.modules.map((m) => `<option value="${esc(m.id)}" ${sprintSelVal === m.id ? 'selected' : ''}>${esc(m.level)} · ${esc(cleanModuleTitle(m))}</option>`).join('')}
+      `;
       bodyHtml = `
         <div class="card" style="text-align:center;padding:34px 24px;">
           <span class="tag accent" style="margin-bottom:10px;">Tantangan Cepat · ${esc(meta.name_id)}</span>
           <h2 style="font-family:var(--font-serif);font-size:1.6rem;font-weight:600;margin-bottom:8px;">Tebak Arti Secepat Mungkin dalam 60 Detik</h2>
-          <p class="page-sub" style="margin:0 auto 20px;">Latih refleks pengenalan kosakata dari ${pack.flashcards.length} kartu ${esc(meta.name_id)}. Gunakan klik atau tombol angka 1 sampai 4 di keyboard.</p>
+          <p class="page-sub" style="margin:0 auto 16px;">Latih refleks kosakata dari ${sprintPoolCount} kartu aktif ${esc(meta.name_id)}. Gunakan klik atau tombol angka 1 sampai 4 di keyboard.</p>
+          <div style="max-width:340px;margin:0 auto 18px;text-align:left;">
+            <label for="sprint-mod-select" class="field-label-sm">Sumber Kosakata Sprint</label>
+            <select id="sprint-mod-select" class="lang-select">${sprintOpts}</select>
+          </div>
           <div class="kpi-strip" style="grid-template-columns:repeat(2,minmax(0,1fr));max-width:420px;margin:0 auto 22px;">
             <div class="kpi-card">
               <div class="kpi-label">Rekor Terbaik (${esc(meta.name_id)})</div>
@@ -3638,7 +3724,11 @@
   // VIEW 12: KANVAS LATIHAN TULIS AKSARA
   // ==========================================================================
   function getWritingItems(pack) {
-    const base = (pack && Array.isArray(pack.flashcards)) ? pack.flashcards : [];
+    const all = (pack && Array.isArray(pack.flashcards)) ? pack.flashcards : [];
+    const filtered = (ui.writeModule && ui.writeModule !== 'ALL')
+      ? all.filter((c) => c.module_id === ui.writeModule)
+      : all;
+    const base = filtered.length ? filtered : all;
     if (ui.writeCustomItem && !base.some((c) => c.id === ui.writeCustomItem.id)) {
       return [ui.writeCustomItem, ...base];
     }
@@ -3670,7 +3760,14 @@
             <span class="tag jade">Dilatih: ${practicedCount}/${items.length}</span>
           </div>
           <h1 class="page-title">Kanvas Latihan Tulis Aksara</h1>
-          <p class="page-sub">Tiru bentuk aksara langsung di kanvas pakai mouse, trackpad, atau layar sentuh. Aktifkan bayangan panduan jika baru pertama kali menulisnya.</p>
+          <p class="page-sub">Tiru bentuk aksara dan kosakata modul langsung di kanvas pakai mouse, trackpad, atau layar sentuh.</p>
+        </div>
+        <div class="toolbar-group">
+          <label for="write-mod-select" class="sr-only">Filter modul latihan tulis</label>
+          <select id="write-mod-select" class="lang-select" style="width:auto;min-width:210px;">
+            <option value="ALL" ${ui.writeModule === 'ALL' ? 'selected' : ''}>Semua Modul (${pack.flashcards.length} kata)</option>
+            ${pack.modules.map((m) => `<option value="${esc(m.id)}" ${ui.writeModule === m.id ? 'selected' : ''}>${esc(m.level)} · ${esc(cleanModuleTitle(m))}</option>`).join('')}
+          </select>
         </div>
       </div>
 
@@ -4152,8 +4249,15 @@
     const pct = totalTasks > 0 ? Math.round((doneTasks / totalTasks) * 100) : 0;
     const goalLabel = plan.goal === 'exam' ? 'Persiapan Ujian' : plan.goal === 'travel' ? 'Liburan & Travel' : 'Percakapan Harian';
 
-    const daysHtml = plan.days.slice(0, 14).map((d) => {
+    const prof = Store.getProficiencyMeta(state, state.activeLang, pack.language && pack.language.roadmap_levels);
+    const allowedSet = new Set(prof.allowedLevels);
+    const orderedMods = (pack.modules || []).slice().sort((a, b) => (a.order || 0) - (b.order || 0));
+    const tierMods = orderedMods.filter((m) => allowedSet.has(m.level));
+    const planModPool = tierMods.length ? tierMods : orderedMods;
+
+    const daysHtml = plan.days.slice(0, 14).map((d, dIdx) => {
       const allDone = d.tasks.every((t) => doneMap[t.id]);
+      const dayMod = planModPool.length ? planModPool[dIdx % planModPool.length] : null;
       return `
         <article class="card plan-day-card ${allDone ? 'completed' : ''}">
           <div class="toolbar-row" style="margin-bottom:10px;">
@@ -4166,16 +4270,21 @@
           <div class="plan-task-list">
             ${d.tasks.map((t) => {
               const checked = Boolean(doneMap[t.id]);
+              const isModTask = t.nav === 'modules' && dayMod;
+              const taskLabel = isModTask ? `${t.label} (${cleanModuleTitle(dayMod)})` : t.label;
+              const btnAttrs = isModTask
+                ? `data-action="lesson-start" data-mod="${esc(dayMod.id)}"`
+                : `data-nav="${esc(t.nav)}"`;
               return `
                 <div class="plan-task-row ${checked ? 'is-done' : ''}">
-                  <button type="button" class="plan-check-btn ${checked ? 'checked' : ''}" data-action="plan-toggle-task" data-tid="${esc(t.id)}" aria-pressed="${checked}" aria-label="Tandai tugas ${esc(t.label)}">
+                  <button type="button" class="plan-check-btn ${checked ? 'checked' : ''}" data-action="plan-toggle-task" data-tid="${esc(t.id)}" aria-pressed="${checked}" aria-label="Tandai tugas ${esc(taskLabel)}">
                     ${checked ? ICONS.check : ''}
                   </button>
                   <div class="plan-task-body">
-                    <div class="plan-task-title">${esc(t.label)}</div>
+                    <div class="plan-task-title">${esc(taskLabel)}</div>
                     <div class="kpi-label">Estimasi ${t.minutes} menit</div>
                   </div>
-                  <button type="button" class="btn-secondary btn-sm" data-nav="${esc(t.nav)}">Mulai</button>
+                  <button type="button" class="btn-secondary btn-sm" ${btnAttrs}>Mulai</button>
                 </div>
               `;
             }).join('')}
@@ -4335,22 +4444,41 @@
   function buildExamTryoutQuestions() {
     const pack = getActivePack();
     const qs = [];
-    if (pack && Array.isArray(pack.quizzes)) {
-      pack.quizzes.filter((q) => q.type === 'multiple_choice' && Array.isArray(q.options)).slice(0, 5).forEach((q) => {
-        qs.push({
-          id: q.id,
-          category: 'Kosakata & Tata Bahasa',
-          prompt: q.prompt,
-          options: q.options,
-          answer: q.options[q.answer_index],
-          explanation: q.explanation_id || ''
-        });
-      });
+    const seenPrompts = new Set();
+
+    if (pack && Array.isArray(pack.modules)) {
+      const prof = Store.getProficiencyMeta(state, state.activeLang, pack.language && pack.language.roadmap_levels);
+      const allowedSet = new Set(prof.allowedLevels);
+      const tierMods = pack.modules.filter((m) => allowedSet.has(m.level));
+      const modPool = tierMods.length ? tierMods : pack.modules;
+      const shuffledMods = modPool.slice().sort(() => Math.random() - 0.5);
+
+      for (const mod of shuffledMods) {
+        if (qs.length >= 6) break;
+        const modQs = CE && typeof CE.synthesizeLessonMcQuizzes === 'function'
+          ? CE.synthesizeLessonMcQuizzes(pack, mod.id, 4)
+          : (pack.quizzes || []).filter((q) => q.module_id === mod.id && (q.type === 'multiple_choice' || q.type === 'fill_blank') && Array.isArray(q.options));
+        for (const q of modQs) {
+          if (qs.length >= 6) break;
+          const ans = q.answer || (typeof q.answer_index === 'number' ? q.options[q.answer_index] : null);
+          const key = String(q.prompt || '').trim().toLowerCase();
+          if (!ans || !key || seenPrompts.has(key)) continue;
+          seenPrompts.add(key);
+          qs.push({
+            id: q.id || `tryout-m-${qs.length}`,
+            category: `Modul ${mod.level} · Kosakata & Tata Bahasa`,
+            prompt: q.prompt,
+            options: q.options.slice().sort(() => Math.random() - 0.5),
+            answer: ans,
+            explanation: q.explanation || q.explanation_id || ''
+          });
+        }
+      }
     }
     const conj = CONJUGATION_DATA && CONJUGATION_DATA[state.activeLang];
     if (conj && Array.isArray(conj.items)) {
-      conj.items.slice(0, 3).forEach((c) => {
-        const opts = [c.answer, ...(c.distractors || [])].sort();
+      conj.items.slice().sort(() => Math.random() - 0.5).slice(0, 2).forEach((c) => {
+        const opts = [c.answer, ...(c.distractors || [])].sort(() => Math.random() - 0.5);
         qs.push({
           id: `tryout-${c.id}`,
           category: 'Pola Bentuk & Konjugasi',
@@ -5215,7 +5343,8 @@
           break;
         case 'reading-save-srs': {
           const pack = getActivePack();
-          const reading = pack && pack.readings.find((r) => r.id === ui.readingId);
+          const allReadings = pack && CE ? CE.getAllReadingsForPack(pack) : (pack ? pack.readings : []);
+          const reading = allReadings.find((r) => r.id === ui.readingId);
           const sent = reading && ui.readingToken && reading.sentences[ui.readingToken.sIdx];
           const tok = sent && sent.tokens[ui.readingToken.tIdx];
           if (!pack || !tok) return;
@@ -5601,7 +5730,7 @@
           if (ui.lessonCardIdx + 1 < modCards.length) {
             ui.lessonCardIdx++;
           } else {
-            ui.lessonStep = ui.lessonQuizList.length ? 3 : 4;
+            ui.lessonStep = 3;
           }
           renderView();
           break;
@@ -5629,7 +5758,7 @@
             ui.lessonQuizIdx++;
             ui.lessonQuizPicked = null;
           } else {
-            ui.lessonStep = 4;
+            ui.lessonStep = 5;
             state.completedModules[state.activeLang] = state.completedModules[state.activeLang] || {};
             if (ui.lessonModId && !state.completedModules[state.activeLang][ui.lessonModId]) {
               state.completedModules[state.activeLang][ui.lessonModId] = true;
@@ -5673,7 +5802,8 @@
           break;
         case 'mine-from-reading': {
           const pack = getActivePack();
-          const reading = pack && pack.readings.find((r) => r.id === ui.readingId);
+          const allReadings = pack && CE ? CE.getAllReadingsForPack(pack) : (pack ? pack.readings : []);
+          const reading = allReadings.find((r) => r.id === ui.readingId);
           const sent = reading && ui.readingToken && reading.sentences[ui.readingToken.sIdx];
           const tok = sent && sent.tokens[ui.readingToken.tIdx];
           if (tok && sent) {
@@ -5895,6 +6025,28 @@
         ui.readingId = ev.target.value;
         ui.readingToken = null;
         ui.readingCompAnswer = null;
+        renderView();
+      } else if (id === 'dict-mod-select') {
+        ui.dictModule = ev.target.value;
+        ui.dictBatchIds = [];
+        renderView();
+      } else if (id === 'sprint-mod-select') {
+        const val = ev.target.value;
+        if (val === 'LEVEL') {
+          ui.sprintScope = 'level';
+          ui.sprintModule = 'ALL';
+        } else if (val === 'ALL') {
+          ui.sprintScope = 'all';
+          ui.sprintModule = 'ALL';
+        } else {
+          ui.sprintScope = 'module';
+          ui.sprintModule = val;
+        }
+        renderView();
+      } else if (id === 'write-mod-select') {
+        ui.writeModule = ev.target.value;
+        ui.writeIndex = 0;
+        ui.writeStrokes = [];
         renderView();
       } else if (id === 'template-lang-select') {
         ui.settingsTemplateLang = ev.target.value;
