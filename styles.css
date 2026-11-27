@@ -3434,99 +3434,8 @@ kbd.mono {
 }
 
 /* ==========================================================================
-   View 13: Pengenalan Aksara (Script / Alphabet Trainer)
+   View 13: Pengenalan Aksara (Latin Highlights — Legacy 46-tile grid pruned)
    ========================================================================== */
-.script-layout {
-  display: grid;
-  grid-template-columns: minmax(0, 1.35fr) minmax(270px, 340px);
-  gap: 20px;
-  align-items: start;
-}
-
-.script-grid {
-  display: grid;
-  grid-template-columns: repeat(var(--script-cols, 5), minmax(0, 1fr));
-  gap: 10px;
-}
-
-.script-tile {
-  min-height: 76px;
-  padding: 10px 6px;
-  border-radius: 12px;
-  border: 1px solid var(--border);
-  border-bottom-width: 3px;
-  background: var(--surface);
-  color: var(--ink);
-  font-family: inherit;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 3px;
-  transition: transform 0.14s ease, border-color 0.14s ease, background-color 0.14s ease, box-shadow 0.14s ease;
-}
-
-.script-tile:hover {
-  transform: translateY(-2px);
-  border-color: var(--accent);
-  box-shadow: var(--shadow-card);
-}
-
-.script-tile:active {
-  transform: translateY(1px);
-}
-
-.script-tile.active {
-  background: var(--accent-soft);
-  border-color: var(--accent);
-  color: var(--accent-text);
-}
-
-.script-tile.learned {
-  background: var(--jade-soft);
-  border-color: light-dark(#8BCBB0, #2A644F);
-}
-
-.script-tile.learned.active {
-  border-color: var(--accent);
-}
-
-.script-char {
-  font-size: 1.55rem;
-  font-weight: 700;
-  line-height: 1.15;
-}
-
-.script-romaji {
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
-  color: var(--ink-muted);
-  text-align: center;
-  direction: ltr;
-  unicode-bidi: isolate;
-  max-width: 100%;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-.script-inspector {
-  position: sticky;
-  top: calc(var(--topbar-h) + 18px);
-}
-
-.script-big-glyph {
-  font-size: 4.2rem;
-  font-weight: 700;
-  line-height: 1.1;
-  text-align: center;
-  padding: 18px 10px;
-  background: var(--surface-subtle);
-  border: 1px solid var(--border);
-  border-radius: 14px;
-  margin: 12px 0;
-}
-
 .latin-highlight-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
@@ -4682,26 +4591,6 @@ body {
 
 .hero-level-col.done {
   background: var(--jade);
-}
-
-.hero-cta-ghost {
-  background: var(--surface);
-  color: var(--ink);
-  border: 2px solid var(--border-brutal);
-  box-shadow: 3px 3px 0 var(--border-brutal);
-  font-weight: 700;
-}
-
-.hero-cta-ghost:hover {
-  background: var(--sky);
-  color: #111111;
-  transform: translate(-1px, -1px);
-  box-shadow: 4px 4px 0 var(--border-brutal);
-}
-
-.hero-cta-ghost:active {
-  transform: translate(3px, 3px);
-  box-shadow: 0 0 0 var(--border-brutal);
 }
 
 .mini-metric {

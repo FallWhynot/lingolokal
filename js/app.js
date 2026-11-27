@@ -73,6 +73,8 @@
   let unsavedSeconds = 0;
   let chartInstance = null;
   let revealTimer = null;
+  let deferredInstallPrompt = null;
+  let swRegistered = false;
 
   // Per-view transient UI state
   const ui = {
@@ -4518,6 +4520,20 @@
           </div>
         </section>
 
+        <!-- PWA & Offline Status -->
+        <section class="card">
+          <div class="toolbar-group" style="margin-bottom:6px;">
+            <span class="tag ${swRegistered ? 'jade' : 'accent'}">${swRegistered ? 'PWA Siap Offline' : 'Mode Lokal'}</span>
+            <span class="tag">${navigator.onLine ? 'Online' : 'Offline'}</span>
+          </div>
+          <h2 style="font-size:1.05rem;font-weight:700;margin-bottom:6px;">Aplikasi Offline (PWA) & Panduan Awal</h2>
+          <p class="kpi-label" style="margin-bottom:14px;">LingoLokal menyimpan seluruh aset dan progres langsung di perangkat Anda agar tetap bisa dibuka tanpa sinyal internet.</p>
+          <div class="toolbar-group">
+            ${deferredInstallPrompt ? `<button type="button" class="btn-primary" data-action="pwa-install">Install ke Layar Utama</button>` : `<span class="kpi-label" style="font-size:0.82rem;">Tips install: di Chrome/Edge pilih <strong>Install App</strong> di menu browser; di iOS Safari ketuk <strong>Share -> Add to Home Screen</strong>.</span>`}
+            <button type="button" class="btn-secondary" data-action="open-onboarding">Ulangi Panduan Awal (20 Detik)</button>
+          </div>
+        </section>
+
         <!-- Danger Zone: Reset -->
         <section class="card">
           <h2 style="font-size:1.05rem;font-weight:700;margin-bottom:6px;">Reset Semua Data Lokal</h2>
@@ -5180,6 +5196,19 @@
         case 'open-onboarding':
           openOnboardingModal(true);
           break;
+        case 'pwa-install':
+          if (deferredInstallPrompt) {
+            deferredInstallPrompt.prompt();
+            try {
+              const choice = await deferredInstallPrompt.userChoice;
+              if (choice && choice.outcome === 'accepted') {
+                showToast('LingoLokal berhasil ditambahkan ke perangkat Anda!', 'success');
+              }
+            } catch (_e) {}
+            deferredInstallPrompt = null;
+            renderView();
+          }
+          break;
         // --- Skill Tree ---
         case 'mod-view-mode':
           ui.modViewMode = actEl.getAttribute('data-val') || 'tree';
@@ -5712,6 +5741,33 @@
     });
   }
 
+  function initPwaSupport() {
+    global.addEventListener('beforeinstallprompt', (ev) => {
+      ev.preventDefault();
+      deferredInstallPrompt = ev;
+      if (currentView === 'settings') renderView();
+    });
+    global.addEventListener('appinstalled', () => {
+      deferredInstallPrompt = null;
+      if (currentView === 'settings') renderView();
+    });
+    global.addEventListener('offline', () => {
+      showToast('Mode Offline aktif. Semua materi & progres tetap aman tersimpan lokal.', 'default');
+    });
+    global.addEventListener('online', () => {
+      showToast('Koneksi kembali online.', 'success');
+    });
+    const isHttp = global.location && (global.location.protocol === 'http:' || global.location.protocol === 'https:');
+    if (isHttp && 'serviceWorker' in navigator) {
+      navigator.serviceWorker.register('./sw.js')
+        .then(() => {
+          swRegistered = true;
+          if (currentView === 'settings') renderView();
+        })
+        .catch(() => {});
+    }
+  }
+
   // --- Bootstrap ---
   async function init() {
     applyColorScheme(getStoredScheme());
@@ -5719,6 +5775,7 @@
     initDialogs();
     bindGlobalEvents();
     bindOnboardingEvents();
+    initPwaSupport();
 
     state = await Store.loadState();
     Store.detectNewlyUnlockedAchievements(state);
