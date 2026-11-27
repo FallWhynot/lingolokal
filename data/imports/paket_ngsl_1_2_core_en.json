@@ -1,0 +1,3209 @@
+{
+  "schema_version": "1.0",
+  "language": {
+    "code": "en",
+    "name_id": "Inggris",
+    "name_native": "English",
+    "tts_lang": "en-US",
+    "script_type": "latin",
+    "phonetic_input": "none",
+    "roadmap_levels": [
+      "A0",
+      "A1",
+      "A2",
+      "B1",
+      "B2",
+      "C1",
+      "C2"
+    ]
+  },
+  "modules": [
+    {
+      "id": "en-ngsl12-m01",
+      "level": "A1",
+      "order": 41,
+      "title": "NGSL 1.2 Frekuensi #1: Peringkat 432–1166 (40 Kata)",
+      "category": "ngsl-core",
+      "estimated_minutes": 25,
+      "objectives": [
+        "Menguasai 40 kosakata frekuensi tinggi NGSL 1.2 (peringkat SFI 432–1166)",
+        "Mengenali bentuk kata turunan (lemmas) untuk mempercepat pemahaman bacaan dan ujian"
+      ]
+    },
+    {
+      "id": "en-ngsl12-m02",
+      "level": "A2",
+      "order": 42,
+      "title": "NGSL 1.2 Frekuensi #2: Peringkat 1172–1658 (40 Kata)",
+      "category": "ngsl-core",
+      "estimated_minutes": 25,
+      "objectives": [
+        "Menguasai 40 kosakata frekuensi tinggi NGSL 1.2 (peringkat SFI 1172–1658)",
+        "Mengenali bentuk kata turunan (lemmas) untuk mempercepat pemahaman bacaan dan ujian"
+      ]
+    },
+    {
+      "id": "en-ngsl12-m03",
+      "level": "B1",
+      "order": 43,
+      "title": "NGSL 1.2 Frekuensi #3: Peringkat 1715–2358 (40 Kata)",
+      "category": "ngsl-core",
+      "estimated_minutes": 25,
+      "objectives": [
+        "Menguasai 40 kosakata frekuensi tinggi NGSL 1.2 (peringkat SFI 1715–2358)",
+        "Mengenali bentuk kata turunan (lemmas) untuk mempercepat pemahaman bacaan dan ujian"
+      ]
+    },
+    {
+      "id": "en-ngsl12-m04",
+      "level": "B2",
+      "order": 44,
+      "title": "NGSL 1.2 Frekuensi #4: Peringkat 2394–2751 (21 Kata)",
+      "category": "ngsl-core",
+      "estimated_minutes": 25,
+      "objectives": [
+        "Menguasai 21 kosakata frekuensi tinggi NGSL 1.2 (peringkat SFI 2394–2751)",
+        "Mengenali bentuk kata turunan (lemmas) untuk mempercepat pemahaman bacaan dan ujian"
+      ]
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "en-ngsl12-m01-fc-001",
+      "module_id": "en-ngsl12-m01",
+      "level": "A1",
+      "category": "ngsl-core",
+      "front": "activity",
+      "reading": "activity",
+      "romaji": "",
+      "meaning_id": "aktivitas / kegiatan",
+      "mnemonic": "NGSL 1.2 · Peringkat #432 · Bentuk kata: activities",
+      "example_native": "",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-ngsl12-m01-fc-002",
+      "module_id": "en-ngsl12-m01",
+      "level": "A1",
+      "category": "ngsl-core",
+      "front": "account",
+      "reading": "account",
+      "romaji": "",
+      "meaning_id": "akun / rekening / laporan",
+      "mnemonic": "NGSL 1.2 · Peringkat #436 · Bentuk kata: accounts, accounted, accounting",
+      "example_native": "",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-ngsl12-m01-fc-003",
+      "module_id": "en-ngsl12-m01",
+      "level": "A1",
+      "category": "ngsl-core",
+      "front": "certain",
+      "reading": "certain",
+      "romaji": "",
+      "meaning_id": "yakin / pasti",
+      "mnemonic": "NGSL 1.2 · Peringkat #451",
+      "example_native": "",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-ngsl12-m01-fc-004",
+      "module_id": "en-ngsl12-m01",
+      "level": "A1",
+      "category": "ngsl-core",
+      "front": "claim",
+      "reading": "claim",
+      "romaji": "",
+      "meaning_id": "mengklaim / menyatakan",
+      "mnemonic": "NGSL 1.2 · Peringkat #501 · Bentuk kata: claims, claimed, claiming",
+      "example_native": "",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-ngsl12-m01-fc-005",
+      "module_id": "en-ngsl12-m01",
+      "level": "A1",
+      "category": "ngsl-core",
+      "front": "certainly",
+      "reading": "certainly",
+      "romaji": "",
+      "meaning_id": "tentu saja / pasti",
+      "mnemonic": "NGSL 1.2 · Peringkat #536",
+      "example_native": "",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-ngsl12-m01-fc-006",
+      "module_id": "en-ngsl12-m01",
+      "level": "A1",
+      "category": "ngsl-core",
+      "front": "address",
+      "reading": "address",
+      "romaji": "",
+      "meaning_id": "alamat / menangani suatu masalah",
+      "mnemonic": "NGSL 1.2 · Peringkat #558 · Bentuk kata: addresses, addressed, addressing",
+      "example_native": "",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-ngsl12-m01-fc-007",
+      "module_id": "en-ngsl12-m01",
+      "level": "A1",
+      "category": "ngsl-core",
+      "front": "accept",
+      "reading": "accept",
+      "romaji": "",
+      "meaning_id": "menerima sesuatu yang ditawarkan",
+      "mnemonic": "NGSL 1.2 · Peringkat #561 · Bentuk kata: accepts, accepted, accepting",
+      "example_native": "",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-ngsl12-m01-fc-008",
+      "module_id": "en-ngsl12-m01",
+      "level": "A1",
+      "category": "ngsl-core",
+      "front": "attention",
+      "reading": "attention",
+      "romaji": "",
+      "meaning_id": "perhatian",
+      "mnemonic": "NGSL 1.2 · Peringkat #578 · Bentuk kata: attentions",
+      "example_native": "",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-ngsl12-m01-fc-009",
+      "module_id": "en-ngsl12-m01",
+      "level": "A1",
+      "category": "ngsl-core",
+      "front": "century",
+      "reading": "century",
+      "romaji": "",
+      "meaning_id": "abad (100 tahun)",
+      "mnemonic": "NGSL 1.2 · Peringkat #591 · Bentuk kata: centuries",
+      "example_native": "",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-ngsl12-m01-fc-010",
+      "module_id": "en-ngsl12-m01",
+      "level": "A1",
+      "category": "ngsl-core",
+      "front": "apply",
+      "reading": "apply",
+      "romaji": "",
+      "meaning_id": "melamar / menerapkan",
+      "mnemonic": "NGSL 1.2 · Peringkat #611 · Bentuk kata: applies, applied, applying",
+      "example_native": "",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-ngsl12-m01-fc-011",
+      "module_id": "en-ngsl12-m01",
+      "level": "A1",
+      "category": "ngsl-core",
+      "front": "article",
+      "reading": "article",
+      "romaji": "",
+      "meaning_id": "artikel / tulisan",
+      "mnemonic": "NGSL 1.2 · Peringkat #630 · Bentuk kata: articles, articled, articling",
+      "example_native": "",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-ngsl12-m01-fc-012",
+      "module_id": "en-ngsl12-m01",
+      "level": "A1",
+      "category": "ngsl-core",
+      "front": "affect",
+      "reading": "affect",
+      "romaji": "",
+      "meaning_id": "memengaruhi",
+      "mnemonic": "NGSL 1.2 · Peringkat #639 · Bentuk kata: affects, affected, affecting",
+      "example_native": "",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-ngsl12-m01-fc-013",
+      "module_id": "en-ngsl12-m01",
+      "level": "A1",
+      "category": "ngsl-core",
+      "front": "campaign",
+      "reading": "campaign",
+      "romaji": "",
+      "meaning_id": "kampanye",
+      "mnemonic": "NGSL 1.2 · Peringkat #647 · Bentuk kata: campaigns, campaigned, campaigning",
+      "example_native": "",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-ngsl12-m01-fc-014",
+      "module_id": "en-ngsl12-m01",
+      "level": "A1",
+      "category": "ngsl-core",
+      "front": "average",
+      "reading": "average",
+      "romaji": "",
+      "meaning_id": "rata-rata / biasa",
+      "mnemonic": "NGSL 1.2 · Peringkat #690 · Bentuk kata: averages, averaged, averaging",
+      "example_native": "",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-ngsl12-m01-fc-015",
+      "module_id": "en-ngsl12-m01",
+      "level": "A1",
+      "category": "ngsl-core",
+      "front": "argue",
+      "reading": "argue",
+      "romaji": "",
+      "meaning_id": "berargumen / berdebat",
+      "mnemonic": "NGSL 1.2 · Peringkat #740 · Bentuk kata: argues, argued, arguing",
+      "example_native": "",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-ngsl12-m01-fc-016",
+      "module_id": "en-ngsl12-m01",
+      "level": "A1",
+      "category": "ngsl-core",
+      "front": "analysis",
+      "reading": "analysis",
+      "romaji": "",
+      "meaning_id": "analisis / kajian mendalam",
+      "mnemonic": "NGSL 1.2 · Peringkat #756 · Bentuk kata: analyses",
+      "example_native": "",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-ngsl12-m01-fc-017",
+      "module_id": "en-ngsl12-m01",
+      "level": "A1",
+      "category": "ngsl-core",
+      "front": "ability",
+      "reading": "ability",
+      "romaji": "",
+      "meaning_id": "kemampuan atau keterampilan melakukan sesuatu",
+      "mnemonic": "NGSL 1.2 · Peringkat #779 · Bentuk kata: abilities",
+      "example_native": "",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-ngsl12-m01-fc-018",
+      "module_id": "en-ngsl12-m01",
+      "level": "A1",
+      "category": "ngsl-core",
+      "front": "agreement",
+      "reading": "agreement",
+      "romaji": "",
+      "meaning_id": "kesepakatan / perjanjian",
+      "mnemonic": "NGSL 1.2 · Peringkat #785 · Bentuk kata: agreements",
+      "example_native": "",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-ngsl12-m01-fc-019",
+      "module_id": "en-ngsl12-m01",
+      "level": "A1",
+      "category": "ngsl-core",
+      "front": "access",
+      "reading": "access",
+      "romaji": "",
+      "meaning_id": "akses / jalan masuk",
+      "mnemonic": "NGSL 1.2 · Peringkat #802 · Bentuk kata: accesses, accessed, accessing",
+      "example_native": "",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-ngsl12-m01-fc-020",
+      "module_id": "en-ngsl12-m01",
+      "level": "A1",
+      "category": "ngsl-core",
+      "front": "attend",
+      "reading": "attend",
+      "romaji": "",
+      "meaning_id": "menghadiri",
+      "mnemonic": "NGSL 1.2 · Peringkat #820 · Bentuk kata: attends, attended, attending",
+      "example_native": "",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-ngsl12-m01-fc-021",
+      "module_id": "en-ngsl12-m01",
+      "level": "A1",
+      "category": "ngsl-core",
+      "front": "beyond",
+      "reading": "beyond",
+      "romaji": "",
+      "meaning_id": "melampaui / di luar jangkauan",
+      "mnemonic": "NGSL 1.2 · Peringkat #826",
+      "example_native": "",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-ngsl12-m01-fc-022",
+      "module_id": "en-ngsl12-m01",
+      "level": "A1",
+      "category": "ngsl-core",
+      "front": "advance",
+      "reading": "advance",
+      "romaji": "",
+      "meaning_id": "maju / perkembangan",
+      "mnemonic": "NGSL 1.2 · Peringkat #844 · Bentuk kata: advances, advanced, advancing",
+      "example_native": "",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-ngsl12-m01-fc-023",
+      "module_id": "en-ngsl12-m01",
+      "level": "A1",
+      "category": "ngsl-core",
+      "front": "associate",
+      "reading": "associate",
+      "romaji": "",
+      "meaning_id": "rekan kerja / mengaitkan",
+      "mnemonic": "NGSL 1.2 · Peringkat #857 · Bentuk kata: associates, associated, associating",
+      "example_native": "",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-ngsl12-m01-fc-024",
+      "module_id": "en-ngsl12-m01",
+      "level": "A1",
+      "category": "ngsl-core",
+      "front": "argument",
+      "reading": "argument",
+      "romaji": "",
+      "meaning_id": "argumen / perdebatan",
+      "mnemonic": "NGSL 1.2 · Peringkat #879 · Bentuk kata: arguments",
+      "example_native": "",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-ngsl12-m01-fc-025",
+      "module_id": "en-ngsl12-m01",
+      "level": "A1",
+      "category": "ngsl-core",
+      "front": "application",
+      "reading": "application",
+      "romaji": "",
+      "meaning_id": "lamaran / aplikasi",
+      "mnemonic": "NGSL 1.2 · Peringkat #884 · Bentuk kata: applications",
+      "example_native": "",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-ngsl12-m01-fc-026",
+      "module_id": "en-ngsl12-m01",
+      "level": "A1",
+      "category": "ngsl-core",
+      "front": "central",
+      "reading": "central",
+      "romaji": "",
+      "meaning_id": "pusat / utama",
+      "mnemonic": "NGSL 1.2 · Peringkat #891 · Bentuk kata: centrals",
+      "example_native": "",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-ngsl12-m01-fc-027",
+      "module_id": "en-ngsl12-m01",
+      "level": "A1",
+      "category": "ngsl-core",
+      "front": "career",
+      "reading": "career",
+      "romaji": "",
+      "meaning_id": "karier",
+      "mnemonic": "NGSL 1.2 · Peringkat #892 · Bentuk kata: careers, careered, careering",
+      "example_native": "",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-ngsl12-m01-fc-028",
+      "module_id": "en-ngsl12-m01",
+      "level": "A1",
+      "category": "ngsl-core",
+      "front": "basis",
+      "reading": "basis",
+      "romaji": "",
+      "meaning_id": "dasar / landasan",
+      "mnemonic": "NGSL 1.2 · Peringkat #909",
+      "example_native": "",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-ngsl12-m01-fc-029",
+      "module_id": "en-ngsl12-m01",
+      "level": "A1",
+      "category": "ngsl-core",
+      "front": "author",
+      "reading": "author",
+      "romaji": "",
+      "meaning_id": "penulis",
+      "mnemonic": "NGSL 1.2 · Peringkat #910 · Bentuk kata: authors, authored, authoring",
+      "example_native": "",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-ngsl12-m01-fc-030",
+      "module_id": "en-ngsl12-m01",
+      "level": "A1",
+      "category": "ngsl-core",
+      "front": "basic",
+      "reading": "basic",
+      "romaji": "",
+      "meaning_id": "dasar / mendasar",
+      "mnemonic": "NGSL 1.2 · Peringkat #911 · Bentuk kata: basics",
+      "example_native": "",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-ngsl12-m01-fc-031",
+      "module_id": "en-ngsl12-m01",
+      "level": "A1",
+      "category": "ngsl-core",
+      "front": "agency",
+      "reading": "agency",
+      "romaji": "",
+      "meaning_id": "agensi / badan layanan",
+      "mnemonic": "NGSL 1.2 · Peringkat #970 · Bentuk kata: agencies",
+      "example_native": "",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-ngsl12-m01-fc-032",
+      "module_id": "en-ngsl12-m01",
+      "level": "A1",
+      "category": "ngsl-core",
+      "front": "candidate",
+      "reading": "candidate",
+      "romaji": "",
+      "meaning_id": "kandidat / calon",
+      "mnemonic": "NGSL 1.2 · Peringkat #977 · Bentuk kata: candidates",
+      "example_native": "",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-ngsl12-m01-fc-033",
+      "module_id": "en-ngsl12-m01",
+      "level": "A1",
+      "category": "ngsl-core",
+      "front": "announce",
+      "reading": "announce",
+      "romaji": "",
+      "meaning_id": "mengumumkan",
+      "mnemonic": "NGSL 1.2 · Peringkat #1004 · Bentuk kata: announces, announced, announcing",
+      "example_native": "",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-ngsl12-m01-fc-034",
+      "module_id": "en-ngsl12-m01",
+      "level": "A1",
+      "category": "ngsl-core",
+      "front": "admit",
+      "reading": "admit",
+      "romaji": "",
+      "meaning_id": "mengakui",
+      "mnemonic": "NGSL 1.2 · Peringkat #1034 · Bentuk kata: admits, admitting, admitted",
+      "example_native": "",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-ngsl12-m01-fc-035",
+      "module_id": "en-ngsl12-m01",
+      "level": "A1",
+      "category": "ngsl-core",
+      "front": "administration",
+      "reading": "administration",
+      "romaji": "",
+      "meaning_id": "administrasi / pengelolaan",
+      "mnemonic": "NGSL 1.2 · Peringkat #1046 · Bentuk kata: administrations",
+      "example_native": "",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-ngsl12-m01-fc-036",
+      "module_id": "en-ngsl12-m01",
+      "level": "A1",
+      "category": "ngsl-core",
+      "front": "appeal",
+      "reading": "appeal",
+      "romaji": "",
+      "meaning_id": "daya tarik / mengajukan banding",
+      "mnemonic": "NGSL 1.2 · Peringkat #1073 · Bentuk kata: appeals, appealed, appealing",
+      "example_native": "",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-ngsl12-m01-fc-037",
+      "module_id": "en-ngsl12-m01",
+      "level": "A1",
+      "category": "ngsl-core",
+      "front": "absolutely",
+      "reading": "absolutely",
+      "romaji": "",
+      "meaning_id": "sepenuhnya / mutlak / pasti",
+      "mnemonic": "NGSL 1.2 · Peringkat #1078",
+      "example_native": "",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-ngsl12-m01-fc-038",
+      "module_id": "en-ngsl12-m01",
+      "level": "A1",
+      "category": "ngsl-core",
+      "front": "additional",
+      "reading": "additional",
+      "romaji": "",
+      "meaning_id": "tambahan",
+      "mnemonic": "NGSL 1.2 · Peringkat #1081",
+      "example_native": "",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-ngsl12-m01-fc-039",
+      "module_id": "en-ngsl12-m01",
+      "level": "A1",
+      "category": "ngsl-core",
+      "front": "attitude",
+      "reading": "attitude",
+      "romaji": "",
+      "meaning_id": "sikap",
+      "mnemonic": "NGSL 1.2 · Peringkat #1094 · Bentuk kata: attitudes",
+      "example_native": "",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-ngsl12-m01-fc-040",
+      "module_id": "en-ngsl12-m01",
+      "level": "A1",
+      "category": "ngsl-core",
+      "front": "audience",
+      "reading": "audience",
+      "romaji": "",
+      "meaning_id": "penonton / audiens",
+      "mnemonic": "NGSL 1.2 · Peringkat #1166 · Bentuk kata: audiences",
+      "example_native": "",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-ngsl12-m02-fc-001",
+      "module_id": "en-ngsl12-m02",
+      "level": "A2",
+      "category": "ngsl-core",
+      "front": "advertise",
+      "reading": "advertise",
+      "romaji": "",
+      "meaning_id": "mengiklankan",
+      "mnemonic": "NGSL 1.2 · Peringkat #1172 · Bentuk kata: advertises, advertised, advertising, advertize",
+      "example_native": "",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-ngsl12-m02-fc-002",
+      "module_id": "en-ngsl12-m02",
+      "level": "A2",
+      "category": "ngsl-core",
+      "front": "annual",
+      "reading": "annual",
+      "romaji": "",
+      "meaning_id": "tahunan",
+      "mnemonic": "NGSL 1.2 · Peringkat #1177 · Bentuk kata: annuals",
+      "example_native": "",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-ngsl12-m02-fc-003",
+      "module_id": "en-ngsl12-m02",
+      "level": "A2",
+      "category": "ngsl-core",
+      "front": "category",
+      "reading": "category",
+      "romaji": "",
+      "meaning_id": "kategori",
+      "mnemonic": "NGSL 1.2 · Peringkat #1192 · Bentuk kata: categories",
+      "example_native": "",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-ngsl12-m02-fc-004",
+      "module_id": "en-ngsl12-m02",
+      "level": "A2",
+      "category": "ngsl-core",
+      "front": "background",
+      "reading": "background",
+      "romaji": "",
+      "meaning_id": "latar belakang",
+      "mnemonic": "NGSL 1.2 · Peringkat #1223 · Bentuk kata: backgrounds",
+      "example_native": "",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-ngsl12-m02-fc-005",
+      "module_id": "en-ngsl12-m02",
+      "level": "A2",
+      "category": "ngsl-core",
+      "front": "circumstance",
+      "reading": "circumstance",
+      "romaji": "",
+      "meaning_id": "keadaan / situasi",
+      "mnemonic": "NGSL 1.2 · Peringkat #1229 · Bentuk kata: circumstances",
+      "example_native": "",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-ngsl12-m02-fc-006",
+      "module_id": "en-ngsl12-m02",
+      "level": "A2",
+      "category": "ngsl-core",
+      "front": "adopt",
+      "reading": "adopt",
+      "romaji": "",
+      "meaning_id": "mengadopsi / menerapkan",
+      "mnemonic": "NGSL 1.2 · Peringkat #1243 · Bentuk kata: adopts, adopted, adopting",
+      "example_native": "",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-ngsl12-m02-fc-007",
+      "module_id": "en-ngsl12-m02",
+      "level": "A2",
+      "category": "ngsl-core",
+      "front": "appreciate",
+      "reading": "appreciate",
+      "romaji": "",
+      "meaning_id": "menghargai / berterima kasih",
+      "mnemonic": "NGSL 1.2 · Peringkat #1274 · Bentuk kata: appreciates, appreciated, appreciating",
+      "example_native": "",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-ngsl12-m02-fc-008",
+      "module_id": "en-ngsl12-m02",
+      "level": "A2",
+      "category": "ngsl-core",
+      "front": "chapter",
+      "reading": "chapter",
+      "romaji": "",
+      "meaning_id": "bab",
+      "mnemonic": "NGSL 1.2 · Peringkat #1275 · Bentuk kata: chapters",
+      "example_native": "",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-ngsl12-m02-fc-009",
+      "module_id": "en-ngsl12-m02",
+      "level": "A2",
+      "category": "ngsl-core",
+      "front": "apparently",
+      "reading": "apparently",
+      "romaji": "",
+      "meaning_id": "rupanya / tampaknya",
+      "mnemonic": "NGSL 1.2 · Peringkat #1277",
+      "example_native": "",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-ngsl12-m02-fc-010",
+      "module_id": "en-ngsl12-m02",
+      "level": "A2",
+      "category": "ngsl-core",
+      "front": "attract",
+      "reading": "attract",
+      "romaji": "",
+      "meaning_id": "menarik perhatian",
+      "mnemonic": "NGSL 1.2 · Peringkat #1298 · Bentuk kata: attracts, attracted, attracting",
+      "example_native": "",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-ngsl12-m02-fc-011",
+      "module_id": "en-ngsl12-m02",
+      "level": "A2",
+      "category": "ngsl-core",
+      "front": "broad",
+      "reading": "broad",
+      "romaji": "",
+      "meaning_id": "luas / lebar",
+      "mnemonic": "NGSL 1.2 · Peringkat #1330 · Bentuk kata: broader, broadest",
+      "example_native": "",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-ngsl12-m02-fc-012",
+      "module_id": "en-ngsl12-m02",
+      "level": "A2",
+      "category": "ngsl-core",
+      "front": "actual",
+      "reading": "actual",
+      "romaji": "",
+      "meaning_id": "nyata / sebenarnya",
+      "mnemonic": "NGSL 1.2 · Peringkat #1335",
+      "example_native": "",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-ngsl12-m02-fc-013",
+      "module_id": "en-ngsl12-m02",
+      "level": "A2",
+      "category": "ngsl-core",
+      "front": "award",
+      "reading": "award",
+      "romaji": "",
+      "meaning_id": "penghargaan / hadiah",
+      "mnemonic": "NGSL 1.2 · Peringkat #1341 · Bentuk kata: awards, awarded, awarding",
+      "example_native": "",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-ngsl12-m02-fc-014",
+      "module_id": "en-ngsl12-m02",
+      "level": "A2",
+      "category": "ngsl-core",
+      "front": "accident",
+      "reading": "accident",
+      "romaji": "",
+      "meaning_id": "kecelakaan / kejadian tak terduga",
+      "mnemonic": "NGSL 1.2 · Peringkat #1349 · Bentuk kata: accidents",
+      "example_native": "",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-ngsl12-m02-fc-015",
+      "module_id": "en-ngsl12-m02",
+      "level": "A2",
+      "category": "ngsl-core",
+      "front": "branch",
+      "reading": "branch",
+      "romaji": "",
+      "meaning_id": "cabang",
+      "mnemonic": "NGSL 1.2 · Peringkat #1407 · Bentuk kata: branches, branched, branching",
+      "example_native": "",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-ngsl12-m02-fc-016",
+      "module_id": "en-ngsl12-m02",
+      "level": "A2",
+      "category": "ngsl-core",
+      "front": "bind",
+      "reading": "bind",
+      "romaji": "",
+      "meaning_id": "mengikat / menyatukan",
+      "mnemonic": "NGSL 1.2 · Peringkat #1411 · Bentuk kata: binds, binding",
+      "example_native": "",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-ngsl12-m02-fc-017",
+      "module_id": "en-ngsl12-m02",
+      "level": "A2",
+      "category": "ngsl-core",
+      "front": "belong",
+      "reading": "belong",
+      "romaji": "",
+      "meaning_id": "termasuk / menjadi bagian dari",
+      "mnemonic": "NGSL 1.2 · Peringkat #1412 · Bentuk kata: belongs, belonged, belonging, belongings",
+      "example_native": "",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-ngsl12-m02-fc-018",
+      "module_id": "en-ngsl12-m02",
+      "level": "A2",
+      "category": "ngsl-core",
+      "front": "basically",
+      "reading": "basically",
+      "romaji": "",
+      "meaning_id": "pada dasarnya",
+      "mnemonic": "NGSL 1.2 · Peringkat #1435",
+      "example_native": "",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-ngsl12-m02-fc-019",
+      "module_id": "en-ngsl12-m02",
+      "level": "A2",
+      "category": "ngsl-core",
+      "front": "affair",
+      "reading": "affair",
+      "romaji": "",
+      "meaning_id": "urusan / peristiwa",
+      "mnemonic": "NGSL 1.2 · Peringkat #1448 · Bentuk kata: affairs",
+      "example_native": "",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-ngsl12-m02-fc-020",
+      "module_id": "en-ngsl12-m02",
+      "level": "A2",
+      "category": "ngsl-core",
+      "front": "citizen",
+      "reading": "citizen",
+      "romaji": "",
+      "meaning_id": "warga negara",
+      "mnemonic": "NGSL 1.2 · Peringkat #1451 · Bentuk kata: citizens",
+      "example_native": "",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-ngsl12-m02-fc-021",
+      "module_id": "en-ngsl12-m02",
+      "level": "A2",
+      "category": "ngsl-core",
+      "front": "belief",
+      "reading": "belief",
+      "romaji": "",
+      "meaning_id": "keyakinan / kepercayaan",
+      "mnemonic": "NGSL 1.2 · Peringkat #1456 · Bentuk kata: beliefs",
+      "example_native": "",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-ngsl12-m02-fc-022",
+      "module_id": "en-ngsl12-m02",
+      "level": "A2",
+      "category": "ngsl-core",
+      "front": "arrangement",
+      "reading": "arrangement",
+      "romaji": "",
+      "meaning_id": "pengaturan / persiapan",
+      "mnemonic": "NGSL 1.2 · Peringkat #1460 · Bentuk kata: arrangements",
+      "example_native": "",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-ngsl12-m02-fc-023",
+      "module_id": "en-ngsl12-m02",
+      "level": "A2",
+      "category": "ngsl-core",
+      "front": "acquire",
+      "reading": "acquire",
+      "romaji": "",
+      "meaning_id": "memperoleh / mendapatkan",
+      "mnemonic": "NGSL 1.2 · Peringkat #1464 · Bentuk kata: acquires, acquired, acquiring",
+      "example_native": "",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-ngsl12-m02-fc-024",
+      "module_id": "en-ngsl12-m02",
+      "level": "A2",
+      "category": "ngsl-core",
+      "front": "capacity",
+      "reading": "capacity",
+      "romaji": "",
+      "meaning_id": "kapasitas / daya tampung",
+      "mnemonic": "NGSL 1.2 · Peringkat #1472 · Bentuk kata: capacities",
+      "example_native": "",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-ngsl12-m02-fc-025",
+      "module_id": "en-ngsl12-m02",
+      "level": "A2",
+      "category": "ngsl-core",
+      "front": "border",
+      "reading": "border",
+      "romaji": "",
+      "meaning_id": "perbatasan",
+      "mnemonic": "NGSL 1.2 · Peringkat #1473 · Bentuk kata: borders, bordered, bordering",
+      "example_native": "",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-ngsl12-m02-fc-026",
+      "module_id": "en-ngsl12-m02",
+      "level": "A2",
+      "category": "ngsl-core",
+      "front": "assessment",
+      "reading": "assessment",
+      "romaji": "",
+      "meaning_id": "penilaian / evaluasi",
+      "mnemonic": "NGSL 1.2 · Peringkat #1475 · Bentuk kata: assessments",
+      "example_native": "",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-ngsl12-m02-fc-027",
+      "module_id": "en-ngsl12-m02",
+      "level": "A2",
+      "category": "ngsl-core",
+      "front": "afford",
+      "reading": "afford",
+      "romaji": "",
+      "meaning_id": "mampu membayar",
+      "mnemonic": "NGSL 1.2 · Peringkat #1488 · Bentuk kata: affords, afforded, affording",
+      "example_native": "",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-ngsl12-m02-fc-028",
+      "module_id": "en-ngsl12-m02",
+      "level": "A2",
+      "category": "ngsl-core",
+      "front": "asset",
+      "reading": "asset",
+      "romaji": "",
+      "meaning_id": "aset / sesuatu yang bernilai",
+      "mnemonic": "NGSL 1.2 · Peringkat #1501 · Bentuk kata: assets",
+      "example_native": "",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-ngsl12-m02-fc-029",
+      "module_id": "en-ngsl12-m02",
+      "level": "A2",
+      "category": "ngsl-core",
+      "front": "bond",
+      "reading": "bond",
+      "romaji": "",
+      "meaning_id": "ikatan / hubungan erat",
+      "mnemonic": "NGSL 1.2 · Peringkat #1513 · Bentuk kata: bonds, bonded, bonding",
+      "example_native": "",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-ngsl12-m02-fc-030",
+      "module_id": "en-ngsl12-m02",
+      "level": "A2",
+      "category": "ngsl-core",
+      "front": "channel",
+      "reading": "channel",
+      "romaji": "",
+      "meaning_id": "saluran / kanal",
+      "mnemonic": "NGSL 1.2 · Peringkat #1532 · Bentuk kata: channels, channeled, channelled, channelling",
+      "example_native": "",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-ngsl12-m02-fc-031",
+      "module_id": "en-ngsl12-m02",
+      "level": "A2",
+      "category": "ngsl-core",
+      "front": "brand",
+      "reading": "brand",
+      "romaji": "",
+      "meaning_id": "merek",
+      "mnemonic": "NGSL 1.2 · Peringkat #1549 · Bentuk kata: brands, branded, branding",
+      "example_native": "",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-ngsl12-m02-fc-032",
+      "module_id": "en-ngsl12-m02",
+      "level": "A2",
+      "category": "ngsl-core",
+      "front": "appearance",
+      "reading": "appearance",
+      "romaji": "",
+      "meaning_id": "penampilan / kemunculan",
+      "mnemonic": "NGSL 1.2 · Peringkat #1568 · Bentuk kata: appearances",
+      "example_native": "",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-ngsl12-m02-fc-033",
+      "module_id": "en-ngsl12-m02",
+      "level": "A2",
+      "category": "ngsl-core",
+      "front": "approve",
+      "reading": "approve",
+      "romaji": "",
+      "meaning_id": "menyetujui",
+      "mnemonic": "NGSL 1.2 · Peringkat #1575 · Bentuk kata: approves, approved, approving",
+      "example_native": "",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-ngsl12-m02-fc-034",
+      "module_id": "en-ngsl12-m02",
+      "level": "A2",
+      "category": "ngsl-core",
+      "front": "atmosphere",
+      "reading": "atmosphere",
+      "romaji": "",
+      "meaning_id": "suasana / atmosfer",
+      "mnemonic": "NGSL 1.2 · Peringkat #1579 · Bentuk kata: atmospheres",
+      "example_native": "",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-ngsl12-m02-fc-035",
+      "module_id": "en-ngsl12-m02",
+      "level": "A2",
+      "category": "ngsl-core",
+      "front": "characteristic",
+      "reading": "characteristic",
+      "romaji": "",
+      "meaning_id": "karakteristik / ciri khas",
+      "mnemonic": "NGSL 1.2 · Peringkat #1582 · Bentuk kata: characteristics",
+      "example_native": "",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-ngsl12-m02-fc-036",
+      "module_id": "en-ngsl12-m02",
+      "level": "A2",
+      "category": "ngsl-core",
+      "front": "association",
+      "reading": "association",
+      "romaji": "",
+      "meaning_id": "asosiasi / perkumpulan",
+      "mnemonic": "NGSL 1.2 · Peringkat #1595 · Bentuk kata: associations",
+      "example_native": "",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-ngsl12-m02-fc-037",
+      "module_id": "en-ngsl12-m02",
+      "level": "A2",
+      "category": "ngsl-core",
+      "front": "celebrate",
+      "reading": "celebrate",
+      "romaji": "",
+      "meaning_id": "merayakan",
+      "mnemonic": "NGSL 1.2 · Peringkat #1608 · Bentuk kata: celebrates, celebrated, celebrating",
+      "example_native": "",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-ngsl12-m02-fc-038",
+      "module_id": "en-ngsl12-m02",
+      "level": "A2",
+      "category": "ngsl-core",
+      "front": "blame",
+      "reading": "blame",
+      "romaji": "",
+      "meaning_id": "menyalahkan",
+      "mnemonic": "NGSL 1.2 · Peringkat #1627 · Bentuk kata: blames, blamed, blaming",
+      "example_native": "",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-ngsl12-m02-fc-039",
+      "module_id": "en-ngsl12-m02",
+      "level": "A2",
+      "category": "ngsl-core",
+      "front": "arise",
+      "reading": "arise",
+      "romaji": "",
+      "meaning_id": "muncul / timbul",
+      "mnemonic": "NGSL 1.2 · Peringkat #1629 · Bentuk kata: arises, arose, arising, arisen",
+      "example_native": "",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-ngsl12-m02-fc-040",
+      "module_id": "en-ngsl12-m02",
+      "level": "A2",
+      "category": "ngsl-core",
+      "front": "capture",
+      "reading": "capture",
+      "romaji": "",
+      "meaning_id": "menangkap / mengabadikan",
+      "mnemonic": "NGSL 1.2 · Peringkat #1658 · Bentuk kata: captures, captured, capturing",
+      "example_native": "",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-ngsl12-m03-fc-001",
+      "module_id": "en-ngsl12-m03",
+      "level": "B1",
+      "category": "ngsl-core",
+      "front": "attractive",
+      "reading": "attractive",
+      "romaji": "",
+      "meaning_id": "menarik",
+      "mnemonic": "NGSL 1.2 · Peringkat #1715",
+      "example_native": "",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-ngsl12-m03-fc-002",
+      "module_id": "en-ngsl12-m03",
+      "level": "B1",
+      "category": "ngsl-core",
+      "front": "ancient",
+      "reading": "ancient",
+      "romaji": "",
+      "meaning_id": "kuno / sangat tua",
+      "mnemonic": "NGSL 1.2 · Peringkat #1727 · Bentuk kata: ancients",
+      "example_native": "",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-ngsl12-m03-fc-003",
+      "module_id": "en-ngsl12-m03",
+      "level": "B1",
+      "category": "ngsl-core",
+      "front": "assistant",
+      "reading": "assistant",
+      "romaji": "",
+      "meaning_id": "asisten",
+      "mnemonic": "NGSL 1.2 · Peringkat #1739 · Bentuk kata: assistants",
+      "example_native": "",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-ngsl12-m03-fc-004",
+      "module_id": "en-ngsl12-m03",
+      "level": "B1",
+      "category": "ngsl-core",
+      "front": "chart",
+      "reading": "chart",
+      "romaji": "",
+      "meaning_id": "grafik / bagan",
+      "mnemonic": "NGSL 1.2 · Peringkat #1741 · Bentuk kata: charts, charted, charting",
+      "example_native": "",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-ngsl12-m03-fc-005",
+      "module_id": "en-ngsl12-m03",
+      "level": "B1",
+      "category": "ngsl-core",
+      "front": "attach",
+      "reading": "attach",
+      "romaji": "",
+      "meaning_id": "melampirkan / menempelkan",
+      "mnemonic": "NGSL 1.2 · Peringkat #1742 · Bentuk kata: attaches, attached, attaching",
+      "example_native": "",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-ngsl12-m03-fc-006",
+      "module_id": "en-ngsl12-m03",
+      "level": "B1",
+      "category": "ngsl-core",
+      "front": "acknowledge",
+      "reading": "acknowledge",
+      "romaji": "",
+      "meaning_id": "mengakui / menyadari kebenaran",
+      "mnemonic": "NGSL 1.2 · Peringkat #1747 · Bentuk kata: acknowledges, acknowledged, acknowledging",
+      "example_native": "",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-ngsl12-m03-fc-007",
+      "module_id": "en-ngsl12-m03",
+      "level": "B1",
+      "category": "ngsl-core",
+      "front": "academic",
+      "reading": "academic",
+      "romaji": "",
+      "meaning_id": "akademis / berkaitan dengan pendidikan tinggi",
+      "mnemonic": "NGSL 1.2 · Peringkat #1751 · Bentuk kata: academics",
+      "example_native": "",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-ngsl12-m03-fc-008",
+      "module_id": "en-ngsl12-m03",
+      "level": "B1",
+      "category": "ngsl-core",
+      "front": "absence",
+      "reading": "absence",
+      "romaji": "",
+      "meaning_id": "ketidakhadiran",
+      "mnemonic": "NGSL 1.2 · Peringkat #1758 · Bentuk kata: absences",
+      "example_native": "",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-ngsl12-m03-fc-009",
+      "module_id": "en-ngsl12-m03",
+      "level": "B1",
+      "category": "ngsl-core",
+      "front": "appoint",
+      "reading": "appoint",
+      "romaji": "",
+      "meaning_id": "menunjuk secara resmi",
+      "mnemonic": "NGSL 1.2 · Peringkat #1788 · Bentuk kata: appoints, appointed, appointing",
+      "example_native": "",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-ngsl12-m03-fc-010",
+      "module_id": "en-ngsl12-m03",
+      "level": "B1",
+      "category": "ngsl-core",
+      "front": "appointment",
+      "reading": "appointment",
+      "romaji": "",
+      "meaning_id": "janji temu",
+      "mnemonic": "NGSL 1.2 · Peringkat #1839 · Bentuk kata: appointments",
+      "example_native": "",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-ngsl12-m03-fc-011",
+      "module_id": "en-ngsl12-m03",
+      "level": "B1",
+      "category": "ngsl-core",
+      "front": "assumption",
+      "reading": "assumption",
+      "romaji": "",
+      "meaning_id": "asumsi / dugaan awal",
+      "mnemonic": "NGSL 1.2 · Peringkat #1855 · Bentuk kata: assumptions",
+      "example_native": "",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-ngsl12-m03-fc-012",
+      "module_id": "en-ngsl12-m03",
+      "level": "B1",
+      "category": "ngsl-core",
+      "front": "abroad",
+      "reading": "abroad",
+      "romaji": "",
+      "meaning_id": "di atau ke luar negeri",
+      "mnemonic": "NGSL 1.2 · Peringkat #1883",
+      "example_native": "",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-ngsl12-m03-fc-013",
+      "module_id": "en-ngsl12-m03",
+      "level": "B1",
+      "category": "ngsl-core",
+      "front": "approximately",
+      "reading": "approximately",
+      "romaji": "",
+      "meaning_id": "kira-kira / sekitar",
+      "mnemonic": "NGSL 1.2 · Peringkat #1902",
+      "example_native": "",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-ngsl12-m03-fc-014",
+      "module_id": "en-ngsl12-m03",
+      "level": "B1",
+      "category": "ngsl-core",
+      "front": "accommodation",
+      "reading": "accommodation",
+      "romaji": "",
+      "meaning_id": "akomodasi / tempat menginap",
+      "mnemonic": "NGSL 1.2 · Peringkat #1903 · Bentuk kata: accommodations",
+      "example_native": "",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-ngsl12-m03-fc-015",
+      "module_id": "en-ngsl12-m03",
+      "level": "B1",
+      "category": "ngsl-core",
+      "front": "climate",
+      "reading": "climate",
+      "romaji": "",
+      "meaning_id": "iklim",
+      "mnemonic": "NGSL 1.2 · Peringkat #1906 · Bentuk kata: climates",
+      "example_native": "",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-ngsl12-m03-fc-016",
+      "module_id": "en-ngsl12-m03",
+      "level": "B1",
+      "category": "ngsl-core",
+      "front": "calculate",
+      "reading": "calculate",
+      "romaji": "",
+      "meaning_id": "menghitung",
+      "mnemonic": "NGSL 1.2 · Peringkat #1925 · Bentuk kata: calculates, calculated, calculating",
+      "example_native": "",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-ngsl12-m03-fc-017",
+      "module_id": "en-ngsl12-m03",
+      "level": "B1",
+      "category": "ngsl-core",
+      "front": "assistance",
+      "reading": "assistance",
+      "romaji": "",
+      "meaning_id": "bantuan",
+      "mnemonic": "NGSL 1.2 · Peringkat #2015 · Bentuk kata: assistances",
+      "example_native": "",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-ngsl12-m03-fc-018",
+      "module_id": "en-ngsl12-m03",
+      "level": "B1",
+      "category": "ngsl-core",
+      "front": "agenda",
+      "reading": "agenda",
+      "romaji": "",
+      "meaning_id": "agenda / daftar bahasan rapat",
+      "mnemonic": "NGSL 1.2 · Peringkat #2030 · Bentuk kata: agendas",
+      "example_native": "",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-ngsl12-m03-fc-019",
+      "module_id": "en-ngsl12-m03",
+      "level": "B1",
+      "category": "ngsl-core",
+      "front": "arrival",
+      "reading": "arrival",
+      "romaji": "",
+      "meaning_id": "kedatangan",
+      "mnemonic": "NGSL 1.2 · Peringkat #2058 · Bentuk kata: arrivals",
+      "example_native": "",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-ngsl12-m03-fc-020",
+      "module_id": "en-ngsl12-m03",
+      "level": "B1",
+      "category": "ngsl-core",
+      "front": "assure",
+      "reading": "assure",
+      "romaji": "",
+      "meaning_id": "meyakinkan / menjamin",
+      "mnemonic": "NGSL 1.2 · Peringkat #2064 · Bentuk kata: assures, assured, assuring",
+      "example_native": "",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-ngsl12-m03-fc-021",
+      "module_id": "en-ngsl12-m03",
+      "level": "B1",
+      "category": "ngsl-core",
+      "front": "assist",
+      "reading": "assist",
+      "romaji": "",
+      "meaning_id": "membantu",
+      "mnemonic": "NGSL 1.2 · Peringkat #2099 · Bentuk kata: assists, assisted, assisting",
+      "example_native": "",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-ngsl12-m03-fc-022",
+      "module_id": "en-ngsl12-m03",
+      "level": "B1",
+      "category": "ngsl-core",
+      "front": "apparent",
+      "reading": "apparent",
+      "romaji": "",
+      "meaning_id": "tampak jelas",
+      "mnemonic": "NGSL 1.2 · Peringkat #2151",
+      "example_native": "",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-ngsl12-m03-fc-023",
+      "module_id": "en-ngsl12-m03",
+      "level": "B1",
+      "category": "ngsl-core",
+      "front": "boundary",
+      "reading": "boundary",
+      "romaji": "",
+      "meaning_id": "batas wilayah atau aturan",
+      "mnemonic": "NGSL 1.2 · Peringkat #2159 · Bentuk kata: boundaries",
+      "example_native": "",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-ngsl12-m03-fc-024",
+      "module_id": "en-ngsl12-m03",
+      "level": "B1",
+      "category": "ngsl-core",
+      "front": "apartment",
+      "reading": "apartment",
+      "romaji": "",
+      "meaning_id": "apartemen",
+      "mnemonic": "NGSL 1.2 · Peringkat #2168 · Bentuk kata: apartments",
+      "example_native": "",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-ngsl12-m03-fc-025",
+      "module_id": "en-ngsl12-m03",
+      "level": "B1",
+      "category": "ngsl-core",
+      "front": "analyst",
+      "reading": "analyst",
+      "romaji": "",
+      "meaning_id": "analis / ahli kajian data",
+      "mnemonic": "NGSL 1.2 · Peringkat #2170 · Bentuk kata: analysts",
+      "example_native": "",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-ngsl12-m03-fc-026",
+      "module_id": "en-ngsl12-m03",
+      "level": "B1",
+      "category": "ngsl-core",
+      "front": "bid",
+      "reading": "bid",
+      "romaji": "",
+      "meaning_id": "tawaran harga",
+      "mnemonic": "NGSL 1.2 · Peringkat #2197 · Bentuk kata: bids, bade, bidding",
+      "example_native": "",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-ngsl12-m03-fc-027",
+      "module_id": "en-ngsl12-m03",
+      "level": "B1",
+      "category": "ngsl-core",
+      "front": "brilliant",
+      "reading": "brilliant",
+      "romaji": "",
+      "meaning_id": "cemerlang / sangat cerdas",
+      "mnemonic": "NGSL 1.2 · Peringkat #2200",
+      "example_native": "",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-ngsl12-m03-fc-028",
+      "module_id": "en-ngsl12-m03",
+      "level": "B1",
+      "category": "ngsl-core",
+      "front": "adjust",
+      "reading": "adjust",
+      "romaji": "",
+      "meaning_id": "menyesuaikan agar cocok",
+      "mnemonic": "NGSL 1.2 · Peringkat #2208 · Bentuk kata: adjusts, adjusted, adjusting",
+      "example_native": "",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-ngsl12-m03-fc-029",
+      "module_id": "en-ngsl12-m03",
+      "level": "B1",
+      "category": "ngsl-core",
+      "front": "broadcast",
+      "reading": "broadcast",
+      "romaji": "",
+      "meaning_id": "menyiarkan",
+      "mnemonic": "NGSL 1.2 · Peringkat #2260 · Bentuk kata: broadcasts, broadcasted, broadcasting",
+      "example_native": "",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-ngsl12-m03-fc-030",
+      "module_id": "en-ngsl12-m03",
+      "level": "B1",
+      "category": "ngsl-core",
+      "front": "alarm",
+      "reading": "alarm",
+      "romaji": "",
+      "meaning_id": "alarm / tanda peringatan",
+      "mnemonic": "NGSL 1.2 · Peringkat #2271 · Bentuk kata: alarms, alarmed, alarming",
+      "example_native": "",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-ngsl12-m03-fc-031",
+      "module_id": "en-ngsl12-m03",
+      "level": "B1",
+      "category": "ngsl-core",
+      "front": "cite",
+      "reading": "cite",
+      "romaji": "",
+      "meaning_id": "mengutip sumber",
+      "mnemonic": "NGSL 1.2 · Peringkat #2277 · Bentuk kata: cites, cited, citing",
+      "example_native": "",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-ngsl12-m03-fc-032",
+      "module_id": "en-ngsl12-m03",
+      "level": "B1",
+      "category": "ngsl-core",
+      "front": "burden",
+      "reading": "burden",
+      "romaji": "",
+      "meaning_id": "beban",
+      "mnemonic": "NGSL 1.2 · Peringkat #2286 · Bentuk kata: burdens, burdened, burdening",
+      "example_native": "",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-ngsl12-m03-fc-033",
+      "module_id": "en-ngsl12-m03",
+      "level": "B1",
+      "category": "ngsl-core",
+      "front": "attribute",
+      "reading": "attribute",
+      "romaji": "",
+      "meaning_id": "atribut / ciri khas",
+      "mnemonic": "NGSL 1.2 · Peringkat #2300 · Bentuk kata: attributes, attributed, attributing",
+      "example_native": "",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-ngsl12-m03-fc-034",
+      "module_id": "en-ngsl12-m03",
+      "level": "B1",
+      "category": "ngsl-core",
+      "front": "apologize",
+      "reading": "apologize",
+      "romaji": "",
+      "meaning_id": "meminta maaf",
+      "mnemonic": "NGSL 1.2 · Peringkat #2301 · Bentuk kata: apologizes, apologized, apologizing, apologise",
+      "example_native": "",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-ngsl12-m03-fc-035",
+      "module_id": "en-ngsl12-m03",
+      "level": "B1",
+      "category": "ngsl-core",
+      "front": "approval",
+      "reading": "approval",
+      "romaji": "",
+      "meaning_id": "persetujuan",
+      "mnemonic": "NGSL 1.2 · Peringkat #2302 · Bentuk kata: approvals",
+      "example_native": "",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-ngsl12-m03-fc-036",
+      "module_id": "en-ngsl12-m03",
+      "level": "B1",
+      "category": "ngsl-core",
+      "front": "characterize",
+      "reading": "characterize",
+      "romaji": "",
+      "meaning_id": "mencirikan / menggambarkan sifat",
+      "mnemonic": "NGSL 1.2 · Peringkat #2325 · Bentuk kata: characterizes, characterized, characterizing, characterise",
+      "example_native": "",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-ngsl12-m03-fc-037",
+      "module_id": "en-ngsl12-m03",
+      "level": "B1",
+      "category": "ngsl-core",
+      "front": "angle",
+      "reading": "angle",
+      "romaji": "",
+      "meaning_id": "sudut / sudut pandang",
+      "mnemonic": "NGSL 1.2 · Peringkat #2338 · Bentuk kata: angles, angled, angling",
+      "example_native": "",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-ngsl12-m03-fc-038",
+      "module_id": "en-ngsl12-m03",
+      "level": "B1",
+      "category": "ngsl-core",
+      "front": "anxiety",
+      "reading": "anxiety",
+      "romaji": "",
+      "meaning_id": "kecemasan / rasa khawatir",
+      "mnemonic": "NGSL 1.2 · Peringkat #2340 · Bentuk kata: anxieties",
+      "example_native": "",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-ngsl12-m03-fc-039",
+      "module_id": "en-ngsl12-m03",
+      "level": "B1",
+      "category": "ngsl-core",
+      "front": "charity",
+      "reading": "charity",
+      "romaji": "",
+      "meaning_id": "amal / lembaga sosial",
+      "mnemonic": "NGSL 1.2 · Peringkat #2354 · Bentuk kata: charities",
+      "example_native": "",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-ngsl12-m03-fc-040",
+      "module_id": "en-ngsl12-m03",
+      "level": "B1",
+      "category": "ngsl-core",
+      "front": "adequate",
+      "reading": "adequate",
+      "romaji": "",
+      "meaning_id": "memadai / cukup",
+      "mnemonic": "NGSL 1.2 · Peringkat #2358",
+      "example_native": "",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-ngsl12-m04-fc-001",
+      "module_id": "en-ngsl12-m04",
+      "level": "B2",
+      "category": "ngsl-core",
+      "front": "beneath",
+      "reading": "beneath",
+      "romaji": "",
+      "meaning_id": "di bawah",
+      "mnemonic": "NGSL 1.2 · Peringkat #2394",
+      "example_native": "",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-ngsl12-m04-fc-002",
+      "module_id": "en-ngsl12-m04",
+      "level": "B2",
+      "category": "ngsl-core",
+      "front": "capability",
+      "reading": "capability",
+      "romaji": "",
+      "meaning_id": "kapabilitas / kemampuan",
+      "mnemonic": "NGSL 1.2 · Peringkat #2397 · Bentuk kata: capabilities",
+      "example_native": "",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-ngsl12-m04-fc-003",
+      "module_id": "en-ngsl12-m04",
+      "level": "B2",
+      "category": "ngsl-core",
+      "front": "barrier",
+      "reading": "barrier",
+      "romaji": "",
+      "meaning_id": "hambatan / penghalang",
+      "mnemonic": "NGSL 1.2 · Peringkat #2402 · Bentuk kata: barriers",
+      "example_native": "",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-ngsl12-m04-fc-004",
+      "module_id": "en-ngsl12-m04",
+      "level": "B2",
+      "category": "ngsl-core",
+      "front": "awareness",
+      "reading": "awareness",
+      "romaji": "",
+      "meaning_id": "kesadaran",
+      "mnemonic": "NGSL 1.2 · Peringkat #2423",
+      "example_native": "",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-ngsl12-m04-fc-005",
+      "module_id": "en-ngsl12-m04",
+      "level": "B2",
+      "category": "ngsl-core",
+      "front": "architecture",
+      "reading": "architecture",
+      "romaji": "",
+      "meaning_id": "arsitektur",
+      "mnemonic": "NGSL 1.2 · Peringkat #2427 · Bentuk kata: architectures",
+      "example_native": "",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-ngsl12-m04-fc-006",
+      "module_id": "en-ngsl12-m04",
+      "level": "B2",
+      "category": "ngsl-core",
+      "front": "champion",
+      "reading": "champion",
+      "romaji": "",
+      "meaning_id": "juara / pendukung kuat",
+      "mnemonic": "NGSL 1.2 · Peringkat #2446 · Bentuk kata: champions, championed, championing",
+      "example_native": "",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-ngsl12-m04-fc-007",
+      "module_id": "en-ngsl12-m04",
+      "level": "B2",
+      "category": "ngsl-core",
+      "front": "accomplish",
+      "reading": "accomplish",
+      "romaji": "",
+      "meaning_id": "menyelesaikan / berhasil mencapai",
+      "mnemonic": "NGSL 1.2 · Peringkat #2456 · Bentuk kata: accomplishes, accomplished, accomplishing",
+      "example_native": "",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-ngsl12-m04-fc-008",
+      "module_id": "en-ngsl12-m04",
+      "level": "B2",
+      "category": "ngsl-core",
+      "front": "aggressive",
+      "reading": "aggressive",
+      "romaji": "",
+      "meaning_id": "agresif",
+      "mnemonic": "NGSL 1.2 · Peringkat #2467",
+      "example_native": "",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-ngsl12-m04-fc-009",
+      "module_id": "en-ngsl12-m04",
+      "level": "B2",
+      "category": "ngsl-core",
+      "front": "celebration",
+      "reading": "celebration",
+      "romaji": "",
+      "meaning_id": "perayaan",
+      "mnemonic": "NGSL 1.2 · Peringkat #2477 · Bentuk kata: celebrations",
+      "example_native": "",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-ngsl12-m04-fc-010",
+      "module_id": "en-ngsl12-m04",
+      "level": "B2",
+      "category": "ngsl-core",
+      "front": "assign",
+      "reading": "assign",
+      "romaji": "",
+      "meaning_id": "menugaskan",
+      "mnemonic": "NGSL 1.2 · Peringkat #2493 · Bentuk kata: assigns, assigned, assigning",
+      "example_native": "",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-ngsl12-m04-fc-011",
+      "module_id": "en-ngsl12-m04",
+      "level": "B2",
+      "category": "ngsl-core",
+      "front": "ambition",
+      "reading": "ambition",
+      "romaji": "",
+      "meaning_id": "ambisi / cita-cita kuat",
+      "mnemonic": "NGSL 1.2 · Peringkat #2500",
+      "example_native": "",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-ngsl12-m04-fc-012",
+      "module_id": "en-ngsl12-m04",
+      "level": "B2",
+      "category": "ngsl-core",
+      "front": "ceremony",
+      "reading": "ceremony",
+      "romaji": "",
+      "meaning_id": "upacara",
+      "mnemonic": "NGSL 1.2 · Peringkat #2517 · Bentuk kata: ceremonies",
+      "example_native": "",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-ngsl12-m04-fc-013",
+      "module_id": "en-ngsl12-m04",
+      "level": "B2",
+      "category": "ngsl-core",
+      "front": "automatically",
+      "reading": "automatically",
+      "romaji": "",
+      "meaning_id": "secara otomatis",
+      "mnemonic": "NGSL 1.2 · Peringkat #2521",
+      "example_native": "",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-ngsl12-m04-fc-014",
+      "module_id": "en-ngsl12-m04",
+      "level": "B2",
+      "category": "ngsl-core",
+      "front": "clause",
+      "reading": "clause",
+      "romaji": "",
+      "meaning_id": "klausul / pasal perjanjian",
+      "mnemonic": "NGSL 1.2 · Peringkat #2529 · Bentuk kata: clauses",
+      "example_native": "",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-ngsl12-m04-fc-015",
+      "module_id": "en-ngsl12-m04",
+      "level": "B2",
+      "category": "ngsl-core",
+      "front": "boost",
+      "reading": "boost",
+      "romaji": "",
+      "meaning_id": "meningkatkan / mendorong",
+      "mnemonic": "NGSL 1.2 · Peringkat #2539 · Bentuk kata: boosts, boosted, boosting",
+      "example_native": "",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-ngsl12-m04-fc-016",
+      "module_id": "en-ngsl12-m04",
+      "level": "B2",
+      "category": "ngsl-core",
+      "front": "airline",
+      "reading": "airline",
+      "romaji": "",
+      "meaning_id": "maskapai penerbangan",
+      "mnemonic": "NGSL 1.2 · Peringkat #2602 · Bentuk kata: airlines",
+      "example_native": "",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-ngsl12-m04-fc-017",
+      "module_id": "en-ngsl12-m04",
+      "level": "B2",
+      "category": "ngsl-core",
+      "front": "amendment",
+      "reading": "amendment",
+      "romaji": "",
+      "meaning_id": "amandemen / perubahan perbaikan",
+      "mnemonic": "NGSL 1.2 · Peringkat #2603 · Bentuk kata: amendments",
+      "example_native": "",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-ngsl12-m04-fc-018",
+      "module_id": "en-ngsl12-m04",
+      "level": "B2",
+      "category": "ngsl-core",
+      "front": "bias",
+      "reading": "bias",
+      "romaji": "",
+      "meaning_id": "bias / prasangka tidak objektif",
+      "mnemonic": "NGSL 1.2 · Peringkat #2649 · Bentuk kata: biases, biased, biasing",
+      "example_native": "",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-ngsl12-m04-fc-019",
+      "module_id": "en-ngsl12-m04",
+      "level": "B2",
+      "category": "ngsl-core",
+      "front": "biological",
+      "reading": "biological",
+      "romaji": "",
+      "meaning_id": "biologis",
+      "mnemonic": "NGSL 1.2 · Peringkat #2658",
+      "example_native": "",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-ngsl12-m04-fc-020",
+      "module_id": "en-ngsl12-m04",
+      "level": "B2",
+      "category": "ngsl-core",
+      "front": "anxious",
+      "reading": "anxious",
+      "romaji": "",
+      "meaning_id": "cemas / gelisah",
+      "mnemonic": "NGSL 1.2 · Peringkat #2666",
+      "example_native": "",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-ngsl12-m04-fc-021",
+      "module_id": "en-ngsl12-m04",
+      "level": "B2",
+      "category": "ngsl-core",
+      "front": "attendance",
+      "reading": "attendance",
+      "romaji": "",
+      "meaning_id": "kehadiran",
+      "mnemonic": "NGSL 1.2 · Peringkat #2751 · Bentuk kata: attendances",
+      "example_native": "",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    }
+  ],
+  "quizzes": [
+    {
+      "id": "en-ngsl12-m01-qz-mc-01",
+      "module_id": "en-ngsl12-m01",
+      "type": "multiple_choice",
+      "prompt": "Apa arti yang paling tepat untuk kata \"additional\"?",
+      "options": [
+        "sepenuhnya / mutlak / pasti",
+        "pusat / utama",
+        "dasar / mendasar",
+        "tambahan"
+      ],
+      "answer": "tambahan",
+      "explanation_id": "\"additional\" berarti \"tambahan\"."
+    },
+    {
+      "id": "en-ngsl12-m01-qz-mc-02",
+      "module_id": "en-ngsl12-m01",
+      "type": "multiple_choice",
+      "prompt": "Apa arti yang paling tepat untuk kata \"claim\"?",
+      "options": [
+        "mengklaim / menyatakan",
+        "administrasi / pengelolaan",
+        "dasar / mendasar",
+        "rekan kerja / mengaitkan"
+      ],
+      "answer": "mengklaim / menyatakan",
+      "explanation_id": "\"claim\" berarti \"mengklaim / menyatakan\"."
+    },
+    {
+      "id": "en-ngsl12-m01-qz-mc-03",
+      "module_id": "en-ngsl12-m01",
+      "type": "multiple_choice",
+      "prompt": "Apa arti yang paling tepat untuk kata \"article\"?",
+      "options": [
+        "kemampuan atau keterampilan melakukan sesuatu",
+        "artikel / tulisan",
+        "karier",
+        "alamat / menangani suatu masalah"
+      ],
+      "answer": "artikel / tulisan",
+      "explanation_id": "\"article\" berarti \"artikel / tulisan\"."
+    },
+    {
+      "id": "en-ngsl12-m01-qz-match-01",
+      "module_id": "en-ngsl12-m01",
+      "type": "matching",
+      "prompt": "Pasangkan kosakata Inggris berikut dengan artinya:",
+      "pairs": [
+        {
+          "left": "ability",
+          "right": "kemampuan atau keterampilan melakukan sesuatu"
+        },
+        {
+          "left": "agreement",
+          "right": "kesepakatan / perjanjian"
+        },
+        {
+          "left": "attend",
+          "right": "menghadiri"
+        },
+        {
+          "left": "analysis",
+          "right": "analisis / kajian mendalam"
+        }
+      ],
+      "explanation_id": "Semua pasangan kosakata cocok dengan tepat."
+    },
+    {
+      "id": "en-ngsl12-m01-qz-tr-01",
+      "module_id": "en-ngsl12-m01",
+      "type": "translation",
+      "prompt": "Ketik kosakata bahasa Inggris yang berarti: \"tentu saja / pasti\"",
+      "accepted_answers": [
+        "certainly",
+        "certainly"
+      ],
+      "explanation_id": "Jawaban yang tepat adalah \"certainly\"."
+    },
+    {
+      "id": "en-ngsl12-m02-qz-mc-01",
+      "module_id": "en-ngsl12-m02",
+      "type": "multiple_choice",
+      "prompt": "Apa arti yang paling tepat untuk kata \"advertise\"?",
+      "options": [
+        "karakteristik / ciri khas",
+        "penghargaan / hadiah",
+        "termasuk / menjadi bagian dari",
+        "mengiklankan"
+      ],
+      "answer": "mengiklankan",
+      "explanation_id": "\"advertise\" berarti \"mengiklankan\"."
+    },
+    {
+      "id": "en-ngsl12-m02-qz-mc-02",
+      "module_id": "en-ngsl12-m02",
+      "type": "multiple_choice",
+      "prompt": "Apa arti yang paling tepat untuk kata \"affair\"?",
+      "options": [
+        "cabang",
+        "termasuk / menjadi bagian dari",
+        "urusan / peristiwa",
+        "penampilan / kemunculan"
+      ],
+      "answer": "urusan / peristiwa",
+      "explanation_id": "\"affair\" berarti \"urusan / peristiwa\"."
+    },
+    {
+      "id": "en-ngsl12-m02-qz-mc-03",
+      "module_id": "en-ngsl12-m02",
+      "type": "multiple_choice",
+      "prompt": "Apa arti yang paling tepat untuk kata \"capture\"?",
+      "options": [
+        "menangkap / mengabadikan",
+        "pengaturan / persiapan",
+        "karakteristik / ciri khas",
+        "latar belakang"
+      ],
+      "answer": "menangkap / mengabadikan",
+      "explanation_id": "\"capture\" berarti \"menangkap / mengabadikan\"."
+    },
+    {
+      "id": "en-ngsl12-m02-qz-match-01",
+      "module_id": "en-ngsl12-m02",
+      "type": "matching",
+      "prompt": "Pasangkan kosakata Inggris berikut dengan artinya:",
+      "pairs": [
+        {
+          "left": "chapter",
+          "right": "bab"
+        },
+        {
+          "left": "blame",
+          "right": "menyalahkan"
+        },
+        {
+          "left": "apparently",
+          "right": "rupanya / tampaknya"
+        },
+        {
+          "left": "capacity",
+          "right": "kapasitas / daya tampung"
+        }
+      ],
+      "explanation_id": "Semua pasangan kosakata cocok dengan tepat."
+    },
+    {
+      "id": "en-ngsl12-m02-qz-tr-01",
+      "module_id": "en-ngsl12-m02",
+      "type": "translation",
+      "prompt": "Ketik kosakata bahasa Inggris yang berarti: \"ikatan / hubungan erat\"",
+      "accepted_answers": [
+        "bond",
+        "bond"
+      ],
+      "explanation_id": "Jawaban yang tepat adalah \"bond\"."
+    },
+    {
+      "id": "en-ngsl12-m03-qz-mc-01",
+      "module_id": "en-ngsl12-m03",
+      "type": "multiple_choice",
+      "prompt": "Apa arti yang paling tepat untuk kata \"boundary\"?",
+      "options": [
+        "amal / lembaga sosial",
+        "grafik / bagan",
+        "batas wilayah atau aturan",
+        "meminta maaf"
+      ],
+      "answer": "batas wilayah atau aturan",
+      "explanation_id": "\"boundary\" berarti \"batas wilayah atau aturan\"."
+    },
+    {
+      "id": "en-ngsl12-m03-qz-mc-02",
+      "module_id": "en-ngsl12-m03",
+      "type": "multiple_choice",
+      "prompt": "Apa arti yang paling tepat untuk kata \"adjust\"?",
+      "options": [
+        "bantuan",
+        "akademis / berkaitan dengan pendidikan tinggi",
+        "akomodasi / tempat menginap",
+        "menyesuaikan agar cocok"
+      ],
+      "answer": "menyesuaikan agar cocok",
+      "explanation_id": "\"adjust\" berarti \"menyesuaikan agar cocok\"."
+    },
+    {
+      "id": "en-ngsl12-m03-qz-mc-03",
+      "module_id": "en-ngsl12-m03",
+      "type": "multiple_choice",
+      "prompt": "Apa arti yang paling tepat untuk kata \"adequate\"?",
+      "options": [
+        "memadai / cukup",
+        "akademis / berkaitan dengan pendidikan tinggi",
+        "tawaran harga",
+        "kuno / sangat tua"
+      ],
+      "answer": "memadai / cukup",
+      "explanation_id": "\"adequate\" berarti \"memadai / cukup\"."
+    },
+    {
+      "id": "en-ngsl12-m03-qz-match-01",
+      "module_id": "en-ngsl12-m03",
+      "type": "matching",
+      "prompt": "Pasangkan kosakata Inggris berikut dengan artinya:",
+      "pairs": [
+        {
+          "left": "agenda",
+          "right": "agenda / daftar bahasan rapat"
+        },
+        {
+          "left": "adjust",
+          "right": "menyesuaikan agar cocok"
+        },
+        {
+          "left": "boundary",
+          "right": "batas wilayah atau aturan"
+        },
+        {
+          "left": "anxiety",
+          "right": "kecemasan / rasa khawatir"
+        }
+      ],
+      "explanation_id": "Semua pasangan kosakata cocok dengan tepat."
+    },
+    {
+      "id": "en-ngsl12-m03-qz-tr-01",
+      "module_id": "en-ngsl12-m03",
+      "type": "translation",
+      "prompt": "Ketik kosakata bahasa Inggris yang berarti: \"membantu\"",
+      "accepted_answers": [
+        "assist",
+        "assist"
+      ],
+      "explanation_id": "Jawaban yang tepat adalah \"assist\"."
+    },
+    {
+      "id": "en-ngsl12-m04-qz-mc-01",
+      "module_id": "en-ngsl12-m04",
+      "type": "multiple_choice",
+      "prompt": "Apa arti yang paling tepat untuk kata \"aggressive\"?",
+      "options": [
+        "agresif",
+        "klausul / pasal perjanjian",
+        "di bawah",
+        "maskapai penerbangan"
+      ],
+      "answer": "agresif",
+      "explanation_id": "\"aggressive\" berarti \"agresif\"."
+    },
+    {
+      "id": "en-ngsl12-m04-qz-mc-02",
+      "module_id": "en-ngsl12-m04",
+      "type": "multiple_choice",
+      "prompt": "Apa arti yang paling tepat untuk kata \"architecture\"?",
+      "options": [
+        "juara / pendukung kuat",
+        "kehadiran",
+        "hambatan / penghalang",
+        "arsitektur"
+      ],
+      "answer": "arsitektur",
+      "explanation_id": "\"architecture\" berarti \"arsitektur\"."
+    },
+    {
+      "id": "en-ngsl12-m04-qz-mc-03",
+      "module_id": "en-ngsl12-m04",
+      "type": "multiple_choice",
+      "prompt": "Apa arti yang paling tepat untuk kata \"automatically\"?",
+      "options": [
+        "arsitektur",
+        "menyelesaikan / berhasil mencapai",
+        "secara otomatis",
+        "di bawah"
+      ],
+      "answer": "secara otomatis",
+      "explanation_id": "\"automatically\" berarti \"secara otomatis\"."
+    },
+    {
+      "id": "en-ngsl12-m04-qz-match-01",
+      "module_id": "en-ngsl12-m04",
+      "type": "matching",
+      "prompt": "Pasangkan kosakata Inggris berikut dengan artinya:",
+      "pairs": [
+        {
+          "left": "awareness",
+          "right": "kesadaran"
+        },
+        {
+          "left": "accomplish",
+          "right": "menyelesaikan / berhasil mencapai"
+        },
+        {
+          "left": "architecture",
+          "right": "arsitektur"
+        },
+        {
+          "left": "capability",
+          "right": "kapabilitas / kemampuan"
+        }
+      ],
+      "explanation_id": "Semua pasangan kosakata cocok dengan tepat."
+    },
+    {
+      "id": "en-ngsl12-m04-qz-tr-01",
+      "module_id": "en-ngsl12-m04",
+      "type": "translation",
+      "prompt": "Ketik kosakata bahasa Inggris yang berarti: \"ambisi / cita-cita kuat\"",
+      "accepted_answers": [
+        "ambition",
+        "ambition"
+      ],
+      "explanation_id": "Jawaban yang tepat adalah \"ambition\"."
+    }
+  ],
+  "dialogs": [],
+  "readings": [],
+  "grammar": []
+}

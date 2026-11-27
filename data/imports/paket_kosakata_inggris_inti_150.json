@@ -1,0 +1,3479 @@
+{
+  "schema_version": "1.0",
+  "language": {
+    "code": "en",
+    "name_id": "Inggris",
+    "name_native": "English",
+    "tts_lang": "en-US",
+    "script_type": "latin",
+    "phonetic_input": "none",
+    "roadmap_levels": [
+      "A0",
+      "A1",
+      "A2",
+      "B1",
+      "B2",
+      "C1",
+      "C2"
+    ]
+  },
+  "modules": [
+    {
+      "id": "en-inti150-a1",
+      "level": "A1",
+      "order": 31,
+      "title": "Kosakata Inti A1: Fondasi Harian (30 Kata)",
+      "category": "ngsl-inti",
+      "estimated_minutes": 20,
+      "objectives": [
+        "Menguasai 30 kosakata inti bahasa Inggris level A1 beserta pelafalan IPA",
+        "Memahami penggunaan kata dalam kalimat nyata dan bentuk kata turunannya (NGSL 1.2)"
+      ]
+    },
+    {
+      "id": "en-inti150-a2",
+      "level": "A2",
+      "order": 32,
+      "title": "Kosakata Inti A2: Aktivitas & Solusi (30 Kata)",
+      "category": "ngsl-inti",
+      "estimated_minutes": 20,
+      "objectives": [
+        "Menguasai 30 kosakata inti bahasa Inggris level A2 beserta pelafalan IPA",
+        "Memahami penggunaan kata dalam kalimat nyata dan bentuk kata turunannya (NGSL 1.2)"
+      ]
+    },
+    {
+      "id": "en-inti150-b1",
+      "level": "B1",
+      "order": 33,
+      "title": "Kosakata Inti B1: Kerja & Diskusi (35 Kata)",
+      "category": "ngsl-inti",
+      "estimated_minutes": 20,
+      "objectives": [
+        "Menguasai 35 kosakata inti bahasa Inggris level B1 beserta pelafalan IPA",
+        "Memahami penggunaan kata dalam kalimat nyata dan bentuk kata turunannya (NGSL 1.2)"
+      ]
+    },
+    {
+      "id": "en-inti150-b2",
+      "level": "B2",
+      "order": 34,
+      "title": "Kosakata Inti B2: Analisis & Argumen (30 Kata)",
+      "category": "ngsl-inti",
+      "estimated_minutes": 20,
+      "objectives": [
+        "Menguasai 30 kosakata inti bahasa Inggris level B2 beserta pelafalan IPA",
+        "Memahami penggunaan kata dalam kalimat nyata dan bentuk kata turunannya (NGSL 1.2)"
+      ]
+    },
+    {
+      "id": "en-inti150-c1",
+      "level": "C1",
+      "order": 35,
+      "title": "Kosakata Inti C1: Akademik & Profesional (25 Kata)",
+      "category": "ngsl-inti",
+      "estimated_minutes": 20,
+      "objectives": [
+        "Menguasai 25 kosakata inti bahasa Inggris level C1 beserta pelafalan IPA",
+        "Memahami penggunaan kata dalam kalimat nyata dan bentuk kata turunannya (NGSL 1.2)"
+      ]
+    }
+  ],
+  "flashcards": [
+    {
+      "id": "en-inti150-a1-fc-001",
+      "module_id": "en-inti150-a1",
+      "level": "A1",
+      "category": "ngsl-inti",
+      "front": "achieve",
+      "reading": "achieve",
+      "romaji": "/əˈtʃiːv/",
+      "meaning_id": "mencapai / meraih",
+      "mnemonic": "NGSL #746 · Bentuk kata: achieves, achieved, achieving",
+      "example_native": "She worked hard to achieve her language goals.",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-inti150-a1-fc-002",
+      "module_id": "en-inti150-a1",
+      "level": "A1",
+      "category": "ngsl-inti",
+      "front": "advice",
+      "reading": "advice",
+      "romaji": "/ədˈvaɪs/",
+      "meaning_id": "nasihat / saran",
+      "mnemonic": "NGSL #1040 · Bentuk kata: advices",
+      "example_native": "My teacher gave me useful advice before the test.",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-inti150-a1-fc-003",
+      "module_id": "en-inti150-a1",
+      "level": "A1",
+      "category": "ngsl-inti",
+      "front": "agree",
+      "reading": "agree",
+      "romaji": "/əˈɡriː/",
+      "meaning_id": "setuju",
+      "mnemonic": "NGSL #420 · Bentuk kata: agrees, agreed, agreeing",
+      "example_native": "I completely agree with your plan.",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-inti150-a1-fc-004",
+      "module_id": "en-inti150-a1",
+      "level": "A1",
+      "category": "ngsl-inti",
+      "front": "allow",
+      "reading": "allow",
+      "romaji": "/əˈlaʊ/",
+      "meaning_id": "mengizinkan / memungkinkan",
+      "mnemonic": "NGSL #324 · Bentuk kata: allows, allowed, allowing",
+      "example_native": "This app allows you to study offline.",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-inti150-a1-fc-005",
+      "module_id": "en-inti150-a1",
+      "level": "A1",
+      "category": "ngsl-inti",
+      "front": "amount",
+      "reading": "amount",
+      "romaji": "/əˈmaʊnt/",
+      "meaning_id": "jumlah (tak terhitung)",
+      "mnemonic": "NGSL #507 · Bentuk kata: amounts, amounted",
+      "example_native": "A small amount of daily practice makes a big difference.",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-inti150-a1-fc-006",
+      "module_id": "en-inti150-a1",
+      "level": "A1",
+      "category": "ngsl-inti",
+      "front": "arrive",
+      "reading": "arrive",
+      "romaji": "/əˈraɪv/",
+      "meaning_id": "tiba / sampai",
+      "mnemonic": "NGSL #588 · Bentuk kata: arrives, arrived, arriving",
+      "example_native": "The train will arrive at platform four.",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-inti150-a1-fc-007",
+      "module_id": "en-inti150-a1",
+      "level": "A1",
+      "category": "ngsl-inti",
+      "front": "available",
+      "reading": "available",
+      "romaji": "/əˈveɪləbl/",
+      "meaning_id": "tersedia",
+      "mnemonic": "NGSL #459",
+      "example_native": "Is this seat available?",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-inti150-a1-fc-008",
+      "module_id": "en-inti150-a1",
+      "level": "A1",
+      "category": "ngsl-inti",
+      "front": "avoid",
+      "reading": "avoid",
+      "romaji": "/əˈvɔɪd/",
+      "meaning_id": "menghindari",
+      "mnemonic": "NGSL #851 · Bentuk kata: avoids, avoided, avoiding",
+      "example_native": "Try to avoid translating every word literally.",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-inti150-a1-fc-009",
+      "module_id": "en-inti150-a1",
+      "level": "A1",
+      "category": "ngsl-inti",
+      "front": "believe",
+      "reading": "believe",
+      "romaji": "/bɪˈliːv/",
+      "meaning_id": "percaya / yakin",
+      "mnemonic": "NGSL #225 · Bentuk kata: believes, believed, believing",
+      "example_native": "I believe consistency beats intensity.",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-inti150-a1-fc-010",
+      "module_id": "en-inti150-a1",
+      "level": "A1",
+      "category": "ngsl-inti",
+      "front": "benefit",
+      "reading": "benefit",
+      "romaji": "/ˈbenɪfɪt/",
+      "meaning_id": "manfaat / keuntungan",
+      "mnemonic": "NGSL #543 · Bentuk kata: benefits, benefited, benefiting, benefitted",
+      "example_native": "Reading aloud has many pronunciation benefits.",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-inti150-a1-fc-011",
+      "module_id": "en-inti150-a1",
+      "level": "A1",
+      "category": "ngsl-inti",
+      "front": "borrow",
+      "reading": "borrow",
+      "romaji": "/ˈbɑːroʊ/",
+      "meaning_id": "meminjam",
+      "mnemonic": "NGSL #1880 · Bentuk kata: borrows, borrowed, borrowing, borrowings",
+      "example_native": "May I borrow your pen for a moment?",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-inti150-a1-fc-012",
+      "module_id": "en-inti150-a1",
+      "level": "A1",
+      "category": "ngsl-inti",
+      "front": "budget",
+      "reading": "budget",
+      "romaji": "/ˈbʌdʒɪt/",
+      "meaning_id": "anggaran biaya",
+      "mnemonic": "NGSL #1016 · Bentuk kata: budgets, budgeted, budgeting",
+      "example_native": "We planned the trip on a modest student budget.",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-inti150-a1-fc-013",
+      "module_id": "en-inti150-a1",
+      "level": "A1",
+      "category": "ngsl-inti",
+      "front": "cancel",
+      "reading": "cancel",
+      "romaji": "/ˈkænsl/",
+      "meaning_id": "membatalkan",
+      "mnemonic": "NGSL #2390 · Bentuk kata: cancels, canceled, canceling, cancelled",
+      "example_native": "They had to cancel the flight due to fog.",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-inti150-a1-fc-014",
+      "module_id": "en-inti150-a1",
+      "level": "A1",
+      "category": "ngsl-inti",
+      "front": "chance",
+      "reading": "chance",
+      "romaji": "/tʃæns/",
+      "meaning_id": "kesempatan / peluang",
+      "mnemonic": "NGSL #560 · Bentuk kata: chances, chanced, chancing",
+      "example_native": "Take every chance to speak English aloud.",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-inti150-a1-fc-015",
+      "module_id": "en-inti150-a1",
+      "level": "A1",
+      "category": "ngsl-inti",
+      "front": "choose",
+      "reading": "choose",
+      "romaji": "/tʃuːz/",
+      "meaning_id": "memilih",
+      "mnemonic": "NGSL #447 · Bentuk kata: chooses, chose, choosing, chosen",
+      "example_native": "You can choose between two study schedules.",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-inti150-a1-fc-016",
+      "module_id": "en-inti150-a1",
+      "level": "A1",
+      "category": "ngsl-inti",
+      "front": "common",
+      "reading": "common",
+      "romaji": "/ˈkɑːmən/",
+      "meaning_id": "umum / sering ditemui",
+      "mnemonic": "NGSL #567 · Bentuk kata: commonest",
+      "example_native": "That is a very common grammar mistake.",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-inti150-a1-fc-017",
+      "module_id": "en-inti150-a1",
+      "level": "A1",
+      "category": "ngsl-inti",
+      "front": "compare",
+      "reading": "compare",
+      "romaji": "/kəmˈper/",
+      "meaning_id": "membandingkan",
+      "mnemonic": "NGSL #614 · Bentuk kata: compares, compared, comparing",
+      "example_native": "Compare the two sentences carefully.",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-inti150-a1-fc-018",
+      "module_id": "en-inti150-a1",
+      "level": "A1",
+      "category": "ngsl-inti",
+      "front": "complete",
+      "reading": "complete",
+      "romaji": "/kəmˈpliːt/",
+      "meaning_id": "menyelesaikan / lengkap",
+      "mnemonic": "NGSL #581 · Bentuk kata: completes, completed, completing",
+      "example_native": "I completed one module before dinner.",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-inti150-a1-fc-019",
+      "module_id": "en-inti150-a1",
+      "level": "A1",
+      "category": "ngsl-inti",
+      "front": "confirm",
+      "reading": "confirm",
+      "romaji": "/kənˈfɜːrm/",
+      "meaning_id": "mengonfirmasi",
+      "mnemonic": "NGSL #1206 · Bentuk kata: confirms, confirmed, confirming",
+      "example_native": "Please confirm your hotel booking by email.",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-inti150-a1-fc-020",
+      "module_id": "en-inti150-a1",
+      "level": "A1",
+      "category": "ngsl-inti",
+      "front": "connect",
+      "reading": "connect",
+      "romaji": "/kəˈnekt/",
+      "meaning_id": "menghubungkan",
+      "mnemonic": "NGSL #1264 · Bentuk kata: connects, connected, connecting",
+      "example_native": "Connect new words to real-life stories.",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-inti150-a1-fc-021",
+      "module_id": "en-inti150-a1",
+      "level": "A1",
+      "category": "ngsl-inti",
+      "front": "consider",
+      "reading": "consider",
+      "romaji": "/kənˈsɪdər/",
+      "meaning_id": "mempertimbangkan",
+      "mnemonic": "NGSL #295 · Bentuk kata: considers, considered, considering",
+      "example_native": "Consider taking short breaks every 25 minutes.",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-inti150-a1-fc-022",
+      "module_id": "en-inti150-a1",
+      "level": "A1",
+      "category": "ngsl-inti",
+      "front": "continue",
+      "reading": "continue",
+      "romaji": "/kənˈtɪnjuː/",
+      "meaning_id": "melanjutkan",
+      "mnemonic": "NGSL #308 · Bentuk kata: continues, continued, continuing",
+      "example_native": "Let's continue from chapter three tomorrow.",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-inti150-a1-fc-023",
+      "module_id": "en-inti150-a1",
+      "level": "A1",
+      "category": "ngsl-inti",
+      "front": "create",
+      "reading": "create",
+      "romaji": "/kriˈeɪt/",
+      "meaning_id": "menciptakan / membuat",
+      "mnemonic": "NGSL #386 · Bentuk kata: creates, created, creating",
+      "example_native": "Create your own example sentences for each card.",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-inti150-a1-fc-024",
+      "module_id": "en-inti150-a1",
+      "level": "A1",
+      "category": "ngsl-inti",
+      "front": "culture",
+      "reading": "culture",
+      "romaji": "/ˈkʌltʃər/",
+      "meaning_id": "budaya",
+      "mnemonic": "NGSL #568 · Bentuk kata: cultures, cultured, culturing",
+      "example_native": "Learning a language opens a window to its culture.",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-inti150-a1-fc-025",
+      "module_id": "en-inti150-a1",
+      "level": "A1",
+      "category": "ngsl-inti",
+      "front": "decide",
+      "reading": "decide",
+      "romaji": "/dɪˈsaɪd/",
+      "meaning_id": "memutuskan",
+      "mnemonic": "NGSL #359 · Bentuk kata: decides, decided, deciding",
+      "example_native": "We decided to visit Osaka first.",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-inti150-a1-fc-026",
+      "module_id": "en-inti150-a1",
+      "level": "A1",
+      "category": "ngsl-inti",
+      "front": "deliver",
+      "reading": "deliver",
+      "romaji": "/dɪˈlɪvər/",
+      "meaning_id": "mengirimkan / menyampaikan",
+      "mnemonic": "NGSL #1064 · Bentuk kata: delivers, delivered, delivering",
+      "example_native": "The courier will deliver the package today.",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-inti150-a1-fc-027",
+      "module_id": "en-inti150-a1",
+      "level": "A1",
+      "category": "ngsl-inti",
+      "front": "depend",
+      "reading": "depend",
+      "romaji": "/dɪˈpend/",
+      "meaning_id": "bergantung pada",
+      "mnemonic": "NGSL #731 · Bentuk kata: depends, depended, depending",
+      "example_native": "My schedule depends on the project deadline.",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-inti150-a1-fc-028",
+      "module_id": "en-inti150-a1",
+      "level": "A1",
+      "category": "ngsl-inti",
+      "front": "describe",
+      "reading": "describe",
+      "romaji": "/dɪˈskraɪb/",
+      "meaning_id": "menggambarkan / menjelaskan",
+      "mnemonic": "NGSL #457 · Bentuk kata: describes, described, describing",
+      "example_native": "Describe your favorite place to relax.",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-inti150-a1-fc-029",
+      "module_id": "en-inti150-a1",
+      "level": "A1",
+      "category": "ngsl-inti",
+      "front": "detail",
+      "reading": "detail",
+      "romaji": "/ˈdiːteɪl/",
+      "meaning_id": "rincian / detail",
+      "mnemonic": "NGSL #472 · Bentuk kata: details, detailed, detailing",
+      "example_native": "Please check every detail before submitting.",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-inti150-a1-fc-030",
+      "module_id": "en-inti150-a1",
+      "level": "A1",
+      "category": "ngsl-inti",
+      "front": "develop",
+      "reading": "develop",
+      "romaji": "/dɪˈveləp/",
+      "meaning_id": "mengembangkan",
+      "mnemonic": "NGSL #350 · Bentuk kata: develops, developed, developing",
+      "example_native": "She developed a strong reading habit.",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-inti150-a2-fc-001",
+      "module_id": "en-inti150-a2",
+      "level": "A2",
+      "category": "ngsl-inti",
+      "front": "discuss",
+      "reading": "discuss",
+      "romaji": "/dɪˈskʌs/",
+      "meaning_id": "mendiskusikan",
+      "mnemonic": "NGSL #605 · Bentuk kata: discusses, discussed, discussing",
+      "example_native": "Let's discuss the main points after lunch.",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-inti150-a2-fc-002",
+      "module_id": "en-inti150-a2",
+      "level": "A2",
+      "category": "ngsl-inti",
+      "front": "effort",
+      "reading": "effort",
+      "romaji": "/ˈefərt/",
+      "meaning_id": "usaha keras",
+      "mnemonic": "NGSL #577 · Bentuk kata: efforts",
+      "example_native": "Fluency takes steady effort over time.",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-inti150-a2-fc-003",
+      "module_id": "en-inti150-a2",
+      "level": "A2",
+      "category": "ngsl-inti",
+      "front": "encourage",
+      "reading": "encourage",
+      "romaji": "/ɪnˈkɜːrɪdʒ/",
+      "meaning_id": "mendorong / menyemangati",
+      "mnemonic": "NGSL #912 · Bentuk kata: encourages, encouraged, encouraging",
+      "example_native": "Good mentors encourage questions.",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-inti150-a2-fc-004",
+      "module_id": "en-inti150-a2",
+      "level": "A2",
+      "category": "ngsl-inti",
+      "front": "environment",
+      "reading": "environment",
+      "romaji": "/ɪnˈvaɪrənmənt/",
+      "meaning_id": "lingkungan",
+      "mnemonic": "NGSL #712 · Bentuk kata: environments",
+      "example_native": "A quiet environment helps you focus.",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-inti150-a2-fc-005",
+      "module_id": "en-inti150-a2",
+      "level": "A2",
+      "category": "ngsl-inti",
+      "front": "essential",
+      "reading": "essential",
+      "romaji": "/ɪˈsenʃl/",
+      "meaning_id": "sangat penting / pokok",
+      "mnemonic": "NGSL #1290 · Bentuk kata: essentials",
+      "example_native": "Sleep is essential for memory retention.",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-inti150-a2-fc-006",
+      "module_id": "en-inti150-a2",
+      "level": "A2",
+      "category": "ngsl-inti",
+      "front": "exchange",
+      "reading": "exchange",
+      "romaji": "/ɪksˈtʃeɪndʒ/",
+      "meaning_id": "bertukar / menukar",
+      "mnemonic": "NGSL #1015 · Bentuk kata: exchanges, exchanged, exchanging",
+      "example_native": "I joined a language exchange group online.",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-inti150-a2-fc-007",
+      "module_id": "en-inti150-a2",
+      "level": "A2",
+      "category": "ngsl-inti",
+      "front": "expect",
+      "reading": "expect",
+      "romaji": "/ɪkˈspekt/",
+      "meaning_id": "mengharapkan / memperkirakan",
+      "mnemonic": "NGSL #314 · Bentuk kata: expects, expected, expecting",
+      "example_native": "I didn't expect the exam to be this practical.",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-inti150-a2-fc-008",
+      "module_id": "en-inti150-a2",
+      "level": "A2",
+      "category": "ngsl-inti",
+      "front": "explain",
+      "reading": "explain",
+      "romaji": "/ɪkˈspleɪn/",
+      "meaning_id": "menjelaskan",
+      "mnemonic": "NGSL #489 · Bentuk kata: explains, explained, explaining",
+      "example_native": "Could you explain that grammar rule again?",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-inti150-a2-fc-009",
+      "module_id": "en-inti150-a2",
+      "level": "A2",
+      "category": "ngsl-inti",
+      "front": "express",
+      "reading": "express",
+      "romaji": "/ɪkˈspres/",
+      "meaning_id": "mengungkapkan",
+      "mnemonic": "NGSL #818 · Bentuk kata: expresses, expressed, expressing",
+      "example_native": "He can express complex ideas simply.",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-inti150-a2-fc-010",
+      "module_id": "en-inti150-a2",
+      "level": "A2",
+      "category": "ngsl-inti",
+      "front": "familiar",
+      "reading": "familiar",
+      "romaji": "/fəˈmɪliər/",
+      "meaning_id": "akrab / sudah dikenal",
+      "mnemonic": "NGSL #1445 · Bentuk kata: familiars",
+      "example_native": "This melody sounds very familiar.",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-inti150-a2-fc-011",
+      "module_id": "en-inti150-a2",
+      "level": "A2",
+      "category": "ngsl-inti",
+      "front": "feature",
+      "reading": "feature",
+      "romaji": "/ˈfiːtʃər/",
+      "meaning_id": "fitur / ciri khas",
+      "mnemonic": "NGSL #635 · Bentuk kata: features, featured, featuring",
+      "example_native": "Offline backup is my favorite feature.",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-inti150-a2-fc-012",
+      "module_id": "en-inti150-a2",
+      "level": "A2",
+      "category": "ngsl-inti",
+      "front": "focus",
+      "reading": "focus",
+      "romaji": "/ˈfoʊkəs/",
+      "meaning_id": "fokus / memusatkan perhatian",
+      "mnemonic": "NGSL #550 · Bentuk kata: focuses, focused, focusing, focussed",
+      "example_native": "Focus on one skill at a time.",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-inti150-a2-fc-013",
+      "module_id": "en-inti150-a2",
+      "level": "A2",
+      "category": "ngsl-inti",
+      "front": "foreign",
+      "reading": "foreign",
+      "romaji": "/ˈfɔːrən/",
+      "meaning_id": "asing (luar negeri)",
+      "mnemonic": "NGSL #633",
+      "example_native": "Speaking a foreign language boosts confidence.",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-inti150-a2-fc-014",
+      "module_id": "en-inti150-a2",
+      "level": "A2",
+      "category": "ngsl-inti",
+      "front": "frequent",
+      "reading": "frequent",
+      "romaji": "/ˈfriːkwənt/",
+      "meaning_id": "sering terjadi",
+      "mnemonic": "NGSL #2409 · Bentuk kata: frequents, frequented, frequenting",
+      "example_native": "Frequent short reviews beat rare cramming.",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-inti150-a2-fc-015",
+      "module_id": "en-inti150-a2",
+      "level": "A2",
+      "category": "ngsl-inti",
+      "front": "gather",
+      "reading": "gather",
+      "romaji": "/ˈɡæðər/",
+      "meaning_id": "mengumpulkan / berkumpul",
+      "mnemonic": "NGSL #1286 · Bentuk kata: gathers, gathered, gathering, gatherings",
+      "example_native": "Gather your notes before writing the essay.",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-inti150-a2-fc-016",
+      "module_id": "en-inti150-a2",
+      "level": "A2",
+      "category": "ngsl-inti",
+      "front": "general",
+      "reading": "general",
+      "romaji": "/ˈdʒenrəl/",
+      "meaning_id": "umum / garis besar",
+      "mnemonic": "NGSL #404 · Bentuk kata: generals",
+      "example_native": "Read once to get the general idea.",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-inti150-a2-fc-017",
+      "module_id": "en-inti150-a2",
+      "level": "A2",
+      "category": "ngsl-inti",
+      "front": "goal",
+      "reading": "goal",
+      "romaji": "/ɡoʊl/",
+      "meaning_id": "tujuan / target",
+      "mnemonic": "NGSL #856 · Bentuk kata: goals",
+      "example_native": "Set a realistic daily study goal.",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-inti150-a2-fc-018",
+      "module_id": "en-inti150-a2",
+      "level": "A2",
+      "category": "ngsl-inti",
+      "front": "handle",
+      "reading": "handle",
+      "romaji": "/ˈhændl/",
+      "meaning_id": "menangani / mengatasi",
+      "mnemonic": "NGSL #1041 · Bentuk kata: handles, handled, handling",
+      "example_native": "She handled the customer complaint calmly.",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-inti150-a2-fc-019",
+      "module_id": "en-inti150-a2",
+      "level": "A2",
+      "category": "ngsl-inti",
+      "front": "improve",
+      "reading": "improve",
+      "romaji": "/ɪmˈpruːv/",
+      "meaning_id": "meningkatkan / memperbaiki",
+      "mnemonic": "NGSL #508 · Bentuk kata: improves, improved, improving",
+      "example_native": "Shadowing audio will improve your rhythm.",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-inti150-a2-fc-020",
+      "module_id": "en-inti150-a2",
+      "level": "A2",
+      "category": "ngsl-inti",
+      "front": "include",
+      "reading": "include",
+      "romaji": "/ɪnˈkluːd/",
+      "meaning_id": "menyertakan / mencakup",
+      "mnemonic": "NGSL #163 · Bentuk kata: includes, included, including",
+      "example_native": "The price includes breakfast and Wi-Fi.",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-inti150-a2-fc-021",
+      "module_id": "en-inti150-a2",
+      "level": "A2",
+      "category": "ngsl-inti",
+      "front": "increase",
+      "reading": "increase",
+      "romaji": "/ɪnˈkriːs/",
+      "meaning_id": "meningkat / menaikkan",
+      "mnemonic": "NGSL #230 · Bentuk kata: increases, increased, increasing",
+      "example_native": "Daily reading helps increase vocabulary naturally.",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-inti150-a2-fc-022",
+      "module_id": "en-inti150-a2",
+      "level": "A2",
+      "category": "ngsl-inti",
+      "front": "independent",
+      "reading": "independent",
+      "romaji": "/ˌɪndɪˈpendənt/",
+      "meaning_id": "mandiri / bebas",
+      "mnemonic": "NGSL #1006 · Bentuk kata: independents",
+      "example_native": "Self-study builds independent learners.",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-inti150-a2-fc-023",
+      "module_id": "en-inti150-a2",
+      "level": "A2",
+      "category": "ngsl-inti",
+      "front": "influence",
+      "reading": "influence",
+      "romaji": "/ˈɪnfluəns/",
+      "meaning_id": "pengaruh / memengaruhi",
+      "mnemonic": "NGSL #680 · Bentuk kata: influences, influenced, influencing",
+      "example_native": "Movies strongly influence spoken slang.",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-inti150-a2-fc-024",
+      "module_id": "en-inti150-a2",
+      "level": "A2",
+      "category": "ngsl-inti",
+      "front": "instead",
+      "reading": "instead",
+      "romaji": "/ɪnˈsted/",
+      "meaning_id": "sebagai gantinya",
+      "mnemonic": "NGSL #553",
+      "example_native": "Use spaced repetition instead of rereading.",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-inti150-a2-fc-025",
+      "module_id": "en-inti150-a2",
+      "level": "A2",
+      "category": "ngsl-inti",
+      "front": "issue",
+      "reading": "issue",
+      "romaji": "/ˈɪʃuː/",
+      "meaning_id": "masalah / persoalan",
+      "mnemonic": "NGSL #218 · Bentuk kata: issues, issued, issuing",
+      "example_native": "We resolved the audio issue quickly.",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-inti150-a2-fc-026",
+      "module_id": "en-inti150-a2",
+      "level": "A2",
+      "category": "ngsl-inti",
+      "front": "local",
+      "reading": "local",
+      "romaji": "/ˈloʊkl/",
+      "meaning_id": "lokal / setempat",
+      "mnemonic": "NGSL #300 · Bentuk kata: locals",
+      "example_native": "We tried several local street foods.",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-inti150-a2-fc-027",
+      "module_id": "en-inti150-a2",
+      "level": "A2",
+      "category": "ngsl-inti",
+      "front": "manage",
+      "reading": "manage",
+      "romaji": "/ˈmænɪdʒ/",
+      "meaning_id": "mengelola / berhasil melakukan",
+      "mnemonic": "NGSL #625 · Bentuk kata: manages, managed, managing",
+      "example_native": "I managed to finish 20 cards on the bus.",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-inti150-a2-fc-028",
+      "module_id": "en-inti150-a2",
+      "level": "A2",
+      "category": "ngsl-inti",
+      "front": "material",
+      "reading": "material",
+      "romaji": "/məˈtɪriəl/",
+      "meaning_id": "bahan / materi",
+      "mnemonic": "NGSL #571 · Bentuk kata: materials",
+      "example_native": "Choose reading material slightly above your level.",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-inti150-a2-fc-029",
+      "module_id": "en-inti150-a2",
+      "level": "A2",
+      "category": "ngsl-inti",
+      "front": "mention",
+      "reading": "mention",
+      "romaji": "/ˈmenʃn/",
+      "meaning_id": "menyebutkan",
+      "mnemonic": "NGSL #564 · Bentuk kata: mentions, mentioned, mentioning",
+      "example_native": "Did she mention the meeting time?",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-inti150-a2-fc-030",
+      "module_id": "en-inti150-a2",
+      "level": "A2",
+      "category": "ngsl-inti",
+      "front": "method",
+      "reading": "method",
+      "romaji": "/ˈmeθəd/",
+      "meaning_id": "metode / cara",
+      "mnemonic": "NGSL #755 · Bentuk kata: methods",
+      "example_native": "The SM-2 method schedules reviews automatically.",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-inti150-b1-fc-001",
+      "module_id": "en-inti150-b1",
+      "level": "B1",
+      "category": "ngsl-inti",
+      "front": "accurate",
+      "reading": "accurate",
+      "romaji": "/ˈækjərət/",
+      "meaning_id": "akurat / tepat",
+      "mnemonic": "NGSL #2283",
+      "example_native": "Check that your translation is accurate.",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-inti150-b1-fc-002",
+      "module_id": "en-inti150-b1",
+      "level": "B1",
+      "category": "ngsl-inti",
+      "front": "adapt",
+      "reading": "adapt",
+      "romaji": "/əˈdæpt/",
+      "meaning_id": "beradaptasi / menyesuaikan",
+      "mnemonic": "NGSL #2372 · Bentuk kata: adapts, adapted, adapting",
+      "example_native": "You quickly adapt to natural speech speed.",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-inti150-b1-fc-003",
+      "module_id": "en-inti150-b1",
+      "level": "B1",
+      "category": "ngsl-inti",
+      "front": "advantage",
+      "reading": "advantage",
+      "romaji": "/ədˈvæntɪdʒ/",
+      "meaning_id": "keunggulan / kelebihan",
+      "mnemonic": "NGSL #773 · Bentuk kata: advantages, advantaged",
+      "example_native": "Studying locally gives you full privacy.",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-inti150-b1-fc-004",
+      "module_id": "en-inti150-b1",
+      "level": "B1",
+      "category": "ngsl-inti",
+      "front": "alternative",
+      "reading": "alternative",
+      "romaji": "/ɔːlˈtɜːrnətɪv/",
+      "meaning_id": "alternatif / pilihan lain",
+      "mnemonic": "NGSL #1090 · Bentuk kata: alternatives",
+      "example_native": "Podcasts are a great alternative to textbooks.",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-inti150-b1-fc-005",
+      "module_id": "en-inti150-b1",
+      "level": "B1",
+      "category": "ngsl-inti",
+      "front": "analyze",
+      "reading": "analyze",
+      "romaji": "/ˈænəlaɪz/",
+      "meaning_id": "menganalisis",
+      "mnemonic": "NGSL #1641 · Bentuk kata: analyzes, analyzed, analyzing, analyse",
+      "example_native": "Analyze your quiz mistakes every Sunday.",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-inti150-b1-fc-006",
+      "module_id": "en-inti150-b1",
+      "level": "B1",
+      "category": "ngsl-inti",
+      "front": "approach",
+      "reading": "approach",
+      "romaji": "/əˈproʊtʃ/",
+      "meaning_id": "pendekatan / cara menangani",
+      "mnemonic": "NGSL #495 · Bentuk kata: approaches, approached, approaching",
+      "example_native": "A balanced approach covers all four skills.",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-inti150-b1-fc-007",
+      "module_id": "en-inti150-b1",
+      "level": "B1",
+      "category": "ngsl-inti",
+      "front": "appropriate",
+      "reading": "appropriate",
+      "romaji": "/əˈproʊpriət/",
+      "meaning_id": "sesuai / pantas",
+      "mnemonic": "NGSL #1019 · Bentuk kata: appropriates, appropriated, appropriating",
+      "example_native": "Choose a tone appropriate for a formal email.",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-inti150-b1-fc-008",
+      "module_id": "en-inti150-b1",
+      "level": "B1",
+      "category": "ngsl-inti",
+      "front": "arrange",
+      "reading": "arrange",
+      "romaji": "/əˈreɪndʒ/",
+      "meaning_id": "mengatur / menyusun",
+      "mnemonic": "NGSL #1266 · Bentuk kata: arranges, arranged, arranging",
+      "example_native": "Let's arrange a call for Thursday morning.",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-inti150-b1-fc-009",
+      "module_id": "en-inti150-b1",
+      "level": "B1",
+      "category": "ngsl-inti",
+      "front": "assume",
+      "reading": "assume",
+      "romaji": "/əˈsuːm/",
+      "meaning_id": "mengasumsikan / menduga",
+      "mnemonic": "NGSL #870 · Bentuk kata: assumes, assumed, assuming",
+      "example_native": "Never assume a word has only one meaning.",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-inti150-b1-fc-010",
+      "module_id": "en-inti150-b1",
+      "level": "B1",
+      "category": "ngsl-inti",
+      "front": "attempt",
+      "reading": "attempt",
+      "romaji": "/əˈtempt/",
+      "meaning_id": "upaya / mencoba",
+      "mnemonic": "NGSL #686 · Bentuk kata: attempts, attempted, attempting",
+      "example_native": "Make an attempt to answer before flipping the card.",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-inti150-b1-fc-011",
+      "module_id": "en-inti150-b1",
+      "level": "B1",
+      "category": "ngsl-inti",
+      "front": "aware",
+      "reading": "aware",
+      "romaji": "/əˈwer/",
+      "meaning_id": "sadar / mengetahui",
+      "mnemonic": "NGSL #1039",
+      "example_native": "Be aware of false friends between languages.",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-inti150-b1-fc-012",
+      "module_id": "en-inti150-b1",
+      "level": "B1",
+      "category": "ngsl-inti",
+      "front": "balance",
+      "reading": "balance",
+      "romaji": "/ˈbæləns/",
+      "meaning_id": "keseimbangan",
+      "mnemonic": "NGSL #907 · Bentuk kata: balances, balanced, balancing",
+      "example_native": "Keep a balance between input and speaking.",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-inti150-b1-fc-013",
+      "module_id": "en-inti150-b1",
+      "level": "B1",
+      "category": "ngsl-inti",
+      "front": "behavior",
+      "reading": "behavior",
+      "romaji": "/bɪˈheɪvjər/",
+      "meaning_id": "perilaku / sikap",
+      "mnemonic": "NGSL #706 · Bentuk kata: behaviors, behaviour, behaviours",
+      "example_native": "Small cues shape daily study behavior.",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-inti150-b1-fc-014",
+      "module_id": "en-inti150-b1",
+      "level": "B1",
+      "category": "ngsl-inti",
+      "front": "brief",
+      "reading": "brief",
+      "romaji": "/briːf/",
+      "meaning_id": "singkat / ringkas",
+      "mnemonic": "NGSL #1270 · Bentuk kata: briefs, briefed, briefing, briefer",
+      "example_native": "Keep your introduction brief and clear.",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-inti150-b1-fc-015",
+      "module_id": "en-inti150-b1",
+      "level": "B1",
+      "category": "ngsl-inti",
+      "front": "capable",
+      "reading": "capable",
+      "romaji": "/ˈkeɪpəbl/",
+      "meaning_id": "mampu / cakap",
+      "mnemonic": "NGSL #1885",
+      "example_native": "Everyone is capable of learning multiple languages.",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-inti150-b1-fc-016",
+      "module_id": "en-inti150-b1",
+      "level": "B1",
+      "category": "ngsl-inti",
+      "front": "challenge",
+      "reading": "challenge",
+      "romaji": "/ˈtʃælɪndʒ/",
+      "meaning_id": "tantangan",
+      "mnemonic": "NGSL #766 · Bentuk kata: challenges, challenged, challenging",
+      "example_native": "Listening to fast dialogue is a fun challenge.",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-inti150-b1-fc-017",
+      "module_id": "en-inti150-b1",
+      "level": "B1",
+      "category": "ngsl-inti",
+      "front": "clarify",
+      "reading": "clarify",
+      "romaji": "/ˈklærəfaɪ/",
+      "meaning_id": "memperjelas / mengklarifikasi",
+      "mnemonic": "Kosakata Inti Inggris (B1)",
+      "example_native": "Could you clarify what you meant by that?",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-inti150-b1-fc-018",
+      "module_id": "en-inti150-b1",
+      "level": "B1",
+      "category": "ngsl-inti",
+      "front": "combine",
+      "reading": "combine",
+      "romaji": "/kəmˈbaɪn/",
+      "meaning_id": "menggabungkan",
+      "mnemonic": "NGSL #1244 · Bentuk kata: combines, combined, combining",
+      "example_native": "Combine flashcards with real movie subtitles.",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-inti150-b1-fc-019",
+      "module_id": "en-inti150-b1",
+      "level": "B1",
+      "category": "ngsl-inti",
+      "front": "commit",
+      "reading": "commit",
+      "romaji": "/kəˈmɪt/",
+      "meaning_id": "berkomitmen",
+      "mnemonic": "NGSL #1322 · Bentuk kata: commits, committing, committed",
+      "example_native": "Commit to twenty minutes a day for 30 days.",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-inti150-b1-fc-020",
+      "module_id": "en-inti150-b1",
+      "level": "B1",
+      "category": "ngsl-inti",
+      "front": "complex",
+      "reading": "complex",
+      "romaji": "/kəmˈpleks/",
+      "meaning_id": "rumit / kompleks",
+      "mnemonic": "NGSL #1047 · Bentuk kata: complexes",
+      "example_native": "Break complex grammar into simple patterns.",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-inti150-b1-fc-021",
+      "module_id": "en-inti150-b1",
+      "level": "B1",
+      "category": "ngsl-inti",
+      "front": "concentrate",
+      "reading": "concentrate",
+      "romaji": "/ˈkɑːnsntreɪt/",
+      "meaning_id": "berkonsentrasi",
+      "mnemonic": "NGSL #1541 · Bentuk kata: concentrates, concentrated, concentrating",
+      "example_native": "Turn off notifications so you can concentrate.",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-inti150-b1-fc-022",
+      "module_id": "en-inti150-b1",
+      "level": "B1",
+      "category": "ngsl-inti",
+      "front": "concept",
+      "reading": "concept",
+      "romaji": "/ˈkɑːnsept/",
+      "meaning_id": "konsep / gagasan",
+      "mnemonic": "NGSL #1213 · Bentuk kata: concepts",
+      "example_native": "Once you grasp the concept, practice feels easy.",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-inti150-b1-fc-023",
+      "module_id": "en-inti150-b1",
+      "level": "B1",
+      "category": "ngsl-inti",
+      "front": "conclude",
+      "reading": "conclude",
+      "romaji": "/kənˈkluːd/",
+      "meaning_id": "menyimpulkan",
+      "mnemonic": "NGSL #1355 · Bentuk kata: concludes, concluded, concluding",
+      "example_native": "To conclude, daily streaks build momentum.",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-inti150-b1-fc-024",
+      "module_id": "en-inti150-b1",
+      "level": "B1",
+      "category": "ngsl-inti",
+      "front": "confident",
+      "reading": "confident",
+      "romaji": "/ˈkɑːnfɪdənt/",
+      "meaning_id": "percaya diri",
+      "mnemonic": "NGSL #2218 · Bentuk kata: confidents",
+      "example_native": "Role-play dialogs make you more confident.",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-inti150-b1-fc-025",
+      "module_id": "en-inti150-b1",
+      "level": "B1",
+      "category": "ngsl-inti",
+      "front": "consistent",
+      "reading": "consistent",
+      "romaji": "/kənˈsɪstənt/",
+      "meaning_id": "konsisten / tetap",
+      "mnemonic": "NGSL #1942",
+      "example_native": "Consistent effort outperforms occasional marathons.",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-inti150-b1-fc-026",
+      "module_id": "en-inti150-b1",
+      "level": "B1",
+      "category": "ngsl-inti",
+      "front": "context",
+      "reading": "context",
+      "romaji": "/ˈkɑːntekst/",
+      "meaning_id": "konteks",
+      "mnemonic": "NGSL #1049 · Bentuk kata: contexts",
+      "example_native": "Always learn vocabulary inside a real context.",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-inti150-b1-fc-027",
+      "module_id": "en-inti150-b1",
+      "level": "B1",
+      "category": "ngsl-inti",
+      "front": "contrast",
+      "reading": "contrast",
+      "romaji": "/ˈkɑːntræst/",
+      "meaning_id": "kontras / perbedaan mencolok",
+      "mnemonic": "NGSL #1179 · Bentuk kata: contrasts, contrasted, contrasting",
+      "example_native": "Notice the contrast between formal and casual speech.",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-inti150-b1-fc-028",
+      "module_id": "en-inti150-b1",
+      "level": "B1",
+      "category": "ngsl-inti",
+      "front": "contribute",
+      "reading": "contribute",
+      "romaji": "/kənˈtrɪbjuːt/",
+      "meaning_id": "berkontribusi / menyumbang",
+      "mnemonic": "NGSL #1238 · Bentuk kata: contributes, contributed, contributing",
+      "example_native": "Wide reading contributes directly to writing skill.",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-inti150-b1-fc-029",
+      "module_id": "en-inti150-b1",
+      "level": "B1",
+      "category": "ngsl-inti",
+      "front": "convince",
+      "reading": "convince",
+      "romaji": "/kənˈvɪns/",
+      "meaning_id": "meyakinkan",
+      "mnemonic": "NGSL #1358 · Bentuk kata: convinces, convinced, convincing",
+      "example_native": "The evidence convinced everyone in the room.",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-inti150-b1-fc-030",
+      "module_id": "en-inti150-b1",
+      "level": "B1",
+      "category": "ngsl-inti",
+      "front": "crucial",
+      "reading": "crucial",
+      "romaji": "/ˈkruːʃl/",
+      "meaning_id": "sangat krusial / menentukan",
+      "mnemonic": "NGSL #1983",
+      "example_native": "Pronunciation feedback is crucial early on.",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-inti150-b1-fc-031",
+      "module_id": "en-inti150-b1",
+      "level": "B1",
+      "category": "ngsl-inti",
+      "front": "decline",
+      "reading": "decline",
+      "romaji": "/dɪˈklaɪn/",
+      "meaning_id": "menurun / menolak dengan sopan",
+      "mnemonic": "NGSL #1129 · Bentuk kata: declines, declined, declining",
+      "example_native": "She politely declined the extra assignment.",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-inti150-b1-fc-032",
+      "module_id": "en-inti150-b1",
+      "level": "B1",
+      "category": "ngsl-inti",
+      "front": "demonstrate",
+      "reading": "demonstrate",
+      "romaji": "/ˈdemənstreɪt/",
+      "meaning_id": "menunjukkan / mendemonstrasikan",
+      "mnemonic": "NGSL #1272 · Bentuk kata: demonstrates, demonstrated, demonstrating",
+      "example_native": "These examples demonstrate how the tense works.",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-inti150-b1-fc-033",
+      "module_id": "en-inti150-b1",
+      "level": "B1",
+      "category": "ngsl-inti",
+      "front": "derive",
+      "reading": "derive",
+      "romaji": "/dɪˈraɪv/",
+      "meaning_id": "berasal dari / memperoleh",
+      "mnemonic": "NGSL #1982 · Bentuk kata: derives, derived, deriving",
+      "example_native": "Many English words derive from Latin and French.",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-inti150-b1-fc-034",
+      "module_id": "en-inti150-b1",
+      "level": "B1",
+      "category": "ngsl-inti",
+      "front": "distinct",
+      "reading": "distinct",
+      "romaji": "/dɪˈstɪŋkt/",
+      "meaning_id": "berbeda jelas / khas",
+      "mnemonic": "NGSL #2572",
+      "example_native": "Each dialect has its own distinct rhythm.",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-inti150-b1-fc-035",
+      "module_id": "en-inti150-b1",
+      "level": "B1",
+      "category": "ngsl-inti",
+      "front": "distribute",
+      "reading": "distribute",
+      "romaji": "/dɪˈstrɪbjuːt/",
+      "meaning_id": "mendistribusikan / membagi",
+      "mnemonic": "NGSL #1980 · Bentuk kata: distributes, distributed, distributing",
+      "example_native": "Distribute your practice across the whole week.",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-inti150-b2-fc-001",
+      "module_id": "en-inti150-b2",
+      "level": "B2",
+      "category": "ngsl-inti",
+      "front": "allocate",
+      "reading": "allocate",
+      "romaji": "/ˈæləkeɪt/",
+      "meaning_id": "mengalokasikan",
+      "mnemonic": "Kosakata Inti Inggris (B2)",
+      "example_native": "Allocate ten minutes to SRS and ten to reading.",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-inti150-b2-fc-002",
+      "module_id": "en-inti150-b2",
+      "level": "B2",
+      "category": "ngsl-inti",
+      "front": "ambiguous",
+      "reading": "ambiguous",
+      "romaji": "/æmˈbɪɡjuəs/",
+      "meaning_id": "ambigu / bermakna ganda",
+      "mnemonic": "Kosakata Inti Inggris (B2)",
+      "example_native": "Rewrite ambiguous sentences so they are crystal clear.",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-inti150-b2-fc-003",
+      "module_id": "en-inti150-b2",
+      "level": "B2",
+      "category": "ngsl-inti",
+      "front": "anticipate",
+      "reading": "anticipate",
+      "romaji": "/ænˈtɪsɪpeɪt/",
+      "meaning_id": "mengantisipasi / memperkirakan",
+      "mnemonic": "NGSL #2335 · Bentuk kata: anticipates, anticipated, anticipating",
+      "example_native": "Anticipate follow-up questions in IELTS Speaking.",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-inti150-b2-fc-004",
+      "module_id": "en-inti150-b2",
+      "level": "B2",
+      "category": "ngsl-inti",
+      "front": "assess",
+      "reading": "assess",
+      "romaji": "/əˈses/",
+      "meaning_id": "menilai / mengevaluasi",
+      "mnemonic": "NGSL #1499 · Bentuk kata: assesses, assessed, assessing",
+      "example_native": "Use mock quizzes to assess your weak spots.",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-inti150-b2-fc-005",
+      "module_id": "en-inti150-b2",
+      "level": "B2",
+      "category": "ngsl-inti",
+      "front": "coherent",
+      "reading": "coherent",
+      "romaji": "/koʊˈhɪrənt/",
+      "meaning_id": "runtut / koheren",
+      "mnemonic": "Kosakata Inti Inggris (B2)",
+      "example_native": "A coherent essay links each paragraph smoothly.",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-inti150-b2-fc-006",
+      "module_id": "en-inti150-b2",
+      "level": "B2",
+      "category": "ngsl-inti",
+      "front": "compelling",
+      "reading": "compelling",
+      "romaji": "/kəmˈpelɪŋ/",
+      "meaning_id": "meyakinkan / menarik kuat",
+      "mnemonic": "Kosakata Inti Inggris (B2)",
+      "example_native": "She made a compelling case for remote learning.",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-inti150-b2-fc-007",
+      "module_id": "en-inti150-b2",
+      "level": "B2",
+      "category": "ngsl-inti",
+      "front": "comprehensive",
+      "reading": "comprehensive",
+      "romaji": "/ˌkɑːmprɪˈhensɪv/",
+      "meaning_id": "menyeluruh / komprehensif",
+      "mnemonic": "NGSL #2384",
+      "example_native": "We built a comprehensive roadmap from A0 to C2.",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-inti150-b2-fc-008",
+      "module_id": "en-inti150-b2",
+      "level": "B2",
+      "category": "ngsl-inti",
+      "front": "concise",
+      "reading": "concise",
+      "romaji": "/kənˈsaɪs/",
+      "meaning_id": "ringkas dan padat",
+      "mnemonic": "Kosakata Inti Inggris (B2)",
+      "example_native": "Keep your summary concise without losing facts.",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-inti150-b2-fc-009",
+      "module_id": "en-inti150-b2",
+      "level": "B2",
+      "category": "ngsl-inti",
+      "front": "constraint",
+      "reading": "constraint",
+      "romaji": "/kənˈstreɪnt/",
+      "meaning_id": "batasan / kendala",
+      "mnemonic": "NGSL #2554 · Bentuk kata: constraints",
+      "example_native": "Time constraints forced us to prioritize core words.",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-inti150-b2-fc-010",
+      "module_id": "en-inti150-b2",
+      "level": "B2",
+      "category": "ngsl-inti",
+      "front": "conventional",
+      "reading": "conventional",
+      "romaji": "/kənˈvenʃənl/",
+      "meaning_id": "konvensional / lazim",
+      "mnemonic": "NGSL #2308",
+      "example_native": "Immersion differs from conventional textbook drills.",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-inti150-b2-fc-011",
+      "module_id": "en-inti150-b2",
+      "level": "B2",
+      "category": "ngsl-inti",
+      "front": "criteria",
+      "reading": "criteria",
+      "romaji": "/kraɪˈtɪriə/",
+      "meaning_id": "kriteria / tolok ukur",
+      "mnemonic": "NGSL #1953",
+      "example_native": "Check the official IELTS scoring criteria.",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-inti150-b2-fc-012",
+      "module_id": "en-inti150-b2",
+      "level": "B2",
+      "category": "ngsl-inti",
+      "front": "deduce",
+      "reading": "deduce",
+      "romaji": "/dɪˈduːs/",
+      "meaning_id": "menyimpulkan secara logis",
+      "mnemonic": "Kosakata Inti Inggris (B2)",
+      "example_native": "You can deduce the word's meaning from context.",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-inti150-b2-fc-013",
+      "module_id": "en-inti150-b2",
+      "level": "B2",
+      "category": "ngsl-inti",
+      "front": "diminish",
+      "reading": "diminish",
+      "romaji": "/dɪˈmɪnɪʃ/",
+      "meaning_id": "berkurang / menyusut",
+      "mnemonic": "Kosakata Inti Inggris (B2)",
+      "example_native": "Fear of speaking diminishes with daily practice.",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-inti150-b2-fc-014",
+      "module_id": "en-inti150-b2",
+      "level": "B2",
+      "category": "ngsl-inti",
+      "front": "emerge",
+      "reading": "emerge",
+      "romaji": "/ɪˈmɜːrdʒ/",
+      "meaning_id": "muncul / timbul",
+      "mnemonic": "NGSL #1211 · Bentuk kata: emerges, emerged, emerging",
+      "example_native": "Clear patterns emerge after reading ten articles.",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-inti150-b2-fc-015",
+      "module_id": "en-inti150-b2",
+      "level": "B2",
+      "category": "ngsl-inti",
+      "front": "emphasize",
+      "reading": "emphasize",
+      "romaji": "/ˈemfəsaɪz/",
+      "meaning_id": "menekankan",
+      "mnemonic": "NGSL #1840 · Bentuk kata: emphasizes, emphasized, emphasizing, emphasise",
+      "example_native": "The author emphasizes active recall over passive reading.",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-inti150-b2-fc-016",
+      "module_id": "en-inti150-b2",
+      "level": "B2",
+      "category": "ngsl-inti",
+      "front": "enhance",
+      "reading": "enhance",
+      "romaji": "/ɪnˈhæns/",
+      "meaning_id": "meningkatkan mutu",
+      "mnemonic": "NGSL #1889 · Bentuk kata: enhances, enhanced, enhancing",
+      "example_native": "Subtitles enhance listening comprehension.",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-inti150-b2-fc-017",
+      "module_id": "en-inti150-b2",
+      "level": "B2",
+      "category": "ngsl-inti",
+      "front": "evaluate",
+      "reading": "evaluate",
+      "romaji": "/ɪˈvæljueɪt/",
+      "meaning_id": "mengevaluasi",
+      "mnemonic": "NGSL #2139 · Bentuk kata: evaluates, evaluated, evaluating",
+      "example_native": "Evaluate both sides before stating your thesis.",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-inti150-b2-fc-018",
+      "module_id": "en-inti150-b2",
+      "level": "B2",
+      "category": "ngsl-inti",
+      "front": "evident",
+      "reading": "evident",
+      "romaji": "/ˈevɪdənt/",
+      "meaning_id": "jelas terlihat / nyata",
+      "mnemonic": "Kosakata Inti Inggris (B2)",
+      "example_native": "Her progress was evident after just two months.",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-inti150-b2-fc-019",
+      "module_id": "en-inti150-b2",
+      "level": "B2",
+      "category": "ngsl-inti",
+      "front": "feasible",
+      "reading": "feasible",
+      "romaji": "/ˈfiːzəbl/",
+      "meaning_id": "layak / mungkin dilaksanakan",
+      "mnemonic": "Kosakata Inti Inggris (B2)",
+      "example_native": "Learning twenty cards a day is totally feasible.",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-inti150-b2-fc-020",
+      "module_id": "en-inti150-b2",
+      "level": "B2",
+      "category": "ngsl-inti",
+      "front": "fluctuation",
+      "reading": "fluctuation",
+      "romaji": "/ˌflʌktʃuˈeɪʃn/",
+      "meaning_id": "fluktuasi / naik-turun",
+      "mnemonic": "Kosakata Inti Inggris (B2)",
+      "example_native": "The chart shows mild fluctuation in Q3.",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-inti150-b2-fc-021",
+      "module_id": "en-inti150-b2",
+      "level": "B2",
+      "category": "ngsl-inti",
+      "front": "implement",
+      "reading": "implement",
+      "romaji": "/ˈɪmplɪment/",
+      "meaning_id": "menerapkan / mengimplementasikan",
+      "mnemonic": "NGSL #1740 · Bentuk kata: implements, implemented, implementing",
+      "example_native": "We implemented the SM-2 algorithm locally.",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-inti150-b2-fc-022",
+      "module_id": "en-inti150-b2",
+      "level": "B2",
+      "category": "ngsl-inti",
+      "front": "implication",
+      "reading": "implication",
+      "romaji": "/ˌɪmplɪˈkeɪʃn/",
+      "meaning_id": "implikasi / dampak tersirat",
+      "mnemonic": "NGSL #1871 · Bentuk kata: implications",
+      "example_native": "Consider the long-term implications of the policy.",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-inti150-b2-fc-023",
+      "module_id": "en-inti150-b2",
+      "level": "B2",
+      "category": "ngsl-inti",
+      "front": "incentive",
+      "reading": "incentive",
+      "romaji": "/ɪnˈsentɪv/",
+      "meaning_id": "insentif / dorongan motivasi",
+      "mnemonic": "NGSL #2385 · Bentuk kata: incentives",
+      "example_native": "Daily streaks create a strong visual incentive.",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-inti150-b2-fc-024",
+      "module_id": "en-inti150-b2",
+      "level": "B2",
+      "category": "ngsl-inti",
+      "front": "inevitable",
+      "reading": "inevitable",
+      "romaji": "/ɪnˈevɪtəbl/",
+      "meaning_id": "tidak terhindarkan",
+      "mnemonic": "Kosakata Inti Inggris (B2)",
+      "example_native": "Making mistakes is an inevitable part of fluency.",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-inti150-b2-fc-025",
+      "module_id": "en-inti150-b2",
+      "level": "B2",
+      "category": "ngsl-inti",
+      "front": "interpret",
+      "reading": "interpret",
+      "romaji": "/ɪnˈtɜːrprɪt/",
+      "meaning_id": "menafsirkan",
+      "mnemonic": "NGSL #2232 · Bentuk kata: interprets, interpreted, interpreting",
+      "example_native": "Learn to interpret graphs accurately in Task 1.",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-inti150-b2-fc-026",
+      "module_id": "en-inti150-b2",
+      "level": "B2",
+      "category": "ngsl-inti",
+      "front": "justify",
+      "reading": "justify",
+      "romaji": "/ˈdʒʌstɪfaɪ/",
+      "meaning_id": "membenarkan / memberi alasan kuat",
+      "mnemonic": "NGSL #2122 · Bentuk kata: justifies, justified, justifying",
+      "example_native": "Always justify your opinion with concrete examples.",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-inti150-b2-fc-027",
+      "module_id": "en-inti150-b2",
+      "level": "B2",
+      "category": "ngsl-inti",
+      "front": "maintain",
+      "reading": "maintain",
+      "romaji": "/meɪnˈteɪn/",
+      "meaning_id": "mempertahankan / menjaga",
+      "mnemonic": "NGSL #943 · Bentuk kata: maintains, maintained, maintaining",
+      "example_native": "Maintain your streak even on busy weekends.",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-inti150-b2-fc-028",
+      "module_id": "en-inti150-b2",
+      "level": "B2",
+      "category": "ngsl-inti",
+      "front": "notable",
+      "reading": "notable",
+      "romaji": "/ˈnoʊtəbl/",
+      "meaning_id": "patut dicatat / menonjol",
+      "mnemonic": "Kosakata Inti Inggris (B2)",
+      "example_native": "There was a notable increase in quiz accuracy.",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-inti150-b2-fc-029",
+      "module_id": "en-inti150-b2",
+      "level": "B2",
+      "category": "ngsl-inti",
+      "front": "objective",
+      "reading": "objective",
+      "romaji": "/əbˈdʒektɪv/",
+      "meaning_id": "objektif / sasaran",
+      "mnemonic": "NGSL #1402 · Bentuk kata: objectives",
+      "example_native": "Keep an objective tone in academic writing.",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-inti150-b2-fc-030",
+      "module_id": "en-inti150-b2",
+      "level": "B2",
+      "category": "ngsl-inti",
+      "front": "perspective",
+      "reading": "perspective",
+      "romaji": "/pərˈspektɪv/",
+      "meaning_id": "sudut pandang",
+      "mnemonic": "NGSL #1496 · Bentuk kata: perspectives",
+      "example_native": "Reading foreign news broadens your perspective.",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-inti150-c1-fc-001",
+      "module_id": "en-inti150-c1",
+      "level": "C1",
+      "category": "ngsl-inti",
+      "front": "advocate",
+      "reading": "advocate",
+      "romaji": "/ˈædvəkeɪt/",
+      "meaning_id": "menganjurkan / mendukung kuat",
+      "mnemonic": "NGSL #2316 · Bentuk kata: advocates, advocated, advocating",
+      "example_native": "Many linguists advocate comprehensible input.",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-inti150-c1-fc-002",
+      "module_id": "en-inti150-c1",
+      "level": "C1",
+      "category": "ngsl-inti",
+      "front": "alleviate",
+      "reading": "alleviate",
+      "romaji": "/əˈliːvieɪt/",
+      "meaning_id": "meringankan / meredakan",
+      "mnemonic": "Kosakata Inti Inggris (C1)",
+      "example_native": "Regular mock tests help alleviate exam anxiety.",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-inti150-c1-fc-003",
+      "module_id": "en-inti150-c1",
+      "level": "C1",
+      "category": "ngsl-inti",
+      "front": "articulate",
+      "reading": "articulate",
+      "romaji": "/ɑːrˈtɪkjuleɪt/",
+      "meaning_id": "mengungkapkan dengan fasih dan jelas",
+      "mnemonic": "Kosakata Inti Inggris (C1)",
+      "example_native": "She can articulate subtle nuances effortlessly.",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-inti150-c1-fc-004",
+      "module_id": "en-inti150-c1",
+      "level": "C1",
+      "category": "ngsl-inti",
+      "front": "bolster",
+      "reading": "bolster",
+      "romaji": "/ˈboʊlstər/",
+      "meaning_id": "memperkuat / menopang",
+      "mnemonic": "Kosakata Inti Inggris (C1)",
+      "example_native": "Real data will bolster your main argument.",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-inti150-c1-fc-005",
+      "module_id": "en-inti150-c1",
+      "level": "C1",
+      "category": "ngsl-inti",
+      "front": "catalyst",
+      "reading": "catalyst",
+      "romaji": "/ˈkætəlɪst/",
+      "meaning_id": "katalis / pemicu perubahan cepat",
+      "mnemonic": "Kosakata Inti Inggris (C1)",
+      "example_native": "Living abroad was the catalyst for his fluency.",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-inti150-c1-fc-006",
+      "module_id": "en-inti150-c1",
+      "level": "C1",
+      "category": "ngsl-inti",
+      "front": "coincide",
+      "reading": "coincide",
+      "romaji": "/ˌkoʊɪnˈsaɪd/",
+      "meaning_id": "bertepatan / terjadi bersamaan",
+      "mnemonic": "Kosakata Inti Inggris (C1)",
+      "example_native": "The rise in remote work coincided with app growth.",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-inti150-c1-fc-007",
+      "module_id": "en-inti150-c1",
+      "level": "C1",
+      "category": "ngsl-inti",
+      "front": "concede",
+      "reading": "concede",
+      "romaji": "/kənˈsiːd/",
+      "meaning_id": "mengakui (sisi argumen lawan)",
+      "mnemonic": "Kosakata Inti Inggris (C1)",
+      "example_native": "While I concede the point, the cost remains high.",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-inti150-c1-fc-008",
+      "module_id": "en-inti150-c1",
+      "level": "C1",
+      "category": "ngsl-inti",
+      "front": "consensus",
+      "reading": "consensus",
+      "romaji": "/kənˈsensəs/",
+      "meaning_id": "konsensus / kesepakatan umum",
+      "mnemonic": "Kosakata Inti Inggris (C1)",
+      "example_native": "There is broad consensus on spaced repetition.",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-inti150-c1-fc-009",
+      "module_id": "en-inti150-c1",
+      "level": "C1",
+      "category": "ngsl-inti",
+      "front": "consolidate",
+      "reading": "consolidate",
+      "romaji": "/kənˈsɑːlɪdeɪt/",
+      "meaning_id": "memperkuat / menggabungkan jadi solid",
+      "mnemonic": "Kosakata Inti Inggris (C1)",
+      "example_native": "Sleep helps consolidate newly learned vocabulary.",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-inti150-c1-fc-010",
+      "module_id": "en-inti150-c1",
+      "level": "C1",
+      "category": "ngsl-inti",
+      "front": "contentious",
+      "reading": "contentious",
+      "romaji": "/kənˈtenʃəs/",
+      "meaning_id": "kontroversial / memicu perdebatan",
+      "mnemonic": "Kosakata Inti Inggris (C1)",
+      "example_native": "AI in schools remains a contentious topic.",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-inti150-c1-fc-011",
+      "module_id": "en-inti150-c1",
+      "level": "C1",
+      "category": "ngsl-inti",
+      "front": "curtail",
+      "reading": "curtail",
+      "romaji": "/kɜːrˈteɪl/",
+      "meaning_id": "membatasi / memangkas",
+      "mnemonic": "Kosakata Inti Inggris (C1)",
+      "example_native": "Strict limits were introduced to curtail spam.",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-inti150-c1-fc-012",
+      "module_id": "en-inti150-c1",
+      "level": "C1",
+      "category": "ngsl-inti",
+      "front": "detrimental",
+      "reading": "detrimental",
+      "romaji": "/ˌdetrɪˈmentl/",
+      "meaning_id": "merugikan / berdampak buruk",
+      "mnemonic": "Kosakata Inti Inggris (C1)",
+      "example_native": "Cramming all night is detrimental to recall.",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-inti150-c1-fc-013",
+      "module_id": "en-inti150-c1",
+      "level": "C1",
+      "category": "ngsl-inti",
+      "front": "discern",
+      "reading": "discern",
+      "romaji": "/dɪˈsɜːrn/",
+      "meaning_id": "membedakan / menangkap detail halus",
+      "mnemonic": "Kosakata Inti Inggris (C1)",
+      "example_native": "Advanced learners discern subtle shifts in tone.",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-inti150-c1-fc-014",
+      "module_id": "en-inti150-c1",
+      "level": "C1",
+      "category": "ngsl-inti",
+      "front": "eloquent",
+      "reading": "eloquent",
+      "romaji": "/ˈeləkwənt/",
+      "meaning_id": "fasih dan memukau dalam bertutur",
+      "mnemonic": "Kosakata Inti Inggris (C1)",
+      "example_native": "He delivered an eloquent closing statement.",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-inti150-c1-fc-015",
+      "module_id": "en-inti150-c1",
+      "level": "C1",
+      "category": "ngsl-inti",
+      "front": "empirical",
+      "reading": "empirical",
+      "romaji": "/ɪmˈpɪrɪkl/",
+      "meaning_id": "empiris (berdasarkan data/pengamatan)",
+      "mnemonic": "Kosakata Inti Inggris (C1)",
+      "example_native": "Empirical evidence supports active testing.",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-inti150-c1-fc-016",
+      "module_id": "en-inti150-c1",
+      "level": "C1",
+      "category": "ngsl-inti",
+      "front": "foster",
+      "reading": "foster",
+      "romaji": "/ˈfɔːstər/",
+      "meaning_id": "menumbuhkan / memupuk",
+      "mnemonic": "Kosakata Inti Inggris (C1)",
+      "example_native": "Curiosity fosters lifelong language learning.",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-inti150-c1-fc-017",
+      "module_id": "en-inti150-c1",
+      "level": "C1",
+      "category": "ngsl-inti",
+      "front": "hamper",
+      "reading": "hamper",
+      "romaji": "/ˈhæmpər/",
+      "meaning_id": "menghambat / menghalangi",
+      "mnemonic": "Kosakata Inti Inggris (C1)",
+      "example_native": "Perfectionism can hamper speaking fluency.",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-inti150-c1-fc-018",
+      "module_id": "en-inti150-c1",
+      "level": "C1",
+      "category": "ngsl-inti",
+      "front": "imperative",
+      "reading": "imperative",
+      "romaji": "/ɪmˈperətɪv/",
+      "meaning_id": "sangat mendesak / mutlak",
+      "mnemonic": "Kosakata Inti Inggris (C1)",
+      "example_native": "Clear structure is imperative in Task 2 essays.",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-inti150-c1-fc-019",
+      "module_id": "en-inti150-c1",
+      "level": "C1",
+      "category": "ngsl-inti",
+      "front": "indispensable",
+      "reading": "indispensable",
+      "romaji": "/ˌɪndɪˈspensəbl/",
+      "meaning_id": "tak tergantikan / mutlak perlu",
+      "mnemonic": "Kosakata Inti Inggris (C1)",
+      "example_native": "A good dictionary is an indispensable companion.",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-inti150-c1-fc-020",
+      "module_id": "en-inti150-c1",
+      "level": "C1",
+      "category": "ngsl-inti",
+      "front": "intrinsic",
+      "reading": "intrinsic",
+      "romaji": "/ɪnˈtrɪnzɪk/",
+      "meaning_id": "intrinsik / berasal dari dalam",
+      "mnemonic": "Kosakata Inti Inggris (C1)",
+      "example_native": "Intrinsic motivation outlasts external rewards.",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-inti150-c1-fc-021",
+      "module_id": "en-inti150-c1",
+      "level": "C1",
+      "category": "ngsl-inti",
+      "front": "lucid",
+      "reading": "lucid",
+      "romaji": "/ˈluːsɪd/",
+      "meaning_id": "jernih dan mudah dipahami",
+      "mnemonic": "Kosakata Inti Inggris (C1)",
+      "example_native": "The professor gave a remarkably lucid explanation.",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-inti150-c1-fc-022",
+      "module_id": "en-inti150-c1",
+      "level": "C1",
+      "category": "ngsl-inti",
+      "front": "paradox",
+      "reading": "paradox",
+      "romaji": "/ˈpærədɑːks/",
+      "meaning_id": "paradoks / hal yang tampak bertentangan",
+      "mnemonic": "Kosakata Inti Inggris (C1)",
+      "example_native": "It is a paradox that slowing down speeds up mastery.",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-inti150-c1-fc-023",
+      "module_id": "en-inti150-c1",
+      "level": "C1",
+      "category": "ngsl-inti",
+      "front": "plausible",
+      "reading": "plausible",
+      "romaji": "/ˈplɔːzəbl/",
+      "meaning_id": "masuk akal / dapat dipercaya",
+      "mnemonic": "Kosakata Inti Inggris (C1)",
+      "example_native": "That is a plausible explanation for the trend.",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-inti150-c1-fc-024",
+      "module_id": "en-inti150-c1",
+      "level": "C1",
+      "category": "ngsl-inti",
+      "front": "resilient",
+      "reading": "resilient",
+      "romaji": "/rɪˈzɪliənt/",
+      "meaning_id": "tangguh / cepat bangkit",
+      "mnemonic": "Kosakata Inti Inggris (C1)",
+      "example_native": "Resilient learners treat mistakes as feedback.",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    },
+    {
+      "id": "en-inti150-c1-fc-025",
+      "module_id": "en-inti150-c1",
+      "level": "C1",
+      "category": "ngsl-inti",
+      "front": "scrutinize",
+      "reading": "scrutinize",
+      "romaji": "/ˈskruːtənaɪz/",
+      "meaning_id": "menelaah dengan sangat teliti",
+      "mnemonic": "Kosakata Inti Inggris (C1)",
+      "example_native": "Always scrutinize extreme words in IELTS Reading.",
+      "example_romaji": "",
+      "example_id": "",
+      "srs": {
+        "ease_factor": 2.5,
+        "interval_days": 0,
+        "repetitions": 0,
+        "due_date": null
+      }
+    }
+  ],
+  "quizzes": [
+    {
+      "id": "en-inti150-a1-qz-mc-01",
+      "module_id": "en-inti150-a1",
+      "type": "multiple_choice",
+      "prompt": "Apa arti yang paling tepat untuk kata \"budget\"?",
+      "options": [
+        "membatalkan",
+        "tersedia",
+        "anggaran biaya",
+        "rincian / detail"
+      ],
+      "answer": "anggaran biaya",
+      "explanation_id": "\"budget\" berarti \"anggaran biaya\". Contoh: We planned the trip on a modest student budget."
+    },
+    {
+      "id": "en-inti150-a1-qz-mc-02",
+      "module_id": "en-inti150-a1",
+      "type": "multiple_choice",
+      "prompt": "Apa arti yang paling tepat untuk kata \"amount\"?",
+      "options": [
+        "mengembangkan",
+        "menyelesaikan / lengkap",
+        "tiba / sampai",
+        "jumlah (tak terhitung)"
+      ],
+      "answer": "jumlah (tak terhitung)",
+      "explanation_id": "\"amount\" berarti \"jumlah (tak terhitung)\". Contoh: A small amount of daily practice makes a big difference."
+    },
+    {
+      "id": "en-inti150-a1-qz-mc-03",
+      "module_id": "en-inti150-a1",
+      "type": "multiple_choice",
+      "prompt": "Apa arti yang paling tepat untuk kata \"available\"?",
+      "options": [
+        "rincian / detail",
+        "mencapai / meraih",
+        "meminjam",
+        "tersedia"
+      ],
+      "answer": "tersedia",
+      "explanation_id": "\"available\" berarti \"tersedia\". Contoh: Is this seat available?"
+    },
+    {
+      "id": "en-inti150-a1-qz-match-01",
+      "module_id": "en-inti150-a1",
+      "type": "matching",
+      "prompt": "Pasangkan kosakata Inggris berikut dengan artinya:",
+      "pairs": [
+        {
+          "left": "detail",
+          "right": "rincian / detail"
+        },
+        {
+          "left": "achieve",
+          "right": "mencapai / meraih"
+        },
+        {
+          "left": "available",
+          "right": "tersedia"
+        },
+        {
+          "left": "chance",
+          "right": "kesempatan / peluang"
+        }
+      ],
+      "explanation_id": "Semua pasangan kosakata cocok dengan tepat."
+    },
+    {
+      "id": "en-inti150-a1-qz-tr-01",
+      "module_id": "en-inti150-a1",
+      "type": "translation",
+      "prompt": "Ketik kosakata bahasa Inggris yang berarti: \"kesempatan / peluang\"",
+      "accepted_answers": [
+        "chance",
+        "chance"
+      ],
+      "explanation_id": "Jawaban yang tepat adalah \"chance\"."
+    },
+    {
+      "id": "en-inti150-a2-qz-mc-01",
+      "module_id": "en-inti150-a2",
+      "type": "multiple_choice",
+      "prompt": "Apa arti yang paling tepat untuk kata \"instead\"?",
+      "options": [
+        "usaha keras",
+        "masalah / persoalan",
+        "umum / garis besar",
+        "sebagai gantinya"
+      ],
+      "answer": "sebagai gantinya",
+      "explanation_id": "\"instead\" berarti \"sebagai gantinya\". Contoh: Use spaced repetition instead of rereading."
+    },
+    {
+      "id": "en-inti150-a2-qz-mc-02",
+      "module_id": "en-inti150-a2",
+      "type": "multiple_choice",
+      "prompt": "Apa arti yang paling tepat untuk kata \"independent\"?",
+      "options": [
+        "mendiskusikan",
+        "mengumpulkan / berkumpul",
+        "meningkat / menaikkan",
+        "mandiri / bebas"
+      ],
+      "answer": "mandiri / bebas",
+      "explanation_id": "\"independent\" berarti \"mandiri / bebas\". Contoh: Self-study builds independent learners."
+    },
+    {
+      "id": "en-inti150-a2-qz-mc-03",
+      "module_id": "en-inti150-a2",
+      "type": "multiple_choice",
+      "prompt": "Apa arti yang paling tepat untuk kata \"improve\"?",
+      "options": [
+        "menangani / mengatasi",
+        "fitur / ciri khas",
+        "mengumpulkan / berkumpul",
+        "meningkatkan / memperbaiki"
+      ],
+      "answer": "meningkatkan / memperbaiki",
+      "explanation_id": "\"improve\" berarti \"meningkatkan / memperbaiki\". Contoh: Shadowing audio will improve your rhythm."
+    },
+    {
+      "id": "en-inti150-a2-qz-match-01",
+      "module_id": "en-inti150-a2",
+      "type": "matching",
+      "prompt": "Pasangkan kosakata Inggris berikut dengan artinya:",
+      "pairs": [
+        {
+          "left": "familiar",
+          "right": "akrab / sudah dikenal"
+        },
+        {
+          "left": "environment",
+          "right": "lingkungan"
+        },
+        {
+          "left": "improve",
+          "right": "meningkatkan / memperbaiki"
+        },
+        {
+          "left": "explain",
+          "right": "menjelaskan"
+        }
+      ],
+      "explanation_id": "Semua pasangan kosakata cocok dengan tepat."
+    },
+    {
+      "id": "en-inti150-a2-qz-tr-01",
+      "module_id": "en-inti150-a2",
+      "type": "translation",
+      "prompt": "Ketik kosakata bahasa Inggris yang berarti: \"menjelaskan\"",
+      "accepted_answers": [
+        "explain",
+        "explain"
+      ],
+      "explanation_id": "Jawaban yang tepat adalah \"explain\"."
+    },
+    {
+      "id": "en-inti150-b1-qz-mc-01",
+      "module_id": "en-inti150-b1",
+      "type": "multiple_choice",
+      "prompt": "Apa arti yang paling tepat untuk kata \"complex\"?",
+      "options": [
+        "rumit / kompleks",
+        "keseimbangan",
+        "konteks",
+        "mendistribusikan / membagi"
+      ],
+      "answer": "rumit / kompleks",
+      "explanation_id": "\"complex\" berarti \"rumit / kompleks\". Contoh: Break complex grammar into simple patterns."
+    },
+    {
+      "id": "en-inti150-b1-qz-mc-02",
+      "module_id": "en-inti150-b1",
+      "type": "multiple_choice",
+      "prompt": "Apa arti yang paling tepat untuk kata \"distribute\"?",
+      "options": [
+        "menurun / menolak dengan sopan",
+        "mengasumsikan / menduga",
+        "mendistribusikan / membagi",
+        "upaya / mencoba"
+      ],
+      "answer": "mendistribusikan / membagi",
+      "explanation_id": "\"distribute\" berarti \"mendistribusikan / membagi\". Contoh: Distribute your practice across the whole week."
+    },
+    {
+      "id": "en-inti150-b1-qz-mc-03",
+      "module_id": "en-inti150-b1",
+      "type": "multiple_choice",
+      "prompt": "Apa arti yang paling tepat untuk kata \"accurate\"?",
+      "options": [
+        "keseimbangan",
+        "konsisten / tetap",
+        "akurat / tepat",
+        "mampu / cakap"
+      ],
+      "answer": "akurat / tepat",
+      "explanation_id": "\"accurate\" berarti \"akurat / tepat\". Contoh: Check that your translation is accurate."
+    },
+    {
+      "id": "en-inti150-b1-qz-match-01",
+      "module_id": "en-inti150-b1",
+      "type": "matching",
+      "prompt": "Pasangkan kosakata Inggris berikut dengan artinya:",
+      "pairs": [
+        {
+          "left": "concentrate",
+          "right": "berkonsentrasi"
+        },
+        {
+          "left": "approach",
+          "right": "pendekatan / cara menangani"
+        },
+        {
+          "left": "aware",
+          "right": "sadar / mengetahui"
+        },
+        {
+          "left": "contrast",
+          "right": "kontras / perbedaan mencolok"
+        }
+      ],
+      "explanation_id": "Semua pasangan kosakata cocok dengan tepat."
+    },
+    {
+      "id": "en-inti150-b1-qz-tr-01",
+      "module_id": "en-inti150-b1",
+      "type": "translation",
+      "prompt": "Ketik kosakata bahasa Inggris yang berarti: \"menggabungkan\"",
+      "accepted_answers": [
+        "combine",
+        "combine"
+      ],
+      "explanation_id": "Jawaban yang tepat adalah \"combine\"."
+    },
+    {
+      "id": "en-inti150-b2-qz-mc-01",
+      "module_id": "en-inti150-b2",
+      "type": "multiple_choice",
+      "prompt": "Apa arti yang paling tepat untuk kata \"constraint\"?",
+      "options": [
+        "menyimpulkan secara logis",
+        "batasan / kendala",
+        "menafsirkan",
+        "kriteria / tolok ukur"
+      ],
+      "answer": "batasan / kendala",
+      "explanation_id": "\"constraint\" berarti \"batasan / kendala\". Contoh: Time constraints forced us to prioritize core words."
+    },
+    {
+      "id": "en-inti150-b2-qz-mc-02",
+      "module_id": "en-inti150-b2",
+      "type": "multiple_choice",
+      "prompt": "Apa arti yang paling tepat untuk kata \"objective\"?",
+      "options": [
+        "jelas terlihat / nyata",
+        "menyeluruh / komprehensif",
+        "objektif / sasaran",
+        "menerapkan / mengimplementasikan"
+      ],
+      "answer": "objektif / sasaran",
+      "explanation_id": "\"objective\" berarti \"objektif / sasaran\". Contoh: Keep an objective tone in academic writing."
+    },
+    {
+      "id": "en-inti150-b2-qz-mc-03",
+      "module_id": "en-inti150-b2",
+      "type": "multiple_choice",
+      "prompt": "Apa arti yang paling tepat untuk kata \"justify\"?",
+      "options": [
+        "berkurang / menyusut",
+        "membenarkan / memberi alasan kuat",
+        "menekankan",
+        "kriteria / tolok ukur"
+      ],
+      "answer": "membenarkan / memberi alasan kuat",
+      "explanation_id": "\"justify\" berarti \"membenarkan / memberi alasan kuat\". Contoh: Always justify your opinion with concrete examples."
+    },
+    {
+      "id": "en-inti150-b2-qz-match-01",
+      "module_id": "en-inti150-b2",
+      "type": "matching",
+      "prompt": "Pasangkan kosakata Inggris berikut dengan artinya:",
+      "pairs": [
+        {
+          "left": "compelling",
+          "right": "meyakinkan / menarik kuat"
+        },
+        {
+          "left": "allocate",
+          "right": "mengalokasikan"
+        },
+        {
+          "left": "ambiguous",
+          "right": "ambigu / bermakna ganda"
+        },
+        {
+          "left": "evaluate",
+          "right": "mengevaluasi"
+        }
+      ],
+      "explanation_id": "Semua pasangan kosakata cocok dengan tepat."
+    },
+    {
+      "id": "en-inti150-b2-qz-tr-01",
+      "module_id": "en-inti150-b2",
+      "type": "translation",
+      "prompt": "Ketik kosakata bahasa Inggris yang berarti: \"mengevaluasi\"",
+      "accepted_answers": [
+        "evaluate",
+        "evaluate"
+      ],
+      "explanation_id": "Jawaban yang tepat adalah \"evaluate\"."
+    },
+    {
+      "id": "en-inti150-c1-qz-mc-01",
+      "module_id": "en-inti150-c1",
+      "type": "multiple_choice",
+      "prompt": "Apa arti yang paling tepat untuk kata \"consensus\"?",
+      "options": [
+        "katalis / pemicu perubahan cepat",
+        "menghambat / menghalangi",
+        "memperkuat / menggabungkan jadi solid",
+        "konsensus / kesepakatan umum"
+      ],
+      "answer": "konsensus / kesepakatan umum",
+      "explanation_id": "\"consensus\" berarti \"konsensus / kesepakatan umum\". Contoh: There is broad consensus on spaced repetition."
+    },
+    {
+      "id": "en-inti150-c1-qz-mc-02",
+      "module_id": "en-inti150-c1",
+      "type": "multiple_choice",
+      "prompt": "Apa arti yang paling tepat untuk kata \"alleviate\"?",
+      "options": [
+        "merugikan / berdampak buruk",
+        "membedakan / menangkap detail halus",
+        "membatasi / memangkas",
+        "meringankan / meredakan"
+      ],
+      "answer": "meringankan / meredakan",
+      "explanation_id": "\"alleviate\" berarti \"meringankan / meredakan\". Contoh: Regular mock tests help alleviate exam anxiety."
+    },
+    {
+      "id": "en-inti150-c1-qz-mc-03",
+      "module_id": "en-inti150-c1",
+      "type": "multiple_choice",
+      "prompt": "Apa arti yang paling tepat untuk kata \"discern\"?",
+      "options": [
+        "mengungkapkan dengan fasih dan jelas",
+        "konsensus / kesepakatan umum",
+        "membedakan / menangkap detail halus",
+        "menganjurkan / mendukung kuat"
+      ],
+      "answer": "membedakan / menangkap detail halus",
+      "explanation_id": "\"discern\" berarti \"membedakan / menangkap detail halus\". Contoh: Advanced learners discern subtle shifts in tone."
+    },
+    {
+      "id": "en-inti150-c1-qz-match-01",
+      "module_id": "en-inti150-c1",
+      "type": "matching",
+      "prompt": "Pasangkan kosakata Inggris berikut dengan artinya:",
+      "pairs": [
+        {
+          "left": "hamper",
+          "right": "menghambat / menghalangi"
+        },
+        {
+          "left": "resilient",
+          "right": "tangguh / cepat bangkit"
+        },
+        {
+          "left": "indispensable",
+          "right": "tak tergantikan / mutlak perlu"
+        },
+        {
+          "left": "plausible",
+          "right": "masuk akal / dapat dipercaya"
+        }
+      ],
+      "explanation_id": "Semua pasangan kosakata cocok dengan tepat."
+    },
+    {
+      "id": "en-inti150-c1-qz-tr-01",
+      "module_id": "en-inti150-c1",
+      "type": "translation",
+      "prompt": "Ketik kosakata bahasa Inggris yang berarti: \"intrinsik / berasal dari dalam\"",
+      "accepted_answers": [
+        "intrinsic",
+        "intrinsic"
+      ],
+      "explanation_id": "Jawaban yang tepat adalah \"intrinsic\"."
+    }
+  ],
+  "dialogs": [],
+  "readings": [],
+  "grammar": []
+}
